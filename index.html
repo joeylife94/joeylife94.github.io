@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProblemSolverArc — 운영 시스템 빌더 포트폴리오</title>
+  <meta name="description" content="운영 문제를 반복 가능한 시스템으로 구조화합니다. 포트폴리오와 프로젝트 증거를 통해 확인하세요." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <span class="brand">ProblemSolverArc</span>
+      <nav>
+        <a href="#featured" data-i18n="nav-projects">프로젝트</a>
+        <a href="#approach" data-i18n="nav-approach">작업 방식</a>
+        <a href="#contact" class="btn-nav" data-i18n="nav-contact">문의하기</a>
+        <div class="lang-switch">
+          <button class="lang-btn lang-btn--active" data-lang="ko">KO</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ja">JA</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO — concise positioning, no service-pitch wall
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <p class="hero-label" data-i18n="hero-label">운영 시스템 빌더</p>
+      <h1 data-i18n-html="hero-h1">운영 문제를 실행 가능한<br />파이프라인으로 전환합니다.</h1>
+      <p class="hero-sub" data-i18n-html="hero-sub">수작업 조사·정리를 자동화된 스캔, 분석, 리포트 흐름으로 바꿉니다.<br />클라이언트는 반복 실행 가능한 도구와 검증된 산출물을 받습니다.</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn-primary" data-i18n="hero-btn-projects">대표 프로젝트 보기</a>
+        <a href="#contact" class="btn-secondary" data-i18n="hero-btn-contact">문의하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPACT TRUST BLOCK — secondary to Featured Project
+       ============================================================ -->
+  <section class="section trust-block" id="trust">
+    <div class="container trust-inner">
+      <img src="img/profile_1.png" alt="Builder portrait" class="trust-portrait" />
+      <div class="trust-text">
+        <p class="trust-name" data-i18n="trust-name">전동윤 · ProblemSolverArc</p>
+        <p class="trust-desc" data-i18n="trust-desc">운영 워크플로우, 내부 도구, 백엔드 중심 MVP를 설계하고 구현합니다. 범위 정의부터 검증 가능한 산출물까지, 구조적으로 접근합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED PROJECT — E-Commerce Scanner (dominant)
+       ============================================================ -->
+  <section class="section" id="featured">
+    <div class="container">
+
+      <!-- Featured intro -->
+      <div class="featured-intro">
+        <p class="eyebrow" data-i18n="featured-eyebrow">대표 프로젝트</p>
+        <p class="credibility-line" data-i18n="credibility-line">각 프로젝트는 구현 기반 증거 자산과 저장소 기록으로 검증됩니다.</p>
+        <h2>E-Commerce Scanner</h2>
+        <p class="project-tagline" data-i18n="featured-tagline">한국 도매 상품을 여러 시장에서 비교하고, 마진 분석 결과를 구조화된 리포트와 대시보드로 확인할 수 있는 스캐닝·분석 도구</p>
+
+        <div class="project-body">
+          <p data-i18n="featured-body">국가 간 상품 기회 분석은 보통 수작업 중심의 일회성 조사에 머무릅니다. 이 프로젝트는 가격 조사, 마진 계산, 근거 정리를 반복 가능한 파이프라인으로 구조화하여, 같은 기준으로 다시 실행할 수 있는 운영 워크플로우를 구현합니다.</p>
+        </div>
+      </div>
+
+      <!-- Proof viewer: horizontal slide with nav -->
+      <!--
+        Asset note: filenames under proof/e-commers-scanner/ contain original typos
+        (e.g. "Oppeortunities", "e-commers"). These are intentionally frozen for this
+        iteration to avoid broken references. Rename only with a coordinated pass.
+      -->
+      <div class="proof-viewer" data-project="e-commerce-scanner">
+        <div class="proof-viewer__track">
+          <div class="proof-viewer__slide proof-viewer__slide--active">
+            <img src="proof/e-commers-scanner/Market Overview.png" alt="E-Commerce Scanner — Market Overview dashboard showing structured scan results" />
+            <p class="proof-caption" data-i18n="proof-caption-1">Market Overview — 스캔 결과와 시장 비교 데이터를 대시보드에서 확인</p>
+          </div>
+          <div class="proof-viewer__slide">
+            <img src="proof/e-commers-scanner/Product Oppeortunities.png" alt="E-Commerce Scanner — Product opportunities listing with margin indicators" />
+            <p class="proof-caption" data-i18n="proof-caption-2">Product Opportunities — 마진 기준 상품 기회 리스트</p>
+          </div>
+          <div class="proof-viewer__slide">
+            <img src="proof/e-commers-scanner/Market Intelligence.png" alt="E-Commerce Scanner — Market intelligence analysis view" />
+            <p class="proof-caption" data-i18n="proof-caption-3">Market Intelligence — 시장 분석 및 인사이트 뷰</p>
+          </div>
+        </div>
+        <button class="proof-viewer__btn proof-viewer__btn--prev" aria-label="이전 이미지" data-i18n-aria="prev-image">&#8249;</button>
+        <button class="proof-viewer__btn proof-viewer__btn--next" aria-label="다음 이미지" data-i18n-aria="next-image">&#8250;</button>
+        <div class="proof-viewer__dots"></div>
+      </div>
+
+      <!-- Featured proof details -->
+      <div class="featured-details">
+        <div class="project-tags">
+          <span class="tag">Scan Pipeline</span>
+          <span class="tag">Margin Analysis</span>
+          <span class="tag">Structured Reporting</span>
+          <span class="tag">Dashboard Review</span>
+        </div>
+
+        <div class="project-proof">
+          <div class="proof-item">
+            <span class="proof-label" data-i18n="proof-label-pipeline">파이프라인</span>
+            <span class="proof-value" data-i18n="proof-value-pipeline">설정 → 수집 → 매칭 → 마진 분석 → 리포트 출력</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-label" data-i18n="proof-label-collection">수집 구조</span>
+            <span class="proof-value" data-i18n="proof-value-collection">비동기 팬아웃, 국가/플랫폼별 세마포어 동시성 제어</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-label" data-i18n="proof-label-output">출력</span>
+            <span class="proof-value" data-i18n="proof-value-output">JSON, Excel, AI 프롬프트, 대시보드 연동</span>
+          </div>
+        </div>
+
+        <p class="project-core-msg" data-i18n="featured-core-msg">반복 가능한 스캔 흐름. 구조화된 운영 산출물.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SUPPORTING PROJECTS — lighter weight than Featured
+       ============================================================ -->
+  <section class="section section-alt" id="portfolio">
+    <div class="container">
+      <p class="eyebrow" data-i18n="portfolio-eyebrow">포트폴리오</p>
+      <h2 data-i18n="portfolio-h2">함께 구축한 프로젝트</h2>
+      <div class="supporting-grid supporting-grid--three">
+
+        <!-- SeoulGyeol Skin Lab -->
+        <div class="supporting-card">
+          <div class="supporting-card-img">
+            <img src="proof/seoulgyeol-skinlab/seoulgyeol.png" alt="SeoulGyeol Skin Lab — privacy-first skin analysis MVP" />
+          </div>
+          <h4>SeoulGyeol Skin Lab</h4>
+          <p data-i18n="card-seoulgyeol-desc">다국어 피부 분석 MVP. 동의 기반 설문 → 점수 산출 → 리포트 생성 → 이메일 전달 파이프라인.</p>
+          <p class="supporting-proof-line" data-i18n="card-seoulgyeol-proof">저장소 증거: 설문→분석→리포트 전체 흐름 구현, 동의 기반 데이터 처리, 다국어 이메일 전송 구조 확인됨</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Privacy-First</span>
+            <span class="tag">Multilingual</span>
+          </div>
+        </div>
+
+        <!-- Restricted Ops Intake MVP -->
+        <!--
+          Restricted Ops: only using the main console screenshot.
+          Slack-related screenshots are excluded per conservative exposure policy.
+        -->
+        <div class="supporting-card">
+          <div class="supporting-card-img">
+            <img src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp main.jpg" alt="Restricted Ops Intake MVP — intake console dashboard" />
+          </div>
+          <h4>Restricted Ops Intake MVP</h4>
+          <p data-i18n="card-restricted-desc">승인된 Slack 채널의 요청을 구조화된 운영 객체로 전환. 서명 검증, 중복 방지, 감사 로그 포함.</p>
+          <p class="supporting-proof-line" data-i18n="card-restricted-proof">저장소 증거: 웹훅 서명 검증, 채널 허용목록 제어, 감사 로그, Vitest 통합 테스트 구조 확인됨</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Slack Integration</span>
+            <span class="tag">Audit Log</span>
+          </div>
+        </div>
+
+        <!-- Papyr.us -->
+        <div class="supporting-card">
+          <div class="supporting-card-img">
+            <img src="proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us — team collaboration wiki dashboard" />
+          </div>
+          <h4>Papyr.us</h4>
+          <p data-i18n="card-papyrus-desc">실시간 협업과 AI 기능을 갖춘 팀 위키. Socket.IO + Yjs 기반 공동 편집, RBAC, 테스트 구조 포함.</p>
+          <p class="supporting-proof-line" data-i18n="card-papyrus-proof">저장소 증거: Yjs + Socket.IO 실시간 협업, Drizzle 스키마/마이그레이션, Vitest + Playwright 테스트 구조 확인됨</p>
+          <div class="project-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Real-time Collab</span>
+            <span class="tag">Yjs</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORK APPROACH — below project proof, reduced emphasis
+       ============================================================ -->
+  <section class="section" id="approach">
+    <div class="container">
+      <p class="eyebrow" data-i18n="approach-eyebrow">작업 방식</p>
+      <h2 data-i18n="approach-h2">구축 프로세스</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <span class="step-num">01</span>
+          <h4 data-i18n="step1-title">범위 정의</h4>
+          <p data-i18n="step1-desc">무엇을 만들지 먼저 명확하게 합니다. 불필요한 기능을 제거하고 핵심에 집중합니다.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">02</span>
+          <h4 data-i18n="step2-title">구축</h4>
+          <p data-i18n="step2-desc">워크플로우와 구조를 먼저 설계하고, 백엔드 중심으로 구조적으로 개발합니다.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">03</span>
+          <h4 data-i18n="step3-title">검증</h4>
+          <p data-i18n="step3-desc">실제로 작동하는지 확인합니다. 배포 가능한 상태로 결과물을 만듭니다.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">04</span>
+          <h4 data-i18n="step4-title">인계</h4>
+          <p data-i18n="step4-desc">소스코드와 함께 전달합니다. 이후 확장이 가능한 구조로 넘깁니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES SUMMARY — separate from approach, compact
+       ============================================================ -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <p class="eyebrow" data-i18n="services-eyebrow">서비스 범위</p>
+      <div class="services-summary-grid">
+        <div class="service-summary-item">
+          <h4>Validation Landing</h4>
+          <p data-i18n="service1-desc">아이디어 검증과 문의 유입을 위한 경량 랜딩 페이지</p>
+        </div>
+        <div class="service-summary-item">
+          <h4>Internal Tool / Admin MVP</h4>
+          <p data-i18n="service2-desc">운영 워크플로우를 정리하는 내부 도구 또는 어드민 MVP</p>
+        </div>
+        <div class="service-summary-item">
+          <h4>Backend MVP Sprint</h4>
+          <p data-i18n="service3-desc">실제 운영 가능한 백엔드 중심 MVP를 단기 스프린트로 구축</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT / CTA — simple
+       ============================================================ -->
+  <section class="section contact-section" id="contact">
+    <div class="container contact-inner">
+      <h2 data-i18n="contact-h2">문의하기</h2>
+      <p class="contact-cta" data-i18n-html="contact-cta">
+        프로젝트에 대해 이야기하고 싶으시면 이메일을 보내주세요.<br />
+        프로젝트 유형, 목표, 일정을 간단히 알려주시면 됩니다.
+      </p>
+      <a href="mailto:joeylife94@gmail.com" class="btn-primary btn-large">
+        joeylife94@gmail.com
+      </a>
+      <p class="contact-reassurance" data-i18n="contact-reassurance">24–48시간 내 회신합니다. 목표, 현재 문제, 일정을 간단히 포함해 주세요.</p>
+      <p class="contact-note" data-i18n="contact-note">현재 이메일을 통해서만 문의를 받고 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-brand">ProblemSolverArc</p>
+      <p class="footer-tagline" data-i18n="footer-tagline">운영 문제를 시스템으로 — 포트폴리오로 증명합니다.</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+
+  <!-- ============================================================
+       PROOF VIEWER — lightweight vanilla JS
+       No external library. Per-project image manifest for easy expansion.
+       ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
+
+    document.querySelectorAll('.proof-viewer').forEach(function (viewer) {
+      var slides = viewer.querySelectorAll('.proof-viewer__slide');
+      var btnPrev = viewer.querySelector('.proof-viewer__btn--prev');
+      var btnNext = viewer.querySelector('.proof-viewer__btn--next');
+      var dotsWrap = viewer.querySelector('.proof-viewer__dots');
+      var current = 0;
+      var total = slides.length;
+
+      if (total < 2) {
+        if (btnPrev) btnPrev.style.display = 'none';
+        if (btnNext) btnNext.style.display = 'none';
+        return;
+      }
+
+      /* Build dots */
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'proof-viewer__dot' + (i === 0 ? ' proof-viewer__dot--active' : '');
+        dot.setAttribute('aria-label', '증거 이미지 ' + (i + 1));
+        dot.dataset.index = i;
+        dotsWrap.appendChild(dot);
+      }
+      var dots = dotsWrap.querySelectorAll('.proof-viewer__dot');
+
+      function goTo(idx) {
+        if (idx < 0) idx = total - 1;
+        if (idx >= total) idx = 0;
+        slides[current].classList.remove('proof-viewer__slide--active');
+        dots[current].classList.remove('proof-viewer__dot--active');
+        current = idx;
+        slides[current].classList.add('proof-viewer__slide--active');
+        dots[current].classList.add('proof-viewer__dot--active');
+      }
+
+      btnPrev.addEventListener('click', function () { goTo(current - 1); });
+      btnNext.addEventListener('click', function () { goTo(current + 1); });
+      dotsWrap.addEventListener('click', function (e) {
+        if (e.target.dataset.index !== undefined) {
+          goTo(parseInt(e.target.dataset.index, 10));
+        }
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
