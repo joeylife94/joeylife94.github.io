@@ -826,3 +826,781 @@ p {
     word-break: break-all;
   }
 }
+
+/* ----------------------------------------------------------------
+   Trust Strip — compact credential bar
+   ---------------------------------------------------------------- */
+.trust-strip {
+  background: #f2f2f2;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 14px 0;
+}
+
+.trust-strip-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.trust-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trust-strip-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.trust-strip-label {
+  font-size: 0.7rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ----------------------------------------------------------------
+   Project Bridge — featured project → client work connection
+   ---------------------------------------------------------------- */
+.project-bridge {
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: #f7f7f7;
+  border-left: 3px solid #1a1a1a;
+  border-radius: 0 8px 8px 0;
+  max-width: 720px;
+}
+
+.project-bridge .eyebrow {
+  margin-bottom: 12px;
+}
+
+.bridge-intro {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+
+.bridge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bridge-list li {
+  font-size: 0.875rem;
+  color: #444;
+  padding: 5px 0 5px 22px;
+  position: relative;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.bridge-list li:last-child {
+  border-bottom: none;
+}
+
+.bridge-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+/* ----------------------------------------------------------------
+   Who This Is For — qualification section
+   ---------------------------------------------------------------- */
+.who-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.who-card {
+  padding: 28px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #fcfcfc;
+}
+
+.who-card--fit {
+  border-top: 3px solid #1a1a1a;
+}
+
+.who-card--notfit {
+  border-top: 3px solid #dedede;
+}
+
+.who-card-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.who-list li {
+  font-size: 0.875rem;
+  color: #444;
+  padding: 7px 0 7px 22px;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.who-list li:last-child {
+  border-bottom: none;
+}
+
+.who-card--fit .who-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.who-card--notfit .who-list li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: #c0c0c0;
+  font-size: 0.8rem;
+}
+
+/* ----------------------------------------------------------------
+   Why Work With Me — trust signal section
+   ---------------------------------------------------------------- */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.why-card {
+  padding: 24px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.why-card h4 {
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ----------------------------------------------------------------
+   Services Grid — upgraded cards
+   ---------------------------------------------------------------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.service-card {
+  padding: 24px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.service-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-card-header h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.service-price {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #bbb;
+  letter-spacing: 0.01em;
+}
+
+.service-position {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.service-scope {
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.service-scope--out {
+  background: #fafafa;
+}
+
+.service-scope-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.service-scope ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-scope ul li {
+  font-size: 0.8rem;
+  color: #555;
+  padding: 3px 0 3px 14px;
+  position: relative;
+}
+
+.service-scope ul li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: #bbb;
+}
+
+.service-scope--out ul li {
+  color: #999;
+}
+
+.service-scope--out ul li::before {
+  color: #ccc;
+}
+
+/* ----------------------------------------------------------------
+   Contact Template block — structured inquiry guide
+   ---------------------------------------------------------------- */
+.contact-template {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  text-align: left;
+  max-width: 480px;
+  width: 100%;
+}
+
+.contact-template-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.contact-template-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-template-list li {
+  font-size: 0.875rem;
+  color: #bbb;
+  padding: 5px 0 5px 20px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-template-list li:last-child {
+  border-bottom: none;
+}
+
+.contact-template-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #555;
+  font-size: 0.8rem;
+}
+
+/* ----------------------------------------------------------------
+   Responsive additions — new sections
+   ---------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .who-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .trust-strip-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-bridge {
+    padding: 20px 18px;
+  }
+
+  .who-card {
+    padding: 20px;
+  }
+
+  .why-card {
+    padding: 20px;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .contact-template {
+    padding: 16px 18px;
+  }
+}
+
+/* ================================================================
+   Session 2 additions — service landing page rewrite
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Hamburger nav toggle
+   ---------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #1a1a1a;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Nav links container — desktop inline, mobile dropdown */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-nav a {
+  font-size: 0.875rem;
+  color: #555;
+  transition: color 0.15s;
+}
+
+.site-nav a:hover {
+  color: #1a1a1a;
+}
+
+/* ----------------------------------------------------------------
+   Proof viewer progress bar (autoplay)
+   ---------------------------------------------------------------- */
+.proof-viewer__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #1a1a1a;
+  z-index: 3;
+  border-radius: 0;
+}
+
+/* ----------------------------------------------------------------
+   Scroll reveal
+   ---------------------------------------------------------------- */
+.reveal-item,
+.reveal-grid {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-item.is-visible,
+.reveal-grid.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children inside a .reveal-grid */
+.reveal-grid.is-visible > * {
+  animation: none; /* handled by reveal-item on each child */
+}
+
+/* ----------------------------------------------------------------
+   Accessibility — respect reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-grid {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .proof-viewer__progress {
+    transition: none;
+  }
+
+  .proof-viewer__slide {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Why card stat — large number display
+   ---------------------------------------------------------------- */
+.why-card-stat {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+/* ----------------------------------------------------------------
+   Service card — new fields
+   ---------------------------------------------------------------- */
+.service-card-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+
+.service-audience {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  padding: 3px 8px;
+}
+
+.service-problem {
+  font-size: 0.875rem;
+  color: #555;
+  font-style: italic;
+  line-height: 1.65;
+  border-left: 2px solid #d8d8d8;
+  padding-left: 12px;
+  margin: 0;
+}
+
+.service-cta {
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  text-align: right;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+  transition: opacity 0.15s ease;
+}
+
+.service-cta:hover {
+  opacity: 0.65;
+}
+
+/* Card hover lift */
+.service-card:hover,
+.why-card:hover,
+.supporting-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ----------------------------------------------------------------
+   Featured proof section — problem/solution framing
+   ---------------------------------------------------------------- */
+.project-problem {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 12px;
+  padding-left: 14px;
+  border-left: 3px solid #dedede;
+}
+
+.project-solution {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 28px;
+  padding-left: 14px;
+  border-left: 3px solid #1a1a1a;
+}
+
+/* ----------------------------------------------------------------
+   Proof points — "what this proves" grid
+   ---------------------------------------------------------------- */
+.proof-points {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.proof-points-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.proof-points-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+}
+
+.proof-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.55;
+}
+
+.proof-point-icon {
+  flex-shrink: 0;
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* ----------------------------------------------------------------
+   Supporting row — inside proof section
+   ---------------------------------------------------------------- */
+.supporting-row {
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.supporting-row-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* ----------------------------------------------------------------
+   Footer — flex layout with links
+   ---------------------------------------------------------------- */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: #666;
+  transition: color 0.15s ease;
+}
+
+.footer-links a:hover {
+  color: #aaa;
+}
+
+/* ----------------------------------------------------------------
+   Contact — email button + reassurance
+   ---------------------------------------------------------------- */
+.contact-email-btn {
+  word-break: break-all;
+}
+
+/* ----------------------------------------------------------------
+   Sticky mobile CTA
+   ---------------------------------------------------------------- */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid #e0e0e0;
+  backdrop-filter: blur(6px);
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+}
+
+.sticky-cta.is-visible {
+  transform: translateY(0);
+}
+
+.sticky-cta-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* ----------------------------------------------------------------
+   Trust strip — larger values for count-up display
+   ---------------------------------------------------------------- */
+.trust-strip-val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+/* ----------------------------------------------------------------
+   Mobile — hamburger + sticky CTA visible
+   ---------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Show hamburger toggle */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Hide nav links by default, show when open */
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 0;
+    z-index: 99;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .site-nav a:last-child {
+    border-bottom: none;
+  }
+
+  /* Keep lang-switch in header even on mobile */
+  .lang-switch {
+    margin-left: 0;
+  }
+
+  /* Show sticky CTA on mobile */
+  .sticky-cta {
+    display: block;
+  }
+
+  /* Proof points stack */
+  .proof-points-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Why grid — already 1-col at 900px, keep for 640px too */
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-cta {
+    transition: none;
+  }
+}
