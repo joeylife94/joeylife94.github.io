@@ -109,15 +109,15 @@ Suggested section order:
   - contact submit / mail click
 - Add SEO structured data (`Person`, `ProfessionalService`, `FAQPage`).
 
-## 6) 2-week execution roadmap
+## 6) execution roadmap
 
-### Week 1 (conversion foundation)
+### 1 Phase (conversion foundation)
 - Add intake form + validation + success state.
 - Add engagement model block.
 - Add FAQ section with top objections.
 - Add event tracking for CTA/form interactions.
 
-### Week 2 (trust & optimization)
+### 2 Phase (trust & optimization)
 - Rewrite case studies into "baseline -> change -> result" format.
 - Add 2–3 short testimonial/endorsement snippets (if available).
 - Run copy A/B test for hero headline and first CTA text.
