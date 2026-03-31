@@ -5,27 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProblemSolverArc — 백엔드 · 운영 시스템 · 내부 도구 프리랜서</title>
   <meta name="description" content="수동 워크플로우를 구조화된 시스템으로 전환합니다. 백엔드 MVP, 내부 도구, 운영 파이프라인 프리랜서 서비스." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <span class="brand">ProblemSolverArc</span>
-      <nav class="site-nav" id="site-nav">
-        <a href="#services" data-i18n="nav-services">서비스</a>
-        <a href="#proof" data-i18n="nav-projects">사례</a>
-        <a href="#why" data-i18n="nav-why">소개</a>
-        <a href="#contact" class="btn-nav" data-i18n="nav-contact">문의하기</a>
-        <div class="lang-switch">
-          <button class="lang-btn lang-btn--active" data-lang="ko">KO</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="ja">JA</button>
-        </div>
-      </nav>
+  <!-- Cursor-follow spotlight -->
+  <div class="spotlight" id="spotlight"></div>
+
+  <!-- Mobile header -->
+  <header class="mobile-header" id="mobile-header">
+    <a href="#top" class="brand">ProblemSolverArc</a>
+    <div class="mobile-header-right">
+      <div class="lang-switch lang-switch--mobile">
+        <button class="lang-btn lang-btn--active" data-lang="ko">KO</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+      </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -34,492 +32,523 @@
     </div>
   </header>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <p class="hero-label" data-i18n="hero-label">Backend · 운영 시스템 · 내부 도구</p>
-      <h1 data-i18n-html="hero-h1">스프레드시트와 수작업으로 굴러가던 운영을<br />작게라도 실제로 쓰이는 시스템으로 바꿉니다</h1>
-      <p class="hero-sub" data-i18n-html="hero-sub">Slack, 이메일, 스프레드시트에 흩어진 반복 업무를 내부 도구, 운영 워크플로우, 백엔드 MVP로 구조화합니다.<br />빠르게 보기 좋은 데모보다, 실제로 운영 가능한 첫 구조를 만드는 데 집중합니다.</p>
-      <p class="hero-why-now" data-i18n="hero-why-now">지금도 복붙, 수동 확인, 재정리에 시간을 쓰고 있다면 이미 속도와 오류율에서 비용을 내고 있을 가능성이 큽니다.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary" data-i18n="hero-btn-contact">프로젝트 문의하기</a>
-        <a href="#services" class="btn-secondary" data-i18n="hero-btn-services">서비스 보기</a>
-      </div>
-      <p class="hero-trust-micro" data-i18n="hero-trust-micro">보통 24–48시간 내 답변합니다 · 범위가 완전히 정리되지 않아도 문의 가능합니다</p>
-    </div>
-  </section>
+  <!-- Mobile nav dropdown -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#about">About</a>
+    <a href="#services" data-i18n="nav-services">서비스</a>
+    <a href="#proof" data-i18n="nav-projects">사례</a>
+    <a href="#why" data-i18n="nav-why">소개</a>
+    <a href="#contact" data-i18n="nav-contact">문의하기</a>
+  </nav>
 
-  <!-- ============================================================
-       TRUST STRIP — stat-based, count-up on scroll
-       ============================================================ -->
-  <div class="trust-strip" id="trust-strip">
-    <div class="container trust-strip-inner">
-      <div class="trust-strip-item">
-        <span class="trust-strip-val">
-          <span class="count-up" data-target="4.8" data-decimals="1">0</span>년
-        </span>
-        <span class="trust-strip-label" data-i18n="ts-label1">엔터프라이즈 백엔드 경력</span>
+  <div class="layout" id="top">
+
+    <!-- ============================================================
+         LEFT SIDEBAR
+         ============================================================ -->
+    <header class="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-top">
+          <a href="#top" class="brand">ProblemSolverArc</a>
+          <p class="role" data-i18n="hero-label">Backend · 운영 시스템 · 내부 도구</p>
+          <h1 class="sidebar-headline" data-i18n-html="hero-h1">스프레드시트와 수작업으로 굴러가던 운영을<br />작게라도 실제로 쓰이는 시스템으로 바꿉니다</h1>
+        </div>
+
+        <nav class="sidebar-nav" id="sidebar-nav">
+          <a href="#about" class="nav-link active" data-section="about">
+            <span class="nav-indicator"></span>
+            <span class="nav-text">About</span>
+          </a>
+          <a href="#services" class="nav-link" data-section="services">
+            <span class="nav-indicator"></span>
+            <span class="nav-text" data-i18n="nav-services">서비스</span>
+          </a>
+          <a href="#proof" class="nav-link" data-section="proof">
+            <span class="nav-indicator"></span>
+            <span class="nav-text" data-i18n="nav-projects">사례</span>
+          </a>
+          <a href="#why" class="nav-link" data-section="why">
+            <span class="nav-indicator"></span>
+            <span class="nav-text" data-i18n="nav-why">소개</span>
+          </a>
+          <a href="#contact" class="nav-link" data-section="contact">
+            <span class="nav-indicator"></span>
+            <span class="nav-text" data-i18n="nav-contact">문의하기</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="lang-switch">
+            <button class="lang-btn lang-btn--active" data-lang="ko">KO</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ja">JA</button>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/joeylife94" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/dongyoun-jeon" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="mailto:joeylife94@gmail.com" aria-label="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="trust-strip-item">
-        <span class="trust-strip-val">
-          ~<span class="count-up" data-target="30" data-decimals="0">0</span>%
-        </span>
-        <span class="trust-strip-label" data-i18n="ts-label2">API 응답속도 개선</span>
-      </div>
-      <div class="trust-strip-item">
-        <span class="trust-strip-val">
-          <span class="count-up" data-target="100" data-decimals="0">0</span> → <span class="count-up" data-target="2000" data-decimals="0">0</span>+
-        </span>
-        <span class="trust-strip-label" data-i18n="ts-label3">동시 처리량 개선</span>
-      </div>
-      <div class="trust-strip-item">
-        <span class="trust-strip-val" data-i18n="ts-val4">엔터프라이즈 · 공공</span>
-        <span class="trust-strip-label" data-i18n="ts-label4">실제 운영 환경 경험</span>
-      </div>
-    </div>
+    </header>
+
+    <!-- ============================================================
+         RIGHT CONTENT
+         ============================================================ -->
+    <main class="content">
+
+      <!-- ── ABOUT / INTRO ────────────────────────────────────── -->
+      <section class="content-section" id="about">
+        <p class="section-label">About</p>
+        <div class="about-text">
+          <p data-i18n-html="hero-sub">Slack, 이메일, 스프레드시트에 흩어진 반복 업무를 내부 도구, 운영 워크플로우, 백엔드 MVP로 구조화합니다.<br />빠르게 보기 좋은 데모보다, 실제로 운영 가능한 첫 구조를 만드는 데 집중합니다.</p>
+          <p class="highlight-text" data-i18n="hero-why-now">지금도 복붙, 수동 확인, 재정리에 시간을 쓰고 있다면 이미 속도와 오류율에서 비용을 내고 있을 가능성이 큽니다.</p>
+        </div>
+
+        <div class="trust-stats" id="trust-strip">
+          <div class="trust-stat">
+            <span class="trust-stat-val">
+              <span class="count-up" data-target="4.8" data-decimals="1">0</span>년
+            </span>
+            <span class="trust-stat-label" data-i18n="ts-label1">엔터프라이즈 백엔드 경력</span>
+          </div>
+          <div class="trust-stat">
+            <span class="trust-stat-val">
+              ~<span class="count-up" data-target="30" data-decimals="0">0</span>%
+            </span>
+            <span class="trust-stat-label" data-i18n="ts-label2">API 응답속도 개선</span>
+          </div>
+          <div class="trust-stat">
+            <span class="trust-stat-val">
+              <span class="count-up" data-target="100" data-decimals="0">0</span> → <span class="count-up" data-target="2000" data-decimals="0">0</span>+
+            </span>
+            <span class="trust-stat-label" data-i18n="ts-label3">동시 처리량 개선</span>
+          </div>
+          <div class="trust-stat">
+            <span class="trust-stat-val" data-i18n="ts-val4">엔터프라이즈 · 공공</span>
+            <span class="trust-stat-label" data-i18n="ts-label4">실제 운영 환경 경험</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary" data-i18n="hero-btn-contact">프로젝트 문의하기</a>
+          <a href="#services" class="btn-ghost" data-i18n="hero-btn-services">서비스 보기</a>
+        </div>
+        <p class="trust-micro" data-i18n="hero-trust-micro">보통 24–48시간 내 답변합니다 · 범위가 완전히 정리되지 않아도 문의 가능합니다</p>
+
+        <!-- Who this is for -->
+        <div class="icp-section">
+          <h3 data-i18n="who-h2">이런 팀과 가장 잘 맞습니다</h3>
+          <p class="section-desc" data-i18n="who-lead">작고 명확한 범위에서, 수작업을 실제 운영 가능한 시스템으로 바꾸려는 팀과 잘 맞습니다.</p>
+          <div class="icp-grid">
+            <div class="icp-card">
+              <h4 data-i18n="icp-profile1-title">0–10인 SaaS 팀</h4>
+              <p data-i18n="icp-profile1-desc">운영 병목이 이미 보이는데, 전담 플랫폼 팀을 두기엔 아직 이른 팀</p>
+            </div>
+            <div class="icp-card">
+              <h4 data-i18n="icp-profile2-title">워크플로우 MVP를 검증해야 하는 파운더</h4>
+              <p data-i18n="icp-profile2-desc">스프레드시트나 메시지 기반 운영을 2–4주 안에 빠르게 시스템화해 보고 싶은 경우</p>
+            </div>
+            <div class="icp-card">
+              <h4 data-i18n="icp-profile3-title">승인·추적·정리 업무를 벗기려는 팀</h4>
+              <p data-i18n="icp-profile3-desc">반복 업무를 재실행 가능한 내부 도구나 백엔드 흐름으로 바꾸고 싶은 경우</p>
+            </div>
+          </div>
+          <p class="icp-notfit" data-i18n="icp-notfit">브랜딩 중심 마케팅 사이트, 범위가 아직 열려 있는 대형 플랫폼, 장기 상주형 포지션은 현재 범위와 맞지 않습니다.</p>
+        </div>
+      </section>
+
+      <!-- ── SERVICES ─────────────────────────────────────────── -->
+      <section class="content-section" id="services">
+        <p class="section-label" data-i18n="services-eyebrow">서비스</p>
+        <h2 data-i18n="services-h2">어떤 문제를 이런 형태로 해결합니다</h2>
+        <p class="section-desc" data-i18n="services-lead">작게 시작해 실제로 쓰일 수 있는 내부 시스템, 운영 워크플로우, 백엔드 MVP를 만듭니다. 범위를 먼저 확인한 뒤 가장 현실적인 첫 단계를 제안합니다.</p>
+
+        <div class="card-list">
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-header">
+                <h3>Workflow Automation Sprint</h3>
+                <span class="card-audience" data-i18n="service1-audience">파운더 · 오퍼레이터</span>
+              </div>
+              <p class="card-problem" data-i18n="service1-problem">스프레드시트, Slack, 이메일로 이어 붙인 반복 업무를 더 이상 수작업으로 돌리기 어렵다.</p>
+              <div class="card-scope">
+                <p class="card-scope-label" data-i18n="includes-label">제공 내용</p>
+                <ul>
+                  <li data-i18n="service1-inc1">현재 업무 흐름 정리</li>
+                  <li data-i18n="service1-inc2">승인/추적/알림 중심 워크플로우 구조화</li>
+                  <li data-i18n="service1-inc3">재실행 가능한 MVP + 코드 인계</li>
+                </ul>
+              </div>
+              <div class="card-scope card-scope--out">
+                <p class="card-scope-label" data-i18n="excludes-label">포함 안 됨</p>
+                <ul>
+                  <li data-i18n="service1-exc1">전사 시스템 전면 교체</li>
+                  <li data-i18n="service1-exc2">범위 없는 대형 제품 기획</li>
+                  <li data-i18n="service1-exc3">장기 무기한 운영 대행</li>
+                </ul>
+              </div>
+              <a href="#contact" class="card-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-header">
+                <h3>Internal Tool Starter</h3>
+                <span class="card-audience" data-i18n="service2-audience">소규모 팀 · 스타트업</span>
+              </div>
+              <p class="card-problem" data-i18n="service2-problem">핵심 운영 업무를 제대로 된 내부 도구나 어드민 화면으로 바꾸고 싶다.</p>
+              <div class="card-scope">
+                <p class="card-scope-label" data-i18n="includes-label">제공 내용</p>
+                <ul>
+                  <li data-i18n="service2-inc1">범위 정의 · 워크플로우 설계</li>
+                  <li data-i18n="service2-inc2">어드민 로직 · 데이터 처리</li>
+                  <li data-i18n="service2-inc3">검토 가능한 MVP + 코드 인계</li>
+                </ul>
+              </div>
+              <div class="card-scope card-scope--out">
+                <p class="card-scope-label" data-i18n="excludes-label">포함 안 됨</p>
+                <ul>
+                  <li data-i18n="service2-exc1">조직 전체 시스템 교체</li>
+                  <li data-i18n="service2-exc2">범위 미정 멀티팀 제품</li>
+                  <li data-i18n="service2-exc3">오픈엔드 무기한 지원</li>
+                </ul>
+              </div>
+              <a href="#contact" class="card-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-header">
+                <h3>Backend MVP Sprint</h3>
+                <span class="card-audience" data-i18n="service3-audience">제품팀 · 창업자</span>
+              </div>
+              <p class="card-problem" data-i18n="service3-problem">API, 백엔드 로직, 외부 연동, 운영 파이프라인을 빠르게 만들어야 한다.</p>
+              <div class="card-scope">
+                <p class="card-scope-label" data-i18n="includes-label">제공 내용</p>
+                <ul>
+                  <li data-i18n="service3-inc1">MVP 범위 백엔드 아키텍처</li>
+                  <li data-i18n="service3-inc2">API · 데이터 흐름 · 통합 구현</li>
+                  <li data-i18n="service3-inc3">인수인계 지향 납품 + 코드 인계</li>
+                </ul>
+              </div>
+              <div class="card-scope card-scope--out">
+                <p class="card-scope-label" data-i18n="excludes-label">포함 안 됨</p>
+                <ul>
+                  <li data-i18n="service3-exc1">전사 엔터프라이즈 전환</li>
+                  <li data-i18n="service3-exc2">프론트엔드 중심 UI 디자인</li>
+                  <li data-i18n="service3-exc3">범위 없는 장기 유지보수</li>
+                </ul>
+              </div>
+              <a href="#contact" class="card-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FEATURED PROOF / CASES ───────────────────────────── -->
+      <section class="content-section" id="proof">
+        <p class="section-label" data-i18n="featured-eyebrow">대표 사례</p>
+        <h2 data-i18n="featured-h2">수작업 상품 조사를 반복 실행 가능한 운영 파이프라인으로</h2>
+
+        <div class="case-narrative">
+          <div class="case-block">
+            <p class="case-label" data-i18n="case-baseline-label">Baseline</p>
+            <p data-i18n="case-baseline">국가 간 상품 기회 조사는 보통 스프레드시트, 수동 검색, 기준 재정리로 흩어져 있습니다. 기준이 조금만 바뀌어도 처음부터 다시 조사해야 하고, 결과도 사람마다 달라지기 쉽습니다.</p>
+          </div>
+          <div class="case-block case-block--accent">
+            <p class="case-label" data-i18n="case-change-label">What changed</p>
+            <p data-i18n="case-change">가격 수집, 상품 매칭, 마진 계산, 리포트 출력을 하나의 반복 가능한 파이프라인으로 구조화했습니다. 입력 조건을 바꾸면 같은 흐름으로 다시 실행할 수 있고, 검토를 위한 대시보드와 결과 출력도 함께 정리했습니다.</p>
+          </div>
+          <div class="case-block case-block--result">
+            <p class="case-label" data-i18n="case-result-label">Result</p>
+            <p data-i18n="case-result">조사 과정을 "한 번 하고 끝나는 작업"이 아니라, 다시 돌릴 수 있는 운영 흐름으로 바꿨습니다. 수집 → 처리 → 검토 → 리포트까지의 단계가 분리되면서 기준 변경에도 다시 실행 가능한 구조를 확보했습니다.</p>
+          </div>
+          <div class="case-block">
+            <p class="case-label" data-i18n="case-fit-label">Good fit</p>
+            <p data-i18n="case-fit">시장 조사, 승인 흐름, 정리 업무처럼 사람이 반복해서 처리하던 운영 과정을 작은 시스템으로 바꾸고 싶은 팀에 잘 맞는 패턴입니다.</p>
+          </div>
+        </div>
+
+        <!-- Proof viewer -->
+        <div class="proof-viewer" data-project="e-commerce-scanner" data-autoplay="true">
+          <div class="proof-viewer__progress"></div>
+          <div class="proof-viewer__track">
+            <div class="proof-viewer__slide proof-viewer__slide--active">
+              <img src="proof/e-commers-scanner/Market Overview.png" alt="E-Commerce Scanner — Market Overview dashboard" loading="lazy" />
+              <p class="proof-caption" data-i18n="proof-caption-1">Market Overview — 스캔 결과와 시장 비교 데이터</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="proof/e-commers-scanner/Product Oppeortunities.png" alt="E-Commerce Scanner — Product opportunities" loading="lazy" />
+              <p class="proof-caption" data-i18n="proof-caption-2">Product Opportunities — 마진 기준 상품 기회 리스트</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="proof/e-commers-scanner/Market Intelligence.png" alt="E-Commerce Scanner — Market intelligence" loading="lazy" />
+              <p class="proof-caption" data-i18n="proof-caption-3">Market Intelligence — 시장 분석 인사이트</p>
+            </div>
+          </div>
+          <button class="proof-viewer__btn proof-viewer__btn--prev" aria-label="이전" data-i18n-aria="prev-image">&#8249;</button>
+          <button class="proof-viewer__btn proof-viewer__btn--next" aria-label="다음" data-i18n-aria="next-image">&#8250;</button>
+          <div class="proof-viewer__dots"></div>
+        </div>
+
+        <!-- Proof points -->
+        <div class="proof-points">
+          <p class="proof-points-label" data-i18n="proof-points-label">이 사례가 증명하는 역량</p>
+          <div class="proof-points-grid">
+            <div class="proof-point"><span class="proof-point-icon">→</span><span data-i18n="proof-point-1">수작업 프로세스 → 반복 실행 가능한 구조화된 워크플로우</span></div>
+            <div class="proof-point"><span class="proof-point-icon">→</span><span data-i18n="proof-point-2">데이터 수집 · 처리 · 검토 · 리포트 파이프라인 설계</span></div>
+            <div class="proof-point"><span class="proof-point-icon">→</span><span data-i18n="proof-point-3">어드민 대시보드 · 백오피스 인터페이스 구현</span></div>
+            <div class="proof-point"><span class="proof-point-icon">→</span><span data-i18n="proof-point-4">명확한 범위와 운영 로직을 갖춘 백엔드 MVP</span></div>
+          </div>
+        </div>
+
+        <!-- Supporting projects -->
+        <div class="supporting-section">
+          <p class="section-label" data-i18n="portfolio-eyebrow">추가 사례</p>
+          <div class="project-list">
+
+            <div class="project-card">
+              <div class="project-card-img">
+                <img src="proof/seoulgyeol-skinlab/seoulgyeol.png" alt="SeoulGyeol Skin Lab" loading="lazy" />
+              </div>
+              <div class="project-card-body">
+                <h4>SeoulGyeol Skin Lab</h4>
+                <p data-i18n="card-seoulgyeol-desc">동의 기반 설문 → 점수 산출 → 리포트 생성 → 이메일 전달 파이프라인. 다국어 피부 분석 MVP.</p>
+                <p class="proof-line" data-i18n="card-seoulgyeol-proof">전체 흐름 구현 · 동의 기반 데이터 처리 · 다국어 이메일 전송 확인</p>
+                <div class="tags"><span class="tag">Next.js</span><span class="tag">Privacy-First</span><span class="tag">Pipeline</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-img">
+                <img src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp main.jpg" alt="Restricted Ops Intake MVP" loading="lazy" />
+              </div>
+              <div class="project-card-body">
+                <h4>Restricted Ops Intake MVP</h4>
+                <p data-i18n="card-restricted-desc">승인된 Slack 요청 → 구조화된 운영 객체. 서명 검증 · 중복 방지 · 감사 로그 포함.</p>
+                <p class="proof-line" data-i18n="card-restricted-proof">웹훅 서명 검증 · 채널 허용목록 · 감사 로그 · 통합 테스트 확인</p>
+                <div class="tags"><span class="tag">Next.js</span><span class="tag">Slack</span><span class="tag">Audit Log</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-card-img">
+                <img src="proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us" loading="lazy" />
+              </div>
+              <div class="project-card-body">
+                <h4>Papyr.us</h4>
+                <p data-i18n="card-papyrus-desc">실시간 공동 편집 + AI 워크플로우 통합 팀 위키. CRDT 기반 동시 편집, RBAC 구조.</p>
+                <p class="proof-line" data-i18n="card-papyrus-proof">Yjs + Socket.IO · Drizzle 스키마 · Vitest + Playwright 테스트 확인</p>
+                <div class="tags"><span class="tag">TypeScript</span><span class="tag">Real-time</span><span class="tag">AI</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── WHY WORK WITH ME ─────────────────────────────────── -->
+      <section class="content-section" id="why">
+        <p class="section-label" data-i18n="why-eyebrow">Why work with me</p>
+        <h2 data-i18n="why-h2">일반 웹 프리랜서와 다른 이유</h2>
+        <p class="section-desc" data-i18n="why-lead">4.8년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.</p>
+
+        <div class="experience-list">
+          <div class="experience-item">
+            <div class="experience-stat">~30%</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card1-title">API 응답속도 개선</h4>
+              <p data-i18n="why-card1-desc">서비스 분리와 아키텍처 재구성을 통해 핵심 API 응답 속도를 약 30% 단축. 성능 문제를 원인에서 접근합니다.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-stat">100→2K+</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card2-title">동시 처리량 20배 개선</h4>
+              <p data-i18n="why-card2-desc">인증/세션 경로의 DB 커넥션 풀 병목을 해결해 동시 처리량을 100에서 2,000+ 수준으로 개선했습니다.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-stat">수백만 건</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card3-title">Oracle → MySQL 무중단 이전</h4>
+              <p data-i18n="why-card3-desc">수백만 건 레코드의 Oracle → MySQL 마이그레이션을 서비스 연속성을 유지하면서 완료했습니다.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-stat">OAuth 2.0</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card4-title">인증 · 보안 시스템</h4>
+              <p data-i18n="why-card4-desc">Java · Quarkus · Keycloak 기반 OAuth 2.0 SSO 시스템 설계 및 구현. 인증 경계를 실무 환경에서 다뤄왔습니다.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-stat">레거시→</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card5-title">점진적 현대화</h4>
+              <p data-i18n="why-card5-desc">모놀리식 플랫폼을 Spring Boot 기반 모듈형 서비스로 단계적으로 분리. 전면 교체 없이 운영하면서 개선합니다.</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-stat">AI</div>
+            <div class="experience-body">
+              <h4 data-i18n="why-card6-title">운영 워크플로우에 통합된 AI</h4>
+              <p data-i18n="why-card6-desc">LLM을 독립 데모가 아닌 백엔드 이벤트 흐름 · RAG 파이프라인 · 실제 워크플로우 컴포넌트로 통합합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engagement model -->
+        <div class="engagement-section">
+          <h3 data-i18n="engagement-h2">이런 방식으로 진행합니다</h3>
+          <div class="engagement-grid">
+            <div class="engagement-card">
+              <h4 data-i18n="engagement-timeline-title">Typical timeline</h4>
+              <p data-i18n="engagement-timeline-desc">보통 2–6주 내의 작고 명확한 범위에서 가장 잘 맞습니다. 첫 단계는 전체를 크게 만들기보다, 실제 운영에 바로 도움이 되는 핵심 흐름 1개를 먼저 닫는 방식으로 진행합니다.</p>
+            </div>
+            <div class="engagement-card">
+              <h4 data-i18n="engagement-deliverables-title">Deliverables</h4>
+              <p data-i18n="engagement-deliverables-desc">작동하는 MVP 또는 범위가 명확한 구현물을 제공합니다. 보통 핵심 백엔드 로직, 워크플로우 구조, 필요한 경우 내부 UI/어드민 화면, 그리고 인계용 설명을 함께 포함합니다.</p>
+            </div>
+            <div class="engagement-card">
+              <h4 data-i18n="engagement-communication-title">Communication</h4>
+              <p data-i18n="engagement-communication-desc">이메일과 문서 중심으로 진행합니다. 중간 공유는 텍스트, 스크린샷, 짧은 데모 영상 위주로 드리고, 꼭 필요할 때만 짧은 미팅을 잡습니다.</p>
+            </div>
+            <div class="engagement-card">
+              <h4 data-i18n="engagement-scope-title">Scope handling</h4>
+              <p data-i18n="engagement-scope-desc">처음부터 범위를 작게 잠그는 것을 우선합니다. 중간에 새 요청이 생기면 무한 확장하지 않고, 현재 단계와 다음 단계를 분리해 안정적으로 진행합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+          <h3 data-i18n="faq-h2">자주 묻는 질문</h3>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q1">범위가 아직 완전히 정리되지 않았는데 문의해도 되나요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a1">네. 오히려 초기에 가장 필요한 건 모든 기능 목록보다도, 지금 어떤 업무가 수작업이고 어디가 가장 막히는지 정리하는 것입니다. 현재 상태와 원하는 결과만 있어도 첫 범위를 함께 잡을 수 있습니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q2">작은 프로젝트도 맡나요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a2">네. 오히려 2–6주 안에 닫을 수 있는 작고 명확한 범위의 프로젝트와 가장 잘 맞습니다. 처음부터 큰 시스템 전체를 한 번에 만들기보다, 실제로 바로 쓰일 핵심 흐름 1개를 먼저 구현하는 쪽을 선호합니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q3">미팅은 얼마나 필요한가요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a3">기본은 이메일/문서 중심입니다. 진행 중 공유도 텍스트, 스크린샷, 짧은 데모 중심으로 드립니다. 짧은 미팅이 필요할 수는 있지만, 회의가 많은 방식은 지향하지 않습니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q4">어떤 기술 스택으로 작업하나요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a4">기본 강점은 백엔드, 운영 시스템, 내부 도구, 워크플로우 구조화에 있습니다. 프로젝트 목적에 맞는 스택을 우선하며, 특정 기술을 과하게 밀기보다 유지 가능한 구조를 만드는 데 집중합니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q5">납품 후 지원도 가능한가요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a5">가능합니다. 다만 처음부터 무기한 운영 계약을 전제로 하기보다, 현재 단계 납품 범위와 이후 고도화 단계를 분리해서 보는 편이 더 명확합니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q6">코드와 산출물의 소유권은 어떻게 되나요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a6">별도 합의가 없다면, 납품 범위에 포함된 코드와 산출물은 클라이언트가 인계받아 운영 가능한 형태로 전달하는 것을 기본으로 합니다. 세부 조건은 프로젝트 시작 전에 명확히 정리하는 것이 좋습니다.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question" data-i18n="faq-q7">민감한 운영 데이터도 다룰 수 있나요?</summary>
+              <div class="faq-answer"><p data-i18n="faq-a7">가능합니다. 다만 실제 운영 데이터, 권한, 접근 범위는 프로젝트 초기에 명확히 정리되어야 합니다. 필요 시 더미 데이터 기반 검증이나 최소 권한 접근 원칙으로 진행하는 방식을 우선합니다.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CONTACT ──────────────────────────────────────────── -->
+      <section class="content-section" id="contact">
+        <p class="section-label" data-i18n="nav-contact">문의하기</p>
+        <h2 data-i18n="contact-h2">간단한 문의로 시작해보세요</h2>
+        <p class="section-desc" data-i18n-html="contact-intro">아래 폼에 현재 운영 방식과 가장 큰 병목을 적어주시면,<br />범위를 검토한 뒤 적합한 첫 단계를 제안드립니다.</p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="cf-name" data-i18n="form-label-name">이름 *</label>
+            <input type="text" id="cf-name" name="name" required autocomplete="name" />
+            <span class="form-error" data-i18n="form-error-name">이름을 입력해주세요.</span>
+          </div>
+          <div class="form-group">
+            <label for="cf-email" data-i18n="form-label-email">이메일 *</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" />
+            <span class="form-error" data-i18n="form-error-email">유효한 이메일을 입력해주세요.</span>
+          </div>
+          <div class="form-group">
+            <label for="cf-problem" data-i18n="form-label-problem">어떤 문제를 개선하고 싶으신가요? *</label>
+            <textarea id="cf-problem" name="problem" rows="4" required></textarea>
+            <span class="form-error" data-i18n="form-error-problem">내용을 입력해주세요.</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-type" data-i18n="form-label-type">프로젝트 유형 *</label>
+              <select id="cf-type" name="project_type" required>
+                <option value="" data-i18n="form-type-placeholder">선택해주세요</option>
+                <option value="workflow" data-i18n="form-type-workflow">워크플로우 자동화</option>
+                <option value="internal-tool" data-i18n="form-type-tool">내부 도구</option>
+                <option value="backend-mvp" data-i18n="form-type-backend">백엔드 MVP</option>
+                <option value="not-sure" data-i18n="form-type-unsure">아직 잘 모르겠음</option>
+              </select>
+              <span class="form-error" data-i18n="form-error-type">유형을 선택해주세요.</span>
+            </div>
+            <div class="form-group">
+              <label for="cf-timeline" data-i18n="form-label-timeline">희망 일정 *</label>
+              <input type="text" id="cf-timeline" name="timeline" required placeholder="예: 4주 내" />
+              <span class="form-error" data-i18n="form-error-timeline">일정을 입력해주세요.</span>
+            </div>
+          </div>
+          <div class="form-helper">
+            <p class="form-helper-label" data-i18n="form-helper-label">아래 내용을 간단히 적어주시면 충분합니다.</p>
+            <ul class="form-helper-list">
+              <li data-i18n="form-helper-1">지금 어떤 업무가 아직 수작업인지</li>
+              <li data-i18n="form-helper-2">누가 그 업무를 하고 있는지</li>
+              <li data-i18n="form-helper-3">가장 큰 병목 1개</li>
+              <li data-i18n="form-helper-4">원하는 결과 1개</li>
+              <li data-i18n="form-helper-5">대략적인 일정</li>
+            </ul>
+          </div>
+          <button type="submit" class="btn-primary btn-large form-submit" id="form-submit" data-i18n="form-submit">문의 보내기</button>
+        </form>
+
+        <div class="form-status form-status--success" id="form-success" hidden>
+          <p data-i18n="form-success">문의가 정상적으로 접수되었습니다. 보통 24–48시간 내 답변드립니다.</p>
+        </div>
+        <div class="form-status form-status--error" id="form-error" hidden>
+          <p data-i18n="form-fail">문의 전송에 실패했습니다. 잠시 후 다시 시도하시거나, 아래 이메일로 바로 보내주세요.</p>
+        </div>
+
+        <div class="contact-fallback">
+          <p class="contact-fallback-text" data-i18n="contact-fallback">이메일로 바로 보내고 싶다면</p>
+          <a href="mailto:joeylife94@gmail.com" class="contact-fallback-email">joeylife94@gmail.com</a>
+        </div>
+      </section>
+
+      <!-- ── FOOTER ───────────────────────────────────────────── -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>
+            <p class="footer-brand">ProblemSolverArc</p>
+            <p class="footer-tagline" data-i18n="footer-tagline">수동 워크플로우를 시스템으로 — 구현으로 증명합니다.</p>
+          </div>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/dongyoun-jeon" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/joeylife94" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:joeylife94@gmail.com">joeylife94@gmail.com</a>
+          </div>
+        </div>
+      </footer>
+
+    </main>
   </div>
-
-  <!-- ============================================================
-       SERVICES — productized, no fake pricing
-       ============================================================ -->
-  <section class="section" id="services">
-    <div class="container">
-      <p class="eyebrow" data-i18n="services-eyebrow">서비스</p>
-      <h2 data-i18n="services-h2">어떤 문제를 이런 형태로 해결합니다</h2>
-      <p class="section-lead" data-i18n="services-lead">작게 시작해 실제로 쓰일 수 있는 내부 시스템, 운영 워크플로우, 백엔드 MVP를 만듭니다. 범위를 먼저 확인한 뒤 가장 현실적인 첫 단계를 제안합니다.</p>
-      <div class="services-grid reveal-grid">
-
-        <div class="service-card reveal-item">
-          <div class="service-card-header">
-            <h3>Workflow Automation Sprint</h3>
-            <span class="service-audience" data-i18n="service1-audience">파운더 · 오퍼레이터</span>
-          </div>
-          <p class="service-problem" data-i18n="service1-problem">스프레드시트, Slack, 이메일로 이어 붙인 반복 업무를 더 이상 수작업으로 돌리기 어렵다.</p>
-          <div class="service-scope">
-            <p class="service-scope-label" data-i18n="includes-label">제공 내용</p>
-            <ul>
-              <li data-i18n="service1-inc1">현재 업무 흐름 정리</li>
-              <li data-i18n="service1-inc2">승인/추적/알림 중심 워크플로우 구조화</li>
-              <li data-i18n="service1-inc3">재실행 가능한 MVP + 코드 인계</li>
-            </ul>
-          </div>
-          <div class="service-scope service-scope--out">
-            <p class="service-scope-label" data-i18n="excludes-label">포함 안 됨</p>
-            <ul>
-              <li data-i18n="service1-exc1">전사 시스템 전면 교체</li>
-              <li data-i18n="service1-exc2">범위 없는 대형 제품 기획</li>
-              <li data-i18n="service1-exc3">장기 무기한 운영 대행</li>
-            </ul>
-          </div>
-          <a href="#contact" class="service-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
-        </div>
-
-        <div class="service-card reveal-item">
-          <div class="service-card-header">
-            <h3>Internal Tool Starter</h3>
-            <span class="service-audience" data-i18n="service2-audience">소규모 팀 · 스타트업</span>
-          </div>
-          <p class="service-problem" data-i18n="service2-problem">핵심 운영 업무를 제대로 된 내부 도구나 어드민 화면으로 바꾸고 싶다.</p>
-          <div class="service-scope">
-            <p class="service-scope-label" data-i18n="includes-label">제공 내용</p>
-            <ul>
-              <li data-i18n="service2-inc1">범위 정의 · 워크플로우 설계</li>
-              <li data-i18n="service2-inc2">어드민 로직 · 데이터 처리</li>
-              <li data-i18n="service2-inc3">검토 가능한 MVP + 코드 인계</li>
-            </ul>
-          </div>
-          <div class="service-scope service-scope--out">
-            <p class="service-scope-label" data-i18n="excludes-label">포함 안 됨</p>
-            <ul>
-              <li data-i18n="service2-exc1">조직 전체 시스템 교체</li>
-              <li data-i18n="service2-exc2">범위 미정 멀티팀 제품</li>
-              <li data-i18n="service2-exc3">오픈엔드 무기한 지원</li>
-            </ul>
-          </div>
-          <a href="#contact" class="service-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
-        </div>
-
-        <div class="service-card reveal-item">
-          <div class="service-card-header">
-            <h3>Backend MVP Sprint</h3>
-            <span class="service-audience" data-i18n="service3-audience">제품팀 · 창업자</span>
-          </div>
-          <p class="service-problem" data-i18n="service3-problem">API, 백엔드 로직, 외부 연동, 운영 파이프라인을 빠르게 만들어야 한다.</p>
-          <div class="service-scope">
-            <p class="service-scope-label" data-i18n="includes-label">제공 내용</p>
-            <ul>
-              <li data-i18n="service3-inc1">MVP 범위 백엔드 아키텍처</li>
-              <li data-i18n="service3-inc2">API · 데이터 흐름 · 통합 구현</li>
-              <li data-i18n="service3-inc3">인수인계 지향 납품 + 코드 인계</li>
-            </ul>
-          </div>
-          <div class="service-scope service-scope--out">
-            <p class="service-scope-label" data-i18n="excludes-label">포함 안 됨</p>
-            <ul>
-              <li data-i18n="service3-exc1">전사 엔터프라이즈 전환</li>
-              <li data-i18n="service3-exc2">프론트엔드 중심 UI 디자인</li>
-              <li data-i18n="service3-exc3">범위 없는 장기 유지보수</li>
-            </ul>
-          </div>
-          <a href="#contact" class="service-cta" data-i18n="service-cta-contact">범위 확인 후 견적 →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WHO THIS IS FOR
-       ============================================================ -->
-  <section class="section section-alt" id="who">
-    <div class="container">
-      <p class="eyebrow" data-i18n="who-eyebrow">Who this is for</p>
-      <h2 data-i18n="who-h2">이런 팀과 가장 잘 맞습니다</h2>
-      <p class="section-lead" data-i18n="who-lead">작고 명확한 범위에서, 수작업을 실제 운영 가능한 시스템으로 바꾸려는 팀과 잘 맞습니다.</p>
-      <div class="icp-profiles">
-        <div class="icp-card reveal-item">
-          <h4 data-i18n="icp-profile1-title">0–10인 SaaS 팀</h4>
-          <p data-i18n="icp-profile1-desc">운영 병목이 이미 보이는데, 전담 플랫폼 팀을 두기엔 아직 이른 팀</p>
-        </div>
-        <div class="icp-card reveal-item">
-          <h4 data-i18n="icp-profile2-title">워크플로우 MVP를 검증해야 하는 파운더</h4>
-          <p data-i18n="icp-profile2-desc">스프레드시트나 메시지 기반 운영을 2–4주 안에 빠르게 시스템화해 보고 싶은 경우</p>
-        </div>
-        <div class="icp-card reveal-item">
-          <h4 data-i18n="icp-profile3-title">승인·추적·정리 업무를 벗기려는 팀</h4>
-          <p data-i18n="icp-profile3-desc">반복 업무를 재실행 가능한 내부 도구나 백엔드 흐름으로 바꾸고 싶은 경우</p>
-        </div>
-      </div>
-      <p class="icp-notfit" data-i18n="icp-notfit">브랜딩 중심 마케팅 사이트, 범위가 아직 열려 있는 대형 플랫폼, 장기 상주형 포지션은 현재 범위와 맞지 않습니다.</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FEATURED PROOF — E-Commerce Scanner
-       ============================================================ -->
-  <section class="section" id="proof">
-    <div class="container">
-      <p class="eyebrow" data-i18n="featured-eyebrow">대표 사례</p>
-      <h2 data-i18n="featured-h2">수작업 상품 조사를 반복 실행 가능한 운영 파이프라인으로</h2>
-
-      <div class="featured-case-narrative">
-        <div class="case-block case-block--baseline">
-          <p class="case-block-label" data-i18n="case-baseline-label">Baseline</p>
-          <p data-i18n="case-baseline">국가 간 상품 기회 조사는 보통 스프레드시트, 수동 검색, 기준 재정리로 흩어져 있습니다. 기준이 조금만 바뀌어도 처음부터 다시 조사해야 하고, 결과도 사람마다 달라지기 쉽습니다.</p>
-        </div>
-        <div class="case-block case-block--change">
-          <p class="case-block-label" data-i18n="case-change-label">What changed</p>
-          <p data-i18n="case-change">가격 수집, 상품 매칭, 마진 계산, 리포트 출력을 하나의 반복 가능한 파이프라인으로 구조화했습니다. 입력 조건을 바꾸면 같은 흐름으로 다시 실행할 수 있고, 검토를 위한 대시보드와 결과 출력도 함께 정리했습니다.</p>
-        </div>
-        <div class="case-block case-block--result">
-          <p class="case-block-label" data-i18n="case-result-label">Result</p>
-          <p data-i18n="case-result">조사 과정을 "한 번 하고 끝나는 작업"이 아니라, 다시 돌릴 수 있는 운영 흐름으로 바꿨습니다. 수집 → 처리 → 검토 → 리포트까지의 단계가 분리되면서 기준 변경에도 다시 실행 가능한 구조를 확보했습니다.</p>
-        </div>
-        <div class="case-block case-block--fit">
-          <p class="case-block-label" data-i18n="case-fit-label">Good fit</p>
-          <p data-i18n="case-fit">시장 조사, 승인 흐름, 정리 업무처럼 사람이 반복해서 처리하던 운영 과정을 작은 시스템으로 바꾸고 싶은 팀에 잘 맞는 패턴입니다.</p>
-        </div>
-      </div>
-
-      <!--
-        Asset note: filenames under proof/e-commers-scanner/ contain original typos.
-        Intentionally frozen. Rename only with a coordinated pass.
-      -->
-      <div class="proof-viewer" data-project="e-commerce-scanner" data-autoplay="true">
-        <div class="proof-viewer__progress"></div>
-        <div class="proof-viewer__track">
-          <div class="proof-viewer__slide proof-viewer__slide--active">
-            <img src="proof/e-commers-scanner/Market Overview.png" alt="E-Commerce Scanner — Market Overview dashboard" loading="lazy" />
-            <p class="proof-caption" data-i18n="proof-caption-1">Market Overview — 스캔 결과와 시장 비교 데이터</p>
-          </div>
-          <div class="proof-viewer__slide">
-            <img src="proof/e-commers-scanner/Product Oppeortunities.png" alt="E-Commerce Scanner — Product opportunities" loading="lazy" />
-            <p class="proof-caption" data-i18n="proof-caption-2">Product Opportunities — 마진 기준 상품 기회 리스트</p>
-          </div>
-          <div class="proof-viewer__slide">
-            <img src="proof/e-commers-scanner/Market Intelligence.png" alt="E-Commerce Scanner — Market intelligence" loading="lazy" />
-            <p class="proof-caption" data-i18n="proof-caption-3">Market Intelligence — 시장 분석 인사이트</p>
-          </div>
-        </div>
-        <button class="proof-viewer__btn proof-viewer__btn--prev" aria-label="이전" data-i18n-aria="prev-image">&#8249;</button>
-        <button class="proof-viewer__btn proof-viewer__btn--next" aria-label="다음" data-i18n-aria="next-image">&#8250;</button>
-        <div class="proof-viewer__dots"></div>
-      </div>
-
-      <!-- What this proves -->
-      <div class="proof-points reveal-item">
-        <p class="proof-points-label" data-i18n="proof-points-label">이 사례가 증명하는 역량</p>
-        <div class="proof-points-grid">
-          <div class="proof-point">
-            <span class="proof-point-icon">→</span>
-            <span data-i18n="proof-point-1">수작업 프로세스 → 반복 실행 가능한 구조화된 워크플로우</span>
-          </div>
-          <div class="proof-point">
-            <span class="proof-point-icon">→</span>
-            <span data-i18n="proof-point-2">데이터 수집 · 처리 · 검토 · 리포트 파이프라인 설계</span>
-          </div>
-          <div class="proof-point">
-            <span class="proof-point-icon">→</span>
-            <span data-i18n="proof-point-3">어드민 대시보드 · 백오피스 인터페이스 구현</span>
-          </div>
-          <div class="proof-point">
-            <span class="proof-point-icon">→</span>
-            <span data-i18n="proof-point-4">명확한 범위와 운영 로직을 갖춘 백엔드 MVP</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Supporting projects -->
-      <div class="supporting-row">
-        <p class="supporting-row-label" data-i18n="portfolio-eyebrow">추가 사례</p>
-        <div class="supporting-grid supporting-grid--three">
-
-          <div class="supporting-card reveal-item">
-            <div class="supporting-card-img">
-              <img src="proof/seoulgyeol-skinlab/seoulgyeol.png" alt="SeoulGyeol Skin Lab" loading="lazy" />
-            </div>
-            <h4>SeoulGyeol Skin Lab</h4>
-            <p data-i18n="card-seoulgyeol-desc">동의 기반 설문 → 점수 산출 → 리포트 생성 → 이메일 전달 파이프라인. 다국어 피부 분석 MVP.</p>
-            <p class="supporting-proof-line" data-i18n="card-seoulgyeol-proof">전체 흐름 구현 · 동의 기반 데이터 처리 · 다국어 이메일 전송 확인</p>
-            <div class="project-tags">
-              <span class="tag">Next.js</span><span class="tag">Privacy-First</span><span class="tag">Pipeline</span>
-            </div>
-          </div>
-
-          <div class="supporting-card reveal-item">
-            <div class="supporting-card-img">
-              <img src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp main.jpg" alt="Restricted Ops Intake MVP" loading="lazy" />
-            </div>
-            <h4>Restricted Ops Intake MVP</h4>
-            <p data-i18n="card-restricted-desc">승인된 Slack 요청 → 구조화된 운영 객체. 서명 검증 · 중복 방지 · 감사 로그 포함.</p>
-            <p class="supporting-proof-line" data-i18n="card-restricted-proof">웹훅 서명 검증 · 채널 허용목록 · 감사 로그 · 통합 테스트 확인</p>
-            <div class="project-tags">
-              <span class="tag">Next.js</span><span class="tag">Slack</span><span class="tag">Audit Log</span>
-            </div>
-          </div>
-
-          <div class="supporting-card reveal-item">
-            <div class="supporting-card-img">
-              <img src="proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us" loading="lazy" />
-            </div>
-            <h4>Papyr.us</h4>
-            <p data-i18n="card-papyrus-desc">실시간 공동 편집 + AI 워크플로우 통합 팀 위키. CRDT 기반 동시 편집, RBAC 구조.</p>
-            <p class="supporting-proof-line" data-i18n="card-papyrus-proof">Yjs + Socket.IO · Drizzle 스키마 · Vitest + Playwright 테스트 확인</p>
-            <div class="project-tags">
-              <span class="tag">TypeScript</span><span class="tag">Real-time</span><span class="tag">AI</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WHY WORK WITH ME — numbers from resume.md
-       ============================================================ -->
-  <section class="section section-alt" id="why">
-    <div class="container">
-      <p class="eyebrow" data-i18n="why-eyebrow">Why work with me</p>
-      <h2 data-i18n="why-h2">일반 웹 프리랜서와 다른 이유</h2>
-      <p class="section-lead" data-i18n="why-lead">4.8년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.</p>
-      <div class="why-grid">
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">~30%</div>
-          <h4 data-i18n="why-card1-title">API 응답속도 개선</h4>
-          <p data-i18n="why-card1-desc">서비스 분리와 아키텍처 재구성을 통해 핵심 API 응답 속도를 약 30% 단축. 성능 문제를 원인에서 접근합니다.</p>
-        </div>
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">100 → 2,000+</div>
-          <h4 data-i18n="why-card2-title">동시 처리량 20배 개선</h4>
-          <p data-i18n="why-card2-desc">인증/세션 경로의 DB 커넥션 풀 병목을 해결해 동시 처리량을 100에서 2,000+ 수준으로 개선했습니다.</p>
-        </div>
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">수백만 건</div>
-          <h4 data-i18n="why-card3-title">Oracle → MySQL 무중단 이전</h4>
-          <p data-i18n="why-card3-desc">수백만 건 레코드의 Oracle → MySQL 마이그레이션을 서비스 연속성을 유지하면서 완료했습니다.</p>
-        </div>
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">OAuth 2.0 · SSO</div>
-          <h4 data-i18n="why-card4-title">인증 · 보안 시스템</h4>
-          <p data-i18n="why-card4-desc">Java · Quarkus · Keycloak 기반 OAuth 2.0 SSO 시스템 설계 및 구현. 인증 경계를 실무 환경에서 다뤄왔습니다.</p>
-        </div>
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">레거시 →</div>
-          <h4 data-i18n="why-card5-title">점진적 현대화</h4>
-          <p data-i18n="why-card5-desc">모놀리식 플랫폼을 Spring Boot 기반 모듈형 서비스로 단계적으로 분리. 전면 교체 없이 운영하면서 개선합니다.</p>
-        </div>
-
-        <div class="why-card reveal-item">
-          <div class="why-card-stat">AI</div>
-          <h4 data-i18n="why-card6-title">운영 워크플로우에 통합된 AI</h4>
-          <p data-i18n="why-card6-desc">LLM을 독립 데모가 아닌 백엔드 이벤트 흐름 · RAG 파이프라인 · 실제 워크플로우 컴포넌트로 통합합니다.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       ENGAGEMENT MODEL
-       ============================================================ -->
-  <section class="section" id="approach">
-    <div class="container">
-      <p class="eyebrow" data-i18n="engagement-eyebrow">Engagement model</p>
-      <h2 data-i18n="engagement-h2">이런 방식으로 진행합니다</h2>
-      <div class="engagement-grid">
-        <div class="engagement-card reveal-item">
-          <h4 data-i18n="engagement-timeline-title">Typical timeline</h4>
-          <p data-i18n="engagement-timeline-desc">보통 2–6주 내의 작고 명확한 범위에서 가장 잘 맞습니다. 첫 단계는 전체를 크게 만들기보다, 실제 운영에 바로 도움이 되는 핵심 흐름 1개를 먼저 닫는 방식으로 진행합니다.</p>
-        </div>
-        <div class="engagement-card reveal-item">
-          <h4 data-i18n="engagement-deliverables-title">Deliverables</h4>
-          <p data-i18n="engagement-deliverables-desc">작동하는 MVP 또는 범위가 명확한 구현물을 제공합니다. 보통 핵심 백엔드 로직, 워크플로우 구조, 필요한 경우 내부 UI/어드민 화면, 그리고 인계용 설명을 함께 포함합니다.</p>
-        </div>
-        <div class="engagement-card reveal-item">
-          <h4 data-i18n="engagement-communication-title">Communication</h4>
-          <p data-i18n="engagement-communication-desc">이메일과 문서 중심으로 진행합니다. 중간 공유는 텍스트, 스크린샷, 짧은 데모 영상 위주로 드리고, 꼭 필요할 때만 짧은 미팅을 잡습니다.</p>
-        </div>
-        <div class="engagement-card reveal-item">
-          <h4 data-i18n="engagement-scope-title">Scope handling</h4>
-          <p data-i18n="engagement-scope-desc">처음부터 범위를 작게 잠그는 것을 우선합니다. 중간에 새 요청이 생기면 무한 확장하지 않고, 현재 단계와 다음 단계를 분리해 안정적으로 진행합니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FAQ
-       ============================================================ -->
-  <section class="section section-alt" id="faq">
-    <div class="container">
-      <p class="eyebrow" data-i18n="faq-eyebrow">FAQ</p>
-      <h2 data-i18n="faq-h2">자주 묻는 질문</h2>
-      <div class="faq-list">
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q1">범위가 아직 완전히 정리되지 않았는데 문의해도 되나요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a1">네. 오히려 초기에 가장 필요한 건 모든 기능 목록보다도, 지금 어떤 업무가 수작업이고 어디가 가장 막히는지 정리하는 것입니다. 현재 상태와 원하는 결과만 있어도 첫 범위를 함께 잡을 수 있습니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q2">작은 프로젝트도 맡나요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a2">네. 오히려 2–6주 안에 닫을 수 있는 작고 명확한 범위의 프로젝트와 가장 잘 맞습니다. 처음부터 큰 시스템 전체를 한 번에 만들기보다, 실제로 바로 쓰일 핵심 흐름 1개를 먼저 구현하는 쪽을 선호합니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q3">미팅은 얼마나 필요한가요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a3">기본은 이메일/문서 중심입니다. 진행 중 공유도 텍스트, 스크린샷, 짧은 데모 중심으로 드립니다. 짧은 미팅이 필요할 수는 있지만, 회의가 많은 방식은 지향하지 않습니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q4">어떤 기술 스택으로 작업하나요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a4">기본 강점은 백엔드, 운영 시스템, 내부 도구, 워크플로우 구조화에 있습니다. 프로젝트 목적에 맞는 스택을 우선하며, 특정 기술을 과하게 밀기보다 유지 가능한 구조를 만드는 데 집중합니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q5">납품 후 지원도 가능한가요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a5">가능합니다. 다만 처음부터 무기한 운영 계약을 전제로 하기보다, 현재 단계 납품 범위와 이후 고도화 단계를 분리해서 보는 편이 더 명확합니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q6">코드와 산출물의 소유권은 어떻게 되나요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a6">별도 합의가 없다면, 납품 범위에 포함된 코드와 산출물은 클라이언트가 인계받아 운영 가능한 형태로 전달하는 것을 기본으로 합니다. 세부 조건은 프로젝트 시작 전에 명확히 정리하는 것이 좋습니다.</p></div>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-question" data-i18n="faq-q7">민감한 운영 데이터도 다룰 수 있나요?</summary>
-          <div class="faq-answer"><p data-i18n="faq-a7">가능합니다. 다만 실제 운영 데이터, 권한, 접근 범위는 프로젝트 초기에 명확히 정리되어야 합니다. 필요 시 더미 데이터 기반 검증이나 최소 권한 접근 원칙으로 진행하는 방식을 우선합니다.</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CONTACT — form-first + email fallback
-       ============================================================ -->
-  <section class="section contact-section" id="contact">
-    <div class="container contact-inner">
-      <h2 data-i18n="contact-h2">간단한 문의로 시작해보세요</h2>
-      <p class="contact-cta" data-i18n-html="contact-intro">아래 폼에 현재 운영 방식과 가장 큰 병목을 적어주시면,<br />범위를 검토한 뒤 적합한 첫 단계를 제안드립니다.</p>
-
-      <form class="contact-form" id="contact-form" novalidate>
-        <div class="form-group">
-          <label for="cf-name" data-i18n="form-label-name">이름 *</label>
-          <input type="text" id="cf-name" name="name" required autocomplete="name" />
-          <span class="form-error" data-i18n="form-error-name">이름을 입력해주세요.</span>
-        </div>
-        <div class="form-group">
-          <label for="cf-email" data-i18n="form-label-email">이메일 *</label>
-          <input type="email" id="cf-email" name="email" required autocomplete="email" />
-          <span class="form-error" data-i18n="form-error-email">유효한 이메일을 입력해주세요.</span>
-        </div>
-        <div class="form-group">
-          <label for="cf-problem" data-i18n="form-label-problem">어떤 문제를 개선하고 싶으신가요? *</label>
-          <textarea id="cf-problem" name="problem" rows="4" required></textarea>
-          <span class="form-error" data-i18n="form-error-problem">내용을 입력해주세요.</span>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-type" data-i18n="form-label-type">프로젝트 유형 *</label>
-            <select id="cf-type" name="project_type" required>
-              <option value="" data-i18n="form-type-placeholder">선택해주세요</option>
-              <option value="workflow" data-i18n="form-type-workflow">워크플로우 자동화</option>
-              <option value="internal-tool" data-i18n="form-type-tool">내부 도구</option>
-              <option value="backend-mvp" data-i18n="form-type-backend">백엔드 MVP</option>
-              <option value="not-sure" data-i18n="form-type-unsure">아직 잘 모르겠음</option>
-            </select>
-            <span class="form-error" data-i18n="form-error-type">유형을 선택해주세요.</span>
-          </div>
-          <div class="form-group">
-            <label for="cf-timeline" data-i18n="form-label-timeline">희망 일정 *</label>
-            <input type="text" id="cf-timeline" name="timeline" required placeholder="예: 4주 내" />
-            <span class="form-error" data-i18n="form-error-timeline">일정을 입력해주세요.</span>
-          </div>
-        </div>
-        <div class="form-helper">
-          <p class="form-helper-label" data-i18n="form-helper-label">아래 내용을 간단히 적어주시면 충분합니다.</p>
-          <ul class="form-helper-list">
-            <li data-i18n="form-helper-1">지금 어떤 업무가 아직 수작업인지</li>
-            <li data-i18n="form-helper-2">누가 그 업무를 하고 있는지</li>
-            <li data-i18n="form-helper-3">가장 큰 병목 1개</li>
-            <li data-i18n="form-helper-4">원하는 결과 1개</li>
-            <li data-i18n="form-helper-5">대략적인 일정</li>
-          </ul>
-        </div>
-        <button type="submit" class="btn-primary btn-large form-submit" id="form-submit" data-i18n="form-submit">문의 보내기</button>
-      </form>
-
-      <div class="form-status form-status--success" id="form-success" hidden>
-        <p data-i18n="form-success">문의가 정상적으로 접수되었습니다. 보통 24–48시간 내 답변드립니다.</p>
-      </div>
-      <div class="form-status form-status--error" id="form-error" hidden>
-        <p data-i18n="form-fail">문의 전송에 실패했습니다. 잠시 후 다시 시도하시거나, 아래 이메일로 바로 보내주세요.</p>
-      </div>
-
-      <div class="contact-fallback">
-        <p class="contact-fallback-text" data-i18n="contact-fallback">이메일로 바로 보내고 싶다면</p>
-        <a href="mailto:joeylife94@gmail.com" class="contact-fallback-email">joeylife94@gmail.com</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <p class="footer-brand">ProblemSolverArc</p>
-        <p class="footer-tagline" data-i18n="footer-tagline">수동 워크플로우를 시스템으로 — 구현으로 증명합니다.</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/dongyoun-jeon" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/joeylife94" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:joeylife94@gmail.com">joeylife94@gmail.com</a>
-      </div>
-    </div>
-  </footer>
 
   <!-- Sticky mobile CTA -->
   <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
@@ -532,23 +561,55 @@
   (function () {
     'use strict';
 
+    /* ── Cursor spotlight ──────────────────────────────────────── */
+    document.addEventListener('mousemove', function (e) {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
     /* ── Mobile nav toggle ─────────────────────────────────────── */
     var toggle = document.getElementById('nav-toggle');
-    var nav    = document.getElementById('site-nav');
-    if (toggle && nav) {
+    var mobileNav = document.getElementById('mobile-nav');
+    if (toggle && mobileNav) {
       toggle.addEventListener('click', function () {
-        var open = nav.classList.toggle('is-open');
+        var open = mobileNav.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.classList.toggle('is-active', open);
+      });
+      mobileNav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          mobileNav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.classList.remove('is-active');
+        });
       });
       document.addEventListener('click', function (e) {
-        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-          nav.classList.remove('is-open');
+        if (!mobileNav.contains(e.target) && !toggle.contains(e.target)) {
+          mobileNav.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
+          toggle.classList.remove('is-active');
         }
       });
     }
 
-    /* ── Proof viewer (autoplay + manual + swipe) ──────────────── */
+    /* ── Sidebar nav active tracking ───────────────────────────── */
+    var sections = document.querySelectorAll('.content-section');
+    var navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+
+    if ('IntersectionObserver' in window) {
+      var navObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (link) {
+              link.classList.toggle('active', link.getAttribute('data-section') === entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-10% 0px -85% 0px' });
+      sections.forEach(function (section) { navObs.observe(section); });
+    }
+
+    /* ── Proof viewer ──────────────────────────────────────────── */
     document.querySelectorAll('.proof-viewer').forEach(function (viewer) {
       var slides   = viewer.querySelectorAll('.proof-viewer__slide');
       var btnPrev  = viewer.querySelector('.proof-viewer__btn--prev');
@@ -616,7 +677,7 @@
 
       var txStart = 0;
       viewer.addEventListener('touchstart', function (e) { txStart = e.changedTouches[0].clientX; }, { passive: true });
-      viewer.addEventListener('touchend',   function (e) {
+      viewer.addEventListener('touchend', function (e) {
         var dx = e.changedTouches[0].clientX - txStart;
         if (Math.abs(dx) > 40) { stopAuto(); goTo(dx < 0 ? current + 1 : current - 1); }
       }, { passive: true });
@@ -645,42 +706,33 @@
     }
 
     /* ── Scroll reveal + count-up trigger ─────────────────────── */
-    var revealItems = document.querySelectorAll('.reveal-item, .reveal-grid');
-    var countEls    = document.querySelectorAll('.count-up');
-    var stripEl     = document.getElementById('trust-strip');
-    var countDone   = false;
+    var countEls  = document.querySelectorAll('.count-up');
+    var stripEl   = document.getElementById('trust-strip');
+    var countDone = false;
 
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-        });
-      }, { threshold: 0.1 });
-      revealItems.forEach(function (el) { obs.observe(el); });
-
-      if (stripEl) {
-        var cObs = new IntersectionObserver(function (entries) {
-          if (entries[0].isIntersecting && !countDone) {
-            countDone = true; countEls.forEach(animateCount); cObs.disconnect();
-          }
-        }, { threshold: 0.4 });
-        cObs.observe(stripEl);
-      }
+    if ('IntersectionObserver' in window && stripEl) {
+      var cObs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !countDone) {
+          countDone = true;
+          countEls.forEach(animateCount);
+          cObs.disconnect();
+        }
+      }, { threshold: 0.4 });
+      cObs.observe(stripEl);
     } else {
-      revealItems.forEach(function (el) { el.classList.add('is-visible'); });
       countEls.forEach(function (el) { el.textContent = el.dataset.target; });
     }
 
     /* ── Sticky mobile CTA ─────────────────────────────────────── */
     var stickyCta = document.getElementById('sticky-cta');
-    var heroEl    = document.getElementById('hero');
+    var aboutEl   = document.getElementById('about');
     var contactEl = document.getElementById('contact');
 
     function updateCta() {
-      if (!stickyCta || !heroEl) return;
-      var hb = heroEl.getBoundingClientRect().bottom;
+      if (!stickyCta || !aboutEl) return;
+      var ab = aboutEl.getBoundingClientRect().bottom;
       var ct = contactEl ? contactEl.getBoundingClientRect().top : Infinity;
-      var show = hb < 0 && ct > window.innerHeight;
+      var show = ab < 0 && ct > window.innerHeight;
       stickyCta.classList.toggle('is-visible', show);
       stickyCta.setAttribute('aria-hidden', show ? 'false' : 'true');
     }
@@ -696,15 +748,12 @@
     if (contactForm) {
       contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-
-        // Reset states
         contactForm.querySelectorAll('.form-group').forEach(function (g) {
           g.classList.remove('has-error');
         });
         formSuccess.hidden = true;
         formError.hidden = true;
 
-        // Validate
         var valid = true;
         var fields = contactForm.querySelectorAll('[required]');
         fields.forEach(function (field) {
@@ -724,12 +773,9 @@
           return;
         }
 
-        // Disable button while "sending"
         formSubmit.disabled = true;
         formSubmit.textContent = '보내는 중...';
 
-        // TODO(backend): Replace with actual form submission endpoint
-        // Currently simulates success after a short delay
         setTimeout(function () {
           formSubmit.disabled = false;
           formSubmit.textContent = '문의 보내기';
@@ -738,7 +784,6 @@
         }, 800);
       });
 
-      // Clear error on input
       contactForm.addEventListener('input', function (e) {
         var group = e.target.closest('.form-group');
         if (group) group.classList.remove('has-error');
@@ -747,6 +792,5 @@
 
   })();
   </script>
-
 </body>
 </html>
