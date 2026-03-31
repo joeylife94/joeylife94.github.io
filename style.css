@@ -1604,3 +1604,445 @@ p {
     transition: none;
   }
 }
+
+/* ================================================================
+   Phase 1 — New section styles
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Hero — why-now + trust microcopy
+   ---------------------------------------------------------------- */
+.hero-why-now {
+  font-size: 0.92rem;
+  color: #777;
+  max-width: 540px;
+  margin-bottom: 28px;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.hero-trust-micro {
+  font-size: 0.82rem;
+  color: #999;
+  margin-top: 16px;
+  letter-spacing: 0.01em;
+}
+
+/* ----------------------------------------------------------------
+   ICP Profiles — sharper target cards
+   ---------------------------------------------------------------- */
+.icp-profiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+.icp-card {
+  padding: 24px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #ffffff;
+  border-top: 3px solid #1a1a1a;
+}
+
+.icp-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.icp-card p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.65;
+}
+
+.icp-notfit {
+  font-size: 0.85rem;
+  color: #999;
+  text-align: center;
+  padding-top: 8px;
+  font-style: italic;
+}
+
+/* ----------------------------------------------------------------
+   Featured Case — narrative blocks
+   ---------------------------------------------------------------- */
+.featured-case-narrative {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.case-block {
+  padding: 20px 24px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  border-left: 3px solid #dedede;
+}
+
+.case-block--change {
+  border-left-color: #1a1a1a;
+}
+
+.case-block--result {
+  border-left-color: #1a1a1a;
+  background: #f0f4f0;
+}
+
+.case-block--fit {
+  border-left-color: #888;
+}
+
+.case-block-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.case-block p:last-child {
+  font-size: 0.875rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ----------------------------------------------------------------
+   Engagement Model — card grid
+   ---------------------------------------------------------------- */
+.engagement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.engagement-card {
+  padding: 24px;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.engagement-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.engagement-card p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ----------------------------------------------------------------
+   FAQ — accordion with <details>
+   ---------------------------------------------------------------- */
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.faq-item:first-child {
+  border-top: 1px solid #e4e4e4;
+}
+
+.faq-question {
+  display: block;
+  padding: 18px 32px 18px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+  line-height: 1.5;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #aaa;
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-question::after {
+  content: '−';
+}
+
+.faq-answer {
+  padding: 0 0 18px;
+}
+
+.faq-answer p {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Contact Form — form-first with email fallback
+   ---------------------------------------------------------------- */
+.contact-form {
+  text-align: left;
+  max-width: 520px;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #666;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form-group select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-error {
+  display: none;
+  font-size: 0.78rem;
+  color: #e06060;
+  margin-top: 4px;
+}
+
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+  border-color: #e06060;
+}
+
+.form-group.has-error .form-error {
+  display: block;
+}
+
+.form-helper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.form-helper-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.form-helper-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-helper-list li {
+  font-size: 0.82rem;
+  color: #999;
+  padding: 3px 0 3px 16px;
+  position: relative;
+}
+
+.form-helper-list li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: #666;
+}
+
+.form-submit {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-status {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.form-status p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.form-status--success {
+  background: rgba(80, 180, 80, 0.12);
+  border: 1px solid rgba(80, 180, 80, 0.25);
+}
+
+.form-status--success p {
+  color: #8fd8a0;
+}
+
+.form-status--error {
+  background: rgba(220, 80, 80, 0.12);
+  border: 1px solid rgba(220, 80, 80, 0.25);
+}
+
+.form-status--error p {
+  color: #e09090;
+}
+
+.contact-fallback {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.contact-fallback-text {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0;
+}
+
+.contact-fallback-email {
+  font-size: 0.82rem;
+  color: #aaa;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-fallback-email:hover {
+  color: #fff;
+}
+
+/* ----------------------------------------------------------------
+   Responsive — new sections tablet (≤ 900px)
+   ---------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .icp-profiles {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-case-narrative {
+    grid-template-columns: 1fr;
+  }
+
+  .engagement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Responsive — new sections mobile (≤ 640px)
+   ---------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .icp-card {
+    padding: 20px;
+  }
+
+  .case-block {
+    padding: 16px 18px;
+  }
+
+  .engagement-card {
+    padding: 20px;
+  }
+
+  .faq-question {
+    font-size: 0.9rem;
+    padding: 16px 28px 16px 0;
+  }
+
+  .contact-form {
+    max-width: 100%;
+  }
+
+  .contact-fallback {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
