@@ -24,7 +24,7 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="ja">JA</button>
       </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" data-i18n-aria="nav-toggle-aria">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -114,7 +114,7 @@
         <div class="trust-stats" id="trust-strip">
           <div class="trust-stat">
             <span class="trust-stat-val">
-              <span class="count-up" data-target="4.8" data-decimals="1">0</span>년
+              <span class="count-up" data-target="4.8" data-decimals="1">0</span><span data-i18n="ts-years-suffix">년</span>
             </span>
             <span class="trust-stat-label" data-i18n="ts-label1">엔터프라이즈 백엔드 경력</span>
           </div>
@@ -378,7 +378,7 @@
             </div>
           </div>
           <div class="experience-item">
-            <div class="experience-stat">수백만 건</div>
+            <div class="experience-stat" data-i18n="experience-stat-3">수백만 건</div>
             <div class="experience-body">
               <h4 data-i18n="why-card3-title">Oracle → MySQL 무중단 이전</h4>
               <p data-i18n="why-card3-desc">수백만 건 레코드의 Oracle → MySQL 마이그레이션을 서비스 연속성을 유지하면서 완료했습니다.</p>
@@ -392,7 +392,7 @@
             </div>
           </div>
           <div class="experience-item">
-            <div class="experience-stat">레거시→</div>
+            <div class="experience-stat" data-i18n="experience-stat-5">레거시→</div>
             <div class="experience-body">
               <h4 data-i18n="why-card5-title">점진적 현대화</h4>
               <p data-i18n="why-card5-desc">모놀리식 플랫폼을 Spring Boot 기반 모듈형 서비스로 단계적으로 분리. 전면 교체 없이 운영하면서 개선합니다.</p>
@@ -502,7 +502,7 @@
             </div>
             <div class="form-group">
               <label for="cf-timeline" data-i18n="form-label-timeline">희망 일정 *</label>
-              <input type="text" id="cf-timeline" name="timeline" required placeholder="예: 4주 내" />
+              <input type="text" id="cf-timeline" name="timeline" required placeholder="예: 4주 내" data-i18n-placeholder="form-timeline-placeholder" />
               <span class="form-error" data-i18n="form-error-timeline">일정을 입력해주세요.</span>
             </div>
           </div>

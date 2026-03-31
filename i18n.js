@@ -60,7 +60,7 @@
       'excludes-label': '포함 안 됨',
       'service-cta-contact': '범위 확인 후 견적 →',
 
-      'who-eyebrow': 'Who this is for',
+      'who-eyebrow': '이런 팀을 위한 서비스',
       'who-h2': '이런 팀과 가장 잘 맞습니다',
       'who-lead': '작고 명확한 범위에서, 수작업을 실제 운영 가능한 시스템으로 바꾸려는 팀과 잘 맞습니다.',
       'icp-profile1-title': '1–10인 SaaS 팀',
@@ -101,7 +101,7 @@
       'card-papyrus-desc': '실시간 공동 편집 + AI 워크플로우 통합 팀 위키. CRDT 기반 동시 편집, RBAC 구조.',
       'card-papyrus-proof': 'Yjs + Socket.IO · Drizzle 스키마 · Vitest + Playwright 테스트 확인',
 
-      'why-eyebrow': 'Why work with me',
+      'why-eyebrow': '강점',
       'why-h2': '일반 웹 프리랜서와 다른 이유',
       'why-lead': '4.8년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.',
       'why-card1-title': 'API 응답속도 개선',
@@ -117,15 +117,15 @@
       'why-card6-title': '운영 워크플로우에 통합된 AI',
       'why-card6-desc': 'LLM을 독립 데모가 아닌 백엔드 이벤트 흐름 · RAG 파이프라인 · 실제 워크플로우 컴포넌트로 통합합니다.',
 
-      'engagement-eyebrow': 'Engagement model',
+      'engagement-eyebrow': '협업 방식',
       'engagement-h2': '이런 방식으로 진행합니다',
-      'engagement-timeline-title': 'Typical timeline',
+      'engagement-timeline-title': '일정',
       'engagement-timeline-desc': '보통 2–6주 내의 작고 명확한 범위에서 가장 잘 맞습니다. 첫 단계는 전체를 크게 만들기보다, 실제 운영에 바로 도움이 되는 핵심 흐름 1개를 먼저 닫는 방식으로 진행합니다.',
-      'engagement-deliverables-title': 'Deliverables',
+      'engagement-deliverables-title': '납품물',
       'engagement-deliverables-desc': '작동하는 MVP 또는 범위가 명확한 구현물을 제공합니다. 보통 핵심 백엔드 로직, 워크플로우 구조, 필요한 경우 내부 UI/어드민 화면, 그리고 인계용 설명을 함께 포함합니다.',
-      'engagement-communication-title': 'Communication',
+      'engagement-communication-title': '소통 방식',
       'engagement-communication-desc': '이메일과 문서 중심으로 진행합니다. 중간 공유는 텍스트, 스크린샷, 짧은 데모 영상 위주로 드리고, 꼭 필요할 때만 짧은 미팅을 잡습니다.',
-      'engagement-scope-title': 'Scope handling',
+      'engagement-scope-title': '범위 관리',
       'engagement-scope-desc': '처음부터 범위를 작게 잠그는 것을 우선합니다. 중간에 새 요청이 생기면 무한 확장하지 않고, 현재 단계와 다음 단계를 분리해 안정적으로 진행합니다.',
 
       'faq-eyebrow': 'FAQ',
@@ -177,7 +177,13 @@
       'footer-tagline': '수동 워크플로우를 시스템으로 — 구현으로 증명합니다.',
 
       'prev-image': '이전 이미지',
-      'next-image': '다음 이미지'
+      'next-image': '다음 이미지',
+
+      'ts-years-suffix': '년',
+      'experience-stat-3': '수백만 건',
+      'experience-stat-5': '레거시→',
+      'form-timeline-placeholder': '예: 4주 내',
+      'nav-toggle-aria': '메뉴 열기'
     },
 
     en: {
@@ -354,7 +360,13 @@
       'footer-tagline': 'Manual workflows into systems — proven through implementation.',
 
       'prev-image': 'Previous image',
-      'next-image': 'Next image'
+      'next-image': 'Next image',
+
+      'ts-years-suffix': ' yrs',
+      'experience-stat-3': 'Millions',
+      'experience-stat-5': 'Legacy →',
+      'form-timeline-placeholder': 'e.g. 4 weeks',
+      'nav-toggle-aria': 'Open menu'
     },
 
     ja: {
@@ -411,7 +423,7 @@
       'excludes-label': '含まれないもの',
       'service-cta-contact': 'スコープ確認後に見積もり →',
 
-      'who-eyebrow': 'Who this is for',
+      'who-eyebrow': '対象',
       'who-h2': 'こんなチームと最も合います',
       'who-lead': '小さく明確なスコープで、手作業を実際に運用可能なシステムに変えようとするチームと合います。',
       'icp-profile1-title': '1〜10人規模のSaaSチーム',
@@ -452,7 +464,7 @@
       'card-papyrus-desc': 'リアルタイム共同編集 + AIワークフロー統合チームWiki。CRDT同時編集、RBAC構造。',
       'card-papyrus-proof': 'Yjs + Socket.IO · Drizzleスキーマ · Vitest + Playwrightテスト確認',
 
-      'why-eyebrow': 'Why work with me',
+      'why-eyebrow': '強み',
       'why-h2': '一般的なWebフリーランサーとの違い',
       'why-lead': '4.8年間、エンタープライズ・公共機関のプロダクションシステムで積んだ経験をベースに作業します。デモではなく実運用環境の基準で設計します。',
       'why-card1-title': 'API応答速度~30%改善',
@@ -531,7 +543,13 @@
       'footer-tagline': '手動ワークフローをシステムに — 実装で証明します。',
 
       'prev-image': '前の画像',
-      'next-image': '次の画像'
+      'next-image': '次の画像',
+
+      'ts-years-suffix': '年',
+      'experience-stat-3': '数百万件',
+      'experience-stat-5': 'レガシー→',
+      'form-timeline-placeholder': '例：4週間以内',
+      'nav-toggle-aria': 'メニューを開く'
     }
   };
 
@@ -574,6 +592,12 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-aria');
       if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+
+    /* Swap placeholder */
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
     });
 
     /* Update active button state */
