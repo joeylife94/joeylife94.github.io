@@ -316,21 +316,36 @@
           <p class="section-label" data-i18n="portfolio-eyebrow">추가 사례</p>
           <div class="project-list">
 
-            <div class="project-card">
-              <div class="project-card-img">
-                <img src="proof/seoulgyeol-skinlab/seoulgyeol.png" alt="SeoulGyeol Skin Lab" loading="lazy" />
+            <a class="project-card" href="https://seoulgyeol-beauty-lab.sho801921.workers.dev/" target="_blank" rel="noopener noreferrer">
+              <div class="project-card-img card-carousel">
+                <img class="card-carousel__img card-carousel__img--active" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_1.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_2.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_3.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_4.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_5.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_6.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_7.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <img class="card-carousel__img" src="proof/seoulgyeol-beauty-lab/K-beauty_screenshot_8.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
+                <button class="card-carousel__btn card-carousel__btn--prev" aria-label="이전">&#8249;</button>
+                <button class="card-carousel__btn card-carousel__btn--next" aria-label="다음">&#8250;</button>
               </div>
               <div class="project-card-body">
-                <h4>SeoulGyeol Skin Lab</h4>
+                <h4>SeoulGyeol Beauty Lab</h4>
                 <p data-i18n="card-seoulgyeol-desc">동의 기반 설문 → 점수 산출 → 리포트 생성 → 이메일 전달 파이프라인. 다국어 피부 분석 MVP.</p>
                 <p class="proof-line" data-i18n="card-seoulgyeol-proof">전체 흐름 구현 · 동의 기반 데이터 처리 · 다국어 이메일 전송 확인</p>
                 <div class="tags"><span class="tag">Next.js</span><span class="tag">Privacy-First</span><span class="tag">Pipeline</span></div>
               </div>
-            </div>
+            </a>
 
             <div class="project-card">
-              <div class="project-card-img">
-                <img src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp main.jpg" alt="Restricted Ops Intake MVP" loading="lazy" />
+              <div class="project-card-img card-carousel">
+                <img class="card-carousel__img card-carousel__img--active" src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp main.jpg" alt="Restricted Ops Intake MVP" loading="lazy" />
+                <img class="card-carousel__img" src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp slack connect.png" alt="Restricted Ops Intake MVP — Slack connect" loading="lazy" />
+                <img class="card-carousel__img" src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp slack fixed chennel connect.png" alt="Restricted Ops Intake MVP — Fixed channel connect" loading="lazy" />
+                <img class="card-carousel__img" src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp slack fixed chennel.png" alt="Restricted Ops Intake MVP — Fixed channel" loading="lazy" />
+                <img class="card-carousel__img" src="proof/restricted-ops-intake-mvp/restricted-ops-intake-mvp slack.png" alt="Restricted Ops Intake MVP — Slack" loading="lazy" />
+                <button class="card-carousel__btn card-carousel__btn--prev" aria-label="이전">&#8249;</button>
+                <button class="card-carousel__btn card-carousel__btn--next" aria-label="다음">&#8250;</button>
               </div>
               <div class="project-card-body">
                 <h4>Restricted Ops Intake MVP</h4>
@@ -341,8 +356,11 @@
             </div>
 
             <div class="project-card">
-              <div class="project-card-img">
-                <img src="proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us" loading="lazy" />
+              <div class="project-card-img card-carousel">
+                <img class="card-carousel__img card-carousel__img--active" src="proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us — Dashboard" loading="lazy" />
+                <img class="card-carousel__img" src="proof/papyr-us/papyr-us page.png" alt="Papyr.us — Page" loading="lazy" />
+                <button class="card-carousel__btn card-carousel__btn--prev" aria-label="이전">&#8249;</button>
+                <button class="card-carousel__btn card-carousel__btn--next" aria-label="다음">&#8250;</button>
               </div>
               <div class="project-card-body">
                 <h4>Papyr.us</h4>
@@ -678,6 +696,57 @@
       var txStart = 0;
       viewer.addEventListener('touchstart', function (e) { txStart = e.changedTouches[0].clientX; }, { passive: true });
       viewer.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - txStart;
+        if (Math.abs(dx) > 40) { stopAuto(); goTo(dx < 0 ? current + 1 : current - 1); }
+      }, { passive: true });
+
+      startAuto();
+    });
+
+    /* ── Card carousel (supporting project cards) ──────────────── */
+    document.querySelectorAll('.card-carousel').forEach(function (carousel) {
+      var imgs    = carousel.querySelectorAll('.card-carousel__img');
+      var btnPrev = carousel.querySelector('.card-carousel__btn--prev');
+      var btnNext = carousel.querySelector('.card-carousel__btn--next');
+      var total   = imgs.length;
+      var current = 0;
+      var DELAY   = 3500;
+      var timer   = null;
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (total < 2) {
+        if (btnPrev) btnPrev.style.display = 'none';
+        if (btnNext) btnNext.style.display = 'none';
+        return;
+      }
+
+      function goTo(idx) {
+        if (idx < 0) idx = total - 1;
+        if (idx >= total) idx = 0;
+        imgs[current].classList.remove('card-carousel__img--active');
+        current = idx;
+        imgs[current].classList.add('card-carousel__img--active');
+      }
+
+      function startAuto() {
+        if (reduced) return;
+        stopAuto();
+        timer = setTimeout(function () { goTo(current + 1); startAuto(); }, DELAY);
+      }
+
+      function stopAuto() {
+        if (timer) { clearTimeout(timer); timer = null; }
+      }
+
+      if (btnPrev) btnPrev.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); stopAuto(); goTo(current - 1); });
+      if (btnNext) btnNext.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); stopAuto(); goTo(current + 1); });
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+
+      var txStart = 0;
+      carousel.addEventListener('touchstart', function (e) { txStart = e.changedTouches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', function (e) {
         var dx = e.changedTouches[0].clientX - txStart;
         if (Math.abs(dx) > 40) { stopAuto(); goTo(dx < 0 ? current + 1 : current - 1); }
       }, { passive: true });
