@@ -1,81 +1,144 @@
-# Hi there, I'm Dongyoun Jeon 👋
-### 🛠️ Backend / Systems Engineer | ProblemSolverArc
+# Dongyoun Jeon — ProblemSolverArc
+### Backend / AI Workflow Systems Engineer
 
-I am a **Backend / Systems Engineer** with 4.8 years of experience building and improving production-critical systems in enterprise and public-sector environments.
+I build **backend-first internal tools, operational workflows, and AI-assisted systems** for teams that are still running important work through spreadsheets, Slack, email, and manual checks.
 
-My core background covers **Java/Spring-based backend services**, authentication & SSO, distributed consistency, performance optimization, and legacy modernization. I also build **AI-assisted systems** with a backend-first mindset — treating LLM features as structured workflow components, not isolated demos.
+My core background is **4.8 years of production backend engineering** across enterprise and public-sector environments: Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
 
-Currently based in **Berlin** 🇩🇪, I operate independently as **ProblemSolverArc**, building backend MVPs, internal tools, and operational systems for small teams.
+My current freelance positioning is intentionally narrower than “general web development”:
 
-<br/>
+> **Structure the workflow first. Add AI only where it creates practical leverage. Deliver a system the client can actually operate and extend.**
 
-- 🔭 Currently building: **[Papyr.us](https://github.com/joeylife94/papyr-us)** (AI Collaboration Wiki) & **[E-Commerce Scanner](https://github.com/joeylife94/e-commerce-scanner)** (Market Margin Analysis Pipeline)
-- 🎓 **Korea National Open Univ.** — B.S. Computer Science & Statistics (Feb 2025)
-- 💬 Ask me about **Java, Spring Boot, Kafka, OAuth 2.0, RAG, and operational system design**
-- 📫 Contact: **joeylife94@gmail.com**
-- 📍 Location: **Berlin, Germany** 🇩🇪
-- 🌐 **[ProblemSolverArc](https://joeylife94.github.io)** — Freelance backend & internal tools service
+- 🌐 **[ProblemSolverArc](https://joeylife94.github.io)** — Freelance landing page
+- 📫 **joeylife94@gmail.com**
+- 💼 [LinkedIn](https://www.linkedin.com/in/dongyoun-jeon)
 
-<br/>
+---
 
-## 🛠️ Tech Stack
+## What I Build
 
-| Category | Technologies |
+### Workflow Automation Sprint
+For repetitive work stitched together with spreadsheets, Slack, email, and manual checks.
+
+Typical scope:
+- workflow mapping and scope reduction
+- approval / tracking / notification flows
+- structured ingestion and validation
+- AI classification, extraction, summarization, or retrieval **when useful**
+- repeatable MVP + source-code handoff
+
+### Internal Tool Starter
+For small teams that need an admin or operations tool instead of another spreadsheet.
+
+Typical scope:
+- internal/admin UI
+- operational state and CRUD flows
+- API + database integration
+- auditability and operator visibility
+- handoff-oriented implementation
+
+### Backend MVP Sprint
+For products where backend structure, integrations, and operational logic matter more than visual polish.
+
+Typical scope:
+- API and data-flow design
+- backend business logic
+- AI / third-party service integration
+- operational pipelines
+- deployable MVP + code handoff
+
+---
+
+## Validated Proof
+
+### 🛒 [E-Commerce Scanner](https://github.com/joeylife94/e-commerce-scanner)
+**Manual market research → repeatable operational pipeline**
+
+- scan → compare → store → review → report workflow
+- re-runnable research instead of one-off spreadsheet work
+- dashboard and structured downstream outputs
+- **Tech:** Python, httpx, Playwright, SQLite, Streamlit, Pydantic
+
+### 📋 [Restricted Ops Intake MVP](https://github.com/joeylife94/restricted-ops-intake-mvp)
+**Approved Slack requests → structured operations records**
+
+- webhook validation and channel allowlist
+- idempotent intake and status tracking
+- assignee flow and immutable audit history
+- AI extraction plumbing with graceful fallback
+- **Tech:** Next.js, TypeScript, Prisma, PostgreSQL, Vitest
+
+### 📝 [Papyr.us](https://github.com/joeylife94/papyr-us)
+**Real-time collaboration wiki with AI-assisted workflow support**
+
+- CRDT-based concurrent editing with Yjs + Socket.IO
+- role-aware collaboration and backend state
+- AI assistance integrated into the workflow rather than isolated as a demo
+- **Tech:** TypeScript, React, Node.js, PostgreSQL, Socket.IO, Yjs
+
+### 🧪 SeoulGyeol Beauty Lab
+**Consent-based intake → scoring → report → email pipeline**
+
+- multilingual questionnaire and scoring workflow
+- consent-aware data processing
+- automated report delivery
+- proof of end-to-end operational pipeline design
+
+---
+
+## Active Proof Hardening
+
+The following projects are **actively being raised to stronger client-facing / Wishket-proof quality**. They are not presented as finished case studies until their evidence gates are closed.
+
+- **[Asgard](https://github.com/joeylife94/asgard)** — policy-based AI routing / fallback systems
+- **[ClaimTrace](https://github.com/joeylife94/claim-trace)** — traceable claims and evidence workflow
+- **[Guided Agent OS](https://github.com/joeylife94/guided-agent-os)** — guided agent execution and control workflow
+- **[Papyr.us](https://github.com/joeylife94/papyr-us)** — ongoing proof hardening beyond the currently validated collaboration slice
+
+**Promotion rule:** a project moves from “active proof” to landing-page case study only when the repository has a stable runnable flow, test/evidence artifacts, a concise buyer-facing story, and screenshots or demo evidence.
+
+---
+
+## Production Background
+
+### Backend Developer — Egistech
+- Resolved DB connection-pool bottlenecks on an authentication/session path, increasing concurrent capacity from roughly **100 to 2,000+**.
+- Refactored large stored-procedure logic into maintainable application-layer code.
+- Worked on public-sector legacy modernization and operational performance issues.
+
+### Full-Stack / Backend Engineer — Widetns / LG projects
+- Contributed to gradual monolith → modular service migration.
+- Designed a database-backed transactional event-log pattern for consistency handling.
+- Supported **Oracle → MySQL** migration across millions of records while maintaining service continuity.
+- Worked on **OAuth 2.0 / SSO** using Java, Quarkus, and Keycloak.
+- Improved core API latency by roughly **30%** through service separation and architecture restructuring.
+
+---
+
+## Core Stack
+
+| Area | Technologies |
 | --- | --- |
-| **Backend Core** | ![Java](https://img.shields.io/badge/Java_17-ED8B00?logo=java&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?logo=spring-boot&logoColor=white) ![Quarkus](https://img.shields.io/badge/Quarkus-4695EB?logo=quarkus&logoColor=white) |
-| **Auth & Security** | ![OAuth2](https://img.shields.io/badge/OAuth_2.0-EB5424?logo=auth0&logoColor=white) ![Keycloak](https://img.shields.io/badge/Keycloak-4D4D4D?logo=keycloak&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?logo=jsonwebtokens&logoColor=white) |
-| **Data & Messaging** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white) ![Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?logo=apachekafka&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white) |
-| **Infra & Ops** | ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?logo=prometheus&logoColor=white) |
-| **AI & Python** | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) |
-| **Frontend** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black) ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white) |
+| **Backend** | Java 17, Spring Boot, Quarkus, REST, JPA/MyBatis |
+| **Auth / Security** | OAuth 2.0, Keycloak, JWT |
+| **Data / Messaging** | PostgreSQL, MySQL, Oracle, Kafka, Redis |
+| **AI / Automation** | Python, FastAPI, OpenAI-compatible APIs, RAG / retrieval workflows |
+| **Frontend / Internal UI** | TypeScript, React, Next.js |
+| **Ops** | Docker, Kubernetes, Prometheus/Grafana, Git/Jenkins |
 
-<br/>
+---
 
-## 🏆 Featured Projects
+## Working Principle
 
-### 🛒 [E-Commerce Scanner](https://github.com/joeylife94/e-commerce-scanner) — Market Margin Analysis Pipeline
-A repeatable scan → compare → store → report pipeline for cross-market product opportunity analysis.
-- Replaces one-off manual spreadsheet research with a structured, re-runnable workflow.
-- CLI-driven scan, Streamlit dashboard for result review, AI prompt output for downstream analysis.
-- **Tech:** `Python`, `httpx`, `Playwright`, `SQLite`, `Streamlit`, `Pydantic`
+I do not start with “where can we put AI?”
 
-### 📋 [Restricted Ops Intake MVP](https://github.com/joeylife94/restricted-ops-intake-mvp) — Operations Queue System
-A Next.js + Prisma MVP that captures messages from approved Slack channels into a structured operations queue.
-- Webhook validation, idempotent intake, status tracking, assignee management, immutable audit logs.
-- AI extraction plumbing for structured summary/extraction with graceful fallback.
-- **Tech:** `Next.js`, `TypeScript`, `Prisma`, `PostgreSQL`, `Tailwind CSS`, `Vitest`
+I start with:
 
-### 📝 [Papyr.us](https://github.com/joeylife94/papyr-us) — AI-Assisted Real-Time Collaboration Wiki
-A team wiki combining real-time co-editing, task management, and AI-assisted writing workflows.
-- CRDT-based concurrent editing (Socket.IO + Yjs), JWT/RBAC auth, feature-flag-driven runtime modules.
-- **Tech:** `TypeScript`, `React`, `Node.js/Express`, `PostgreSQL`, `Socket.IO`, `Yjs`, `OpenAI API`
+1. **What is the current operational flow?**
+2. **Where does it fail, repeat, or require manual judgment?**
+3. **What is the smallest useful system boundary?**
+4. **Which steps should stay deterministic?**
+5. **Where would AI actually reduce effort or improve decisions?**
+6. **What evidence proves the result works?**
 
-<br/>
-
-## 💼 Professional Experience
-
-### **Independent Software Engineer (ProblemSolverArc)**
-*Nov 2025 — Present · Berlin, Germany*
-- Building backend MVPs, internal tools, and operational systems for small teams.
-- Projects: E-Commerce Scanner, Restricted Ops Intake MVP, Interview Copilot, Papyr.us.
-
-### **Backend Developer at Egistech** *(Public-sector digital systems)*
-*Jun 2025 — Oct 2025 · Seoul, South Korea*
-- Resolved DB connection pool bottlenecks on a critical auth/session path, increasing concurrent capacity from ~100 to **2,000+**.
-- Refactored large stored procedure logic into maintainable application-layer code (MyBatis).
-- Applied AI-assisted analysis to accelerate legacy Struts → Spring Boot migration.
-
-### **Full-Stack / Backend Engineer at Widetns** *(Partner of LG CNS & LG Electronics)*
-*Feb 2021 — May 2025 · Seoul, South Korea*
-- Contributed to gradual migration from monolith to modular Spring Boot-based services.
-- Designed a Saga-style consistency mechanism using a database-backed transactional event log.
-- Supported a large-scale Oracle → MySQL migration (millions of records, zero service downtime).
-- Contributed to an **OAuth 2.0 SSO** system using Java, Quarkus, and Keycloak.
-- Reduced API latency by ~**30%** through service separation and architectural restructuring.
-
-<br/>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=joeylife94&show_icons=true&theme=radical" height="150" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joeylife94&layout=compact&theme=radical" height="150" alt="languages graph" />
-</div>
+That is the operating model behind **ProblemSolverArc**.
