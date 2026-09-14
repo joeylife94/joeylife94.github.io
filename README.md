@@ -1,17 +1,57 @@
 # Dongyoun Jeon — ProblemSolverArc
-### Backend / AI Workflow Systems Engineer
+### Backend / AI Systems Engineer
 
-I build **backend-first internal tools, operational workflows, and AI-assisted systems** for teams that are still running important work through spreadsheets, Slack, email, and manual checks.
+I build **backend-first operational systems, controlled AI workflows, and internal tools** for teams that need something more reliable than spreadsheets, chat threads, and manual checks.
 
-My core background is **4.8 years of production backend engineering** across enterprise and public-sector environments: Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
+My background is **4.8 years of production backend engineering** across enterprise and public-sector environments, including Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
 
-My current freelance positioning is intentionally narrower than “general web development”:
+My current focus is narrower than “general web development”:
 
-> **Structure the workflow first. Add AI only where it creates practical leverage. Deliver a system the client can actually operate and extend.**
+> **Structure the workflow first. Keep deterministic steps deterministic. Add AI only where it creates practical leverage. Prove the system with executable evidence.**
 
-- 🌐 **[ProblemSolverArc](https://joeylife94.github.io)** — Freelance landing page
-- 📫 **joeylife94@gmail.com**
+- 🌐 **[ProblemSolverArc](https://joeylife94.github.io)** — freelance portfolio / service page
+- 📫 **dongyoun.jeon@gmail.com**
 - 💼 [LinkedIn](https://www.linkedin.com/in/dongyoun-jeon)
+- 🧑‍💻 [GitHub](https://github.com/joeylife94)
+
+---
+
+## Featured Public Proof
+
+### 🔎 [ClaimTrace](https://github.com/joeylife94/claim-trace)
+**Source-verifiable patent claim analysis with evidence-grounded retrieval and review.**
+
+- exact source provenance from document → page → character span
+- hybrid retrieval, grounded Q&A, comparison, decomposition, human review
+- deterministic browser proof and reproducible evaluation evidence
+- **Tech:** FastAPI, Next.js, PostgreSQL, pgvector, Playwright
+
+### 🧭 [Guided Agent OS](https://github.com/joeylife94/guided-agent-os)
+**Controlled enterprise AI Agent proof with explicit approval and tool-execution boundaries.**
+
+- semantic RAG with Korean / English retrieval
+- human approval / reject boundary
+- allowlisted read-only tool execution
+- persistent audit timeline and fixed evaluation suite
+- **Tech:** FastAPI, LangGraph, SQLite, ChromaDB, local embeddings
+
+### 🛡️ [Asgard](https://github.com/joeylife94/asgard)
+**Local-first AI operations proof for asynchronous, auditable AI jobs.**
+
+- persistent Job lifecycle over Kafka
+- local Ollama execution path
+- FAILED / DLQ → authorized redrive → audit → retry → SUCCEEDED
+- Prometheus / Grafana operating visibility
+- **Tech:** Java, Spring Boot, Python, Kafka, PostgreSQL, Ollama, Prometheus/Grafana
+
+### 📝 [Papyr.us](https://github.com/joeylife94/papyr-us)
+**Small-team collaboration wiki with bounded v1.0 proof for team-scoped workflows and recovery.**
+
+- document lifecycle and version recovery
+- team-scoped authorization and secure search
+- tasks / calendar / optional AI assistance
+- CI, browser proof package, and operational recovery evidence
+- **Tech:** TypeScript, React, Express, PostgreSQL, Socket.IO, Yjs, Playwright
 
 ---
 
@@ -49,60 +89,10 @@ Typical scope:
 
 ---
 
-## Validated Proof
-
-### 🛒 [E-Commerce Scanner](https://github.com/joeylife94/e-commerce-scanner)
-**Manual market research → repeatable operational pipeline**
-
-- scan → compare → store → review → report workflow
-- re-runnable research instead of one-off spreadsheet work
-- dashboard and structured downstream outputs
-- **Tech:** Python, httpx, Playwright, SQLite, Streamlit, Pydantic
-
-### 📋 [Restricted Ops Intake MVP](https://github.com/joeylife94/restricted-ops-intake-mvp)
-**Approved Slack requests → structured operations records**
-
-- webhook validation and channel allowlist
-- idempotent intake and status tracking
-- assignee flow and immutable audit history
-- AI extraction plumbing with graceful fallback
-- **Tech:** Next.js, TypeScript, Prisma, PostgreSQL, Vitest
-
-### 📝 [Papyr.us](https://github.com/joeylife94/papyr-us)
-**Real-time collaboration wiki with AI-assisted workflow support**
-
-- CRDT-based concurrent editing with Yjs + Socket.IO
-- role-aware collaboration and backend state
-- AI assistance integrated into the workflow rather than isolated as a demo
-- **Tech:** TypeScript, React, Node.js, PostgreSQL, Socket.IO, Yjs
-
-### 🧪 SeoulGyeol Beauty Lab
-**Consent-based intake → scoring → report → email pipeline**
-
-- multilingual questionnaire and scoring workflow
-- consent-aware data processing
-- automated report delivery
-- proof of end-to-end operational pipeline design
-
----
-
-## Active Proof Hardening
-
-The following projects are **actively being raised to stronger client-facing / Wishket-proof quality**. They are not presented as finished case studies until their evidence gates are closed.
-
-- **[Asgard](https://github.com/joeylife94/asgard)** — policy-based AI routing / fallback systems
-- **[ClaimTrace](https://github.com/joeylife94/claim-trace)** — traceable claims and evidence workflow
-- **[Guided Agent OS](https://github.com/joeylife94/guided-agent-os)** — guided agent execution and control workflow
-- **[Papyr.us](https://github.com/joeylife94/papyr-us)** — ongoing proof hardening beyond the currently validated collaboration slice
-
-**Promotion rule:** a project moves from “active proof” to landing-page case study only when the repository has a stable runnable flow, test/evidence artifacts, a concise buyer-facing story, and screenshots or demo evidence.
-
----
-
 ## Production Background
 
 ### Backend Developer — Egistech
-- Resolved DB connection-pool bottlenecks on an authentication/session path, increasing concurrent capacity from roughly **100 to 2,000+**.
+- Resolved a DB connection-pool bottleneck on an authentication/session path, increasing concurrent capacity from roughly **100 to 2,000+**.
 - Refactored large stored-procedure logic into maintainable application-layer code.
 - Worked on public-sector legacy modernization and operational performance issues.
 
@@ -122,7 +112,7 @@ The following projects are **actively being raised to stronger client-facing / W
 | **Backend** | Java 17, Spring Boot, Quarkus, REST, JPA/MyBatis |
 | **Auth / Security** | OAuth 2.0, Keycloak, JWT |
 | **Data / Messaging** | PostgreSQL, MySQL, Oracle, Kafka, Redis |
-| **AI / Automation** | Python, FastAPI, OpenAI-compatible APIs, RAG / retrieval workflows |
+| **AI / Automation** | Python, FastAPI, OpenAI-compatible APIs, RAG / retrieval workflows, local LLMs |
 | **Frontend / Internal UI** | TypeScript, React, Next.js |
 | **Ops** | Docker, Kubernetes, Prometheus/Grafana, Git/Jenkins |
 
