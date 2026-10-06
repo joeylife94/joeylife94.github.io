@@ -109,7 +109,7 @@
 
       'why-eyebrow': '강점',
       'why-h2': '웹 제작보다 운영 시스템에 가까운 이유',
-      'why-lead': '4.8년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.',
+      'why-lead': '5년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.',
       'why-card1-title': 'API 응답속도 개선',
       'why-card1-desc': '서비스 분리와 아키텍처 재구성을 통해 핵심 API 응답 속도를 약 30% 단축. 성능 문제를 원인에서 접근합니다.',
       'why-card2-title': '동시 처리량 20배 개선',
@@ -287,7 +287,7 @@
 
       'why-eyebrow': 'Why work with me',
       'why-h2': 'Closer to operations engineering than generic web production',
-      'why-lead': 'My work draws on 4.8 years building production systems in enterprise and public-sector environments. I design for real operational conditions, not demos.',
+      'why-lead': 'My work draws on 5 years building production systems in enterprise and public-sector environments. I design for real operational conditions, not demos.',
       'why-card1-title': '~30% API latency reduction',
       'why-card1-desc': 'Cut core API response time by about 30% through service decomposition and architecture restructuring. I address performance problems at their root.',
       'why-card2-title': '20× concurrency improvement',
@@ -465,7 +465,7 @@
 
       'why-eyebrow': '強み',
       'why-h2': '一般的なWeb制作より、運用システムに近い理由',
-      'why-lead': '4.8年間、エンタープライズ・公共分野のプロダクションシステムで積んだ経験をベースに作業します。デモではなく実運用環境の基準で設計します。',
+      'why-lead': '5年間、エンタープライズ・公共分野のプロダクションシステムで積んだ経験をベースに作業します。デモではなく実運用環境の基準で設計します。',
       'why-card1-title': 'API応答速度 約30%改善',
       'why-card1-desc': 'サービス分離とアーキテクチャ再構成によりコアAPIの応答速度を約30%短縮。パフォーマンス問題を根本から対処します。',
       'why-card2-title': '同時処理量20倍改善',
