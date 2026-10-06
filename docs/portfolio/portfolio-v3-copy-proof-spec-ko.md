@@ -449,6 +449,27 @@ Each public asset should record:
 
 ---
 
+## 13A. Papyr.us P0 Capture Status — 2026-10-06
+
+**P1 current team workspace: SECURED / GREEN**
+
+- accepted proof rerun `34132976309`;
+- fresh artifact `11396728712`;
+- selected capture: `01-team-pages.png`;
+- synthetic-only.
+
+**P2 version recovery boundary: SECURED / GREEN**
+
+- capture run `37433742998`;
+- fresh artifact `11398263202`;
+- selected captures: `03-version-recovery-before.png`, `04-version-recovery-after.png`;
+- browser restore action + durable API verification;
+- synthetic-only.
+
+Current remaining task is durable binary placement in the portfolio repository. No Papyr.us feature expansion is required for V3 proof packaging.
+
+---
+
 ## 14. Required Proof Pack — Papyr.us
 
 ### P1 — Current team workspace — REQUIRED
