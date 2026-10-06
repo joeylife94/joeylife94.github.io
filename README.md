@@ -3,7 +3,7 @@
 
 I build **backend-first operational systems, controlled AI workflows, and internal tools** for teams that need something more reliable than spreadsheets, chat threads, and manual checks.
 
-My background is **4.8 years of production backend engineering** across enterprise and public-sector environments, including Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
+My background is **5 years of production backend engineering** across enterprise and public-sector environments, including Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
 
 My current focus is narrower than “general web development”:
 
