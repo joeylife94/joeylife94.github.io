@@ -1,7 +1,7 @@
 # ProblemSolverArc Landing Page — Production Document V2.0
 
 **Status:** Active source of truth  
-**Updated:** 2026-08-18  
+**Updated:** 2026-10-06  
 **Repository:** `joeylife94/joeylife94.github.io`
 
 ---
@@ -342,7 +342,7 @@ When a stronger proof becomes ready, replace the weakest or least commercially r
 
 Current trust anchors:
 
-- 4.8 years enterprise / public-sector backend experience
+- 5 years enterprise / public-sector backend experience
 - roughly 30% API latency improvement
 - concurrency path improvement from roughly 100 to 2,000+
 - millions-of-records Oracle → MySQL migration with service continuity
