@@ -11,7 +11,7 @@ Berlin, Germany
 
 ## Summary
 
-Backend / Systems Engineer with 4.8 years of experience building and improving production-critical systems in enterprise and public-sector environments.
+Backend / Systems Engineer with 5 years of experience building and improving production-critical systems in enterprise and public-sector environments.
 
 My core background is in Java/Spring-based backend services, authentication and SSO, distributed consistency, performance optimization, and legacy modernization. I focus on turning operational complexity into maintainable systems with clearer boundaries, stronger reliability, and safer handoff.
 
