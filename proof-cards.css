@@ -91,3 +91,11 @@
   .proof-jump-links a { width: 100%; }
   .proof-next-step .btn-primary { width: 100%; text-align: center; }
 }
+
+.about-owner {
+  color: var(--heading);
+  font-size: 0.93rem;
+  line-height: 1.5;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
