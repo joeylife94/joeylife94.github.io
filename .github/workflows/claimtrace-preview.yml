@@ -65,6 +65,21 @@ jobs:
               if (numbers.length!==4 || !numbers.every(x=>x.target===x.displayed)) {
                 throw Error('Career metrics show zero or incorrect initial value: '+JSON.stringify(numbers));
               }
+                            // P1: lead with source provenance, not a deliberately
+              // insufficient-evidence synthetic question. Keep scope claims bounded.
+              const featuredSlides=await page.locator('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide img').evaluateAll(images=>
+                images.map(img=>img.getAttribute('src')?.split('/').pop())
+              );
+              if (featuredSlides.join(',')!=='05-source-highlight.png,06-human-review.png,03-grounded-answer.png') {
+                throw Error('ClaimTrace evidence ordering regressed: '+featuredSlides.join(','));
+              }
+              const guardrailCopy=(await page.locator('[data-i18n="claimtrace-caption-3"]').textContent())?.trim()||'';
+              if (!guardrailCopy) throw Error('Insufficient evidence guardrail caption missing in '+lang);
+              const weakProofClaims=await page.locator('[data-i18n="card-seoulgyeol-proof"],[data-i18n="card-restricted-proof"]').allTextContents();
+              const boundedMarkers={ko:'측정',en:'measured',ja:'測定'};
+              if (weakProofClaims.length!==2 || !weakProofClaims.every(t=>t.includes(boundedMarkers[lang]))) {
+                throw Error('Supporting proof must disclose unmeasured business outcomes in '+lang);
+              }
                             const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
               if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
