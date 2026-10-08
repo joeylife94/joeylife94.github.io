@@ -8,6 +8,8 @@
   font-size: 0.7rem;
   font-weight: 600;
   vertical-align: middle;
+  display: inline-block;
+  white-space: nowrap;
 }
 .project-card-body .proof-boundary,
 .project-card-body .proof-image-note {
