@@ -256,7 +256,58 @@
 
       <!-- ── FEATURED PROOF / CASES ───────────────────────────── -->
       <section class="content-section" id="proof">
-        <p class="section-label" data-i18n="featured-eyebrow">대표 사례</p>
+        <!-- Evidence-first featured proof: frozen v1.0 visuals, bounded public claims. -->
+        <p class="section-label" data-i18n="claimtrace-eyebrow">대표 엔지니어링 Proof</p>
+        <h2 data-i18n="claimtrace-h2">ClaimTrace — AI 분석의 근거를 원문까지 추적</h2>
+        <p class="section-desc" data-i18n="claimtrace-lead">한국어 특허 PDF 분석에서 문서·페이지·문자 범위까지 근거를 추적하고 사람이 확인할 수 있도록 설계한 통제된 단일 사용자 환경의 Proof입니다.</p>
+
+        <div class="case-narrative">
+          <div class="case-block">
+            <p class="case-label" data-i18n="claimtrace-problem-label">Problem</p>
+            <p data-i18n="claimtrace-problem">AI 분석 결과의 출처가 불분명하면 검토자가 원문을 다시 확인하기 어렵습니다.</p>
+          </div>
+          <div class="case-block case-block--accent">
+            <p class="case-label" data-i18n="claimtrace-design-label">Approach</p>
+            <p data-i18n="claimtrace-design">모델은 서버가 발급한 evidence ID를 선택하고, 서버가 이를 저장된 원문 위치로 해석합니다. 판단은 별도의 Human Review 기록으로 남깁니다.</p>
+          </div>
+          <div class="case-block case-block--result">
+            <p class="case-label" data-i18n="claimtrace-proof-label">Verified</p>
+            <p data-i18n="claimtrace-proof">동결된 v1.0 브라우저 워크플로우와 재현 가능한 테스트를 검증했습니다. 후속 D3 파일럿에서는 공개 한국어 특허 PDF 2건을 제한된 범위에서 실행했습니다.</p>
+          </div>
+          <div class="case-block">
+            <p class="case-label" data-i18n="claimtrace-boundary-label">Boundary</p>
+            <p data-i18n="claimtrace-boundary">원문 링크의 유효성은 검증하지만 AI 문장의 법률적·의미적 정확성까지 보장하지 않습니다. 법률 판정, OCR, 상용 운영 준비는 검증 범위 밖입니다.</p>
+          </div>
+        </div>
+
+        <div class="proof-viewer" data-project="claimtrace-v1" data-autoplay="true" aria-label="ClaimTrace verified product screenshots">
+          <div class="proof-viewer__progress"></div>
+          <div class="proof-viewer__track">
+            <div class="proof-viewer__slide proof-viewer__slide--active">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/03-grounded-answer.png" alt="ClaimTrace deterministic proof — evidence-grounded answer" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-1">근거 기반 답변 — 원문에 연결된 evidence 표시</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/05-source-highlight.png" alt="ClaimTrace deterministic proof — source highlight" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-2">Source Highlight — 문서·페이지·문자 범위로 돌아가기</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/06-human-review.png" alt="ClaimTrace deterministic proof — human review" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-3">Human Review — AI 출력과 별도의 검토 기록</p>
+            </div>
+          </div>
+          <button class="proof-viewer__btn proof-viewer__btn--prev" aria-label="이전" data-i18n-aria="prev-image">&#8249;</button>
+          <button class="proof-viewer__btn proof-viewer__btn--next" aria-label="다음" data-i18n-aria="next-image">&#8250;</button>
+          <div class="proof-viewer__dots"></div>
+        </div>
+        <p class="proof-evidence-note" data-i18n="claimtrace-gallery-note">화면은 동결된 v1.0 합성 데이터 기반 브라우저 Proof에서 생성됐으며, 실제 특허 분석의 일반 정확도를 의미하지 않습니다.</p>
+        <div class="proof-source-links">
+          <a class="btn-primary" href="https://github.com/joeylife94/claim-trace" target="_blank" rel="noopener noreferrer" data-i18n="claimtrace-source-repo">GitHub 소스 보기 ↗</a>
+          <a class="btn-ghost" href="https://github.com/joeylife94/claim-trace/tree/v1.0-proof/docs/proof" target="_blank" rel="noopener noreferrer" data-i18n="claimtrace-source-evidence">검증 스크린샷·데모 ↗</a>
+        </div>
+
+        <div class="proof-case-divider"></div>
+        <p class="section-label" data-i18n="featured-eyebrow">운영 자동화 사례</p>
         <h2 data-i18n="featured-h2">수작업 상품 조사를 반복 실행 가능한 운영 파이프라인으로</h2>
 
         <div class="case-narrative">
