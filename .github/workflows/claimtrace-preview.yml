@@ -47,7 +47,25 @@ jobs:
             for (const [lang,file] of [['ko','01-claimtrace-ko-desktop.png'],['en','02-claimtrace-en-desktop.png'],['ja','03-claimtrace-ja-desktop.png']]) {
               await page.locator('.sidebar .lang-switch button[data-lang="'+lang+'"]').click();
               await page.waitForFunction(l => document.documentElement.lang === l,lang);
-              const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
+              // P0 closeout: concrete service promise, distinct nav labels, and
+              // accurate trust metrics before any scrolling or animation.
+              const navAbout=(await page.locator('.sidebar-nav a[href="#about"] .nav-text').textContent())?.trim();
+              const navWhy=(await page.locator('.sidebar-nav a[href="#why"] .nav-text').textContent())?.trim();
+              const expectedNavWhy={ko:'강점',en:'Why me',ja:'強み'};
+              if (!navAbout || navWhy!==expectedNavWhy[lang] || navAbout===navWhy) {
+                throw Error('Duplicate or incorrect About/Why navigation '+lang+': '+navAbout+' / '+navWhy);
+              }
+              const promise=(await page.locator('.signature-sub').textContent())?.trim()||'';
+              const expectedPromise={ko:'내부 도구',en:'internal tools',ja:'社内ツール'};
+              if (!promise.includes(expectedPromise[lang])) throw Error('Buyer promise not concrete in '+lang);
+              const numbers=await page.locator('.count-up').evaluateAll(elements => elements.map(el=>({
+                target:el.dataset.target,
+                displayed:el.textContent?.trim().replaceAll(',','')
+              })));
+              if (numbers.length!==4 || !numbers.every(x=>x.target===x.displayed)) {
+                throw Error('Career metrics show zero or incorrect initial value: '+JSON.stringify(numbers));
+              }
+                            const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
               if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
                 const href=el.getAttribute('href');
