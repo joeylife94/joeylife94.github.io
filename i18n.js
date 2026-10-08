@@ -15,7 +15,7 @@
 
   var translations = {
     ko: {
-      'page-title': 'ProblemSolverArc — 백엔드 · AI 워크플로우 · 운영 시스템 프리랜서',
+      'page-title': "DONGYOUN JEON | 백엔드 · 업무 자동화 · AI 시스템 — ProblemSolverArc",
       'meta-desc': '수동 워크플로우를 운영 가능한 시스템으로 전환하고, 필요한 구간에 AI를 연결합니다. 내부 도구, 워크플로우 자동화, 백엔드 MVP 프리랜서 서비스.',
 
       'nav-about': "소개",
@@ -241,7 +241,7 @@
     },
 
     en: {
-      'page-title': 'ProblemSolverArc — Backend · AI Workflows · Ops Systems Freelancer',
+      'page-title': "DONGYOUN JEON | Backend · Workflow Automation · AI Systems — ProblemSolverArc",
       'meta-desc': 'I turn manual workflows into operational systems and add AI only where it creates practical leverage. Internal tools, workflow automation, and backend MVP freelance services.',
 
       'nav-about': "About",
@@ -467,7 +467,7 @@
     },
 
     ja: {
-      'page-title': 'ProblemSolverArc — バックエンド · AIワークフロー · 運用システム フリーランサー',
+      'page-title': "DONGYOUN JEON | バックエンド · 業務自動化 · AIシステム — ProblemSolverArc",
       'meta-desc': '手作業のワークフローを運用可能なシステムに変え、必要な箇所だけにAIを組み込みます。社内ツール、ワークフロー自動化、バックエンドMVPのフリーランスサービス。',
 
       'nav-about': "紹介",
