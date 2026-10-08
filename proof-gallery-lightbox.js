@@ -24,13 +24,14 @@
       '</div>' +
       '<div class="proof-zoom-dialog__image-stage">' +
         '<button type="button" class="proof-zoom-dialog__arrow proof-zoom-dialog__arrow--prev">‹</button>' +
-        '<img class="proof-zoom-dialog__image" alt="" />' +
+        '<div class="proof-zoom-dialog__image-viewport"><img class="proof-zoom-dialog__image" alt="" /></div>' +
         '<button type="button" class="proof-zoom-dialog__arrow proof-zoom-dialog__arrow--next">›</button>' +
       '</div>' +
       '<p class="proof-zoom-dialog__caption"></p>' +
     '</div>';
   document.body.appendChild(dialog);
 
+  const viewport = dialog.querySelector('.proof-zoom-dialog__image-viewport');
   const zoomImage = dialog.querySelector('.proof-zoom-dialog__image');
   const counter = dialog.querySelector('.proof-zoom-dialog__count');
   const caption = dialog.querySelector('.proof-zoom-dialog__caption');
@@ -57,6 +58,18 @@
     activeIndex = (index + openImages.length) % openImages.length;
     const source = openImages[activeIndex];
     const mediaCaption = source.closest('.proof-viewer__slide')?.querySelector('.proof-caption')?.textContent?.trim();
+    // Very tall screenshots need readable width and their own vertical
+    // scroll area. Fitting their entire height into the modal would make
+    // them smaller than the preview, defeating click-to-expand.
+    const portrait = (source.naturalHeight || 0) > (source.naturalWidth || 0) * 1.35;
+    viewport.classList.toggle('proof-zoom-dialog__image-viewport--portrait', portrait);
+    viewport.scrollTop = 0;
+    zoomImage.onload = () => {
+      viewport.classList.toggle(
+        'proof-zoom-dialog__image-viewport--portrait',
+        zoomImage.naturalHeight > zoomImage.naturalWidth * 1.35
+      );
+    };
     zoomImage.alt = source.alt || '';
     zoomImage.src = source.currentSrc || source.src;
     caption.textContent = mediaCaption || source.alt || labels().missing;
