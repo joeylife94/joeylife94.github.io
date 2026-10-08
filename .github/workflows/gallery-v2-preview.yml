@@ -1,0 +1,153 @@
+name: Proof Gallery V2 Preview
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'proof-gallery-v2.css'
+      - 'proof-gallery-lightbox.js'
+      - 'signature-motion.js'
+      - '.github/workflows/gallery-v2-preview.yml'
+  workflow_dispatch: {}
+
+jobs:
+  browser-gallery:
+    name: Stable frame and zoom interaction (Chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check proof-gallery-lightbox.js
+          node --check signature-motion.js
+          node --check i18n.js
+      - name: Install Playwright
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install chromium --with-deps
+      - name: Test proof gallery layouts, carousel and modal
+        run: |
+          mkdir -p gallery-v2-proof
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/gallery-v2.log 2>&1 &
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          import { writeFileSync } from 'node:fs';
+
+          function assert(ok,message) { if (!ok) throw new Error(message); }
+          const browser = await chromium.launch({ headless: true });
+          try {
+            const page = await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'no-preference'});
+            await page.goto('http://127.0.0.1:8000/', {waitUntil:'domcontentloaded'});
+            await page.evaluate(()=>document.fonts.ready);
+            await page.waitForTimeout(2300);
+
+            assert(await page.locator('.signature-panel .signature-arc').count()===0,'duplicate right-side hero arc still exists');
+            assert(await page.locator('.identity-stage .identity-orbit').count()===1,'left name arc missing');
+            await page.screenshot({path:'gallery-v2-proof/01-hero-single-arc.png'});
+
+            const gallery=page.locator('.proof-viewer[data-project="claimtrace-v1"]');
+            await gallery.scrollIntoViewIfNeeded();
+            await page.waitForFunction(() => {
+              const img=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide--active img');
+              return img?.complete && img.naturalWidth > 0;
+            },null,{timeout:30000});
+            const track=gallery.locator('.proof-viewer__track');
+            const before=await track.boundingBox();
+            const first=await gallery.locator('.proof-viewer__slide--active img').getAttribute('src');
+            assert((await gallery.locator('.proof-viewer__slide--active img').evaluate(el=>getComputedStyle(el).objectFit))==='contain','image should fit without cropping');
+            await gallery.screenshot({path:'gallery-v2-proof/02-gallery-fixed-first.png'});
+
+            await page.waitForFunction(src => {
+              const current=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide--active img');
+              return current?.getAttribute('src') !== src;
+            }, first, {timeout:8000});
+            const after=await track.boundingBox();
+            assert(Math.abs(before.height-after.height)<1,'proof frame jumped on automatic advance');
+            assert(Math.abs(before.width-after.width)<1,'proof frame width changed on automatic advance');
+            await gallery.screenshot({path:'gallery-v2-proof/03-gallery-fixed-next.png'});
+
+            const active=gallery.locator('.proof-viewer__slide--active img');
+            await active.click();
+            const dlg=page.locator('dialog.proof-zoom-dialog');
+            assert(await dlg.isVisible(),'click-to-expand did not open');
+            const expanded=await dlg.locator('.proof-zoom-dialog__image').boundingBox();
+            assert(expanded.height>before.height,'expanded modal did not provide a larger inspection area');
+            await dlg.screenshot({path:'gallery-v2-proof/04-gallery-expanded.png'});
+            const counterBefore=await dlg.locator('.proof-zoom-dialog__count').textContent();
+            await page.keyboard.press('ArrowRight');
+            const counterAfter=await dlg.locator('.proof-zoom-dialog__count').textContent();
+            assert(counterBefore!==counterAfter,'zoom dialog arrow key did not change slide');
+            await page.keyboard.press('Escape');
+            assert(!await dlg.isVisible(),'Escape did not close zoom dialog');
+
+            // Autoplay continues normally after close.
+            const currentSrc=await gallery.locator('.proof-viewer__slide--active img').getAttribute('src');
+            await page.mouse.move(0,0);
+            await page.waitForFunction(src => {
+              const image=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide--active img');
+              return image?.getAttribute('src') !== src;
+            },currentSrc,{timeout:8000});
+
+            const papyr=page.locator('#papyr-proof .card-carousel');
+            await papyr.scrollIntoViewIfNeeded();
+            const cardHeight=(await papyr.boundingBox()).height;
+            await papyr.locator('.card-carousel__btn--next').click();
+            assert(Math.abs((await papyr.boundingBox()).height-cardHeight)<1,'supporting proof card changed height');
+            await papyr.locator('.card-carousel__img--active').click();
+            assert(await dlg.isVisible(),'supporting carousel image failed to expand');
+            await dlg.screenshot({path:'gallery-v2-proof/05-card-expanded.png'});
+            await dlg.locator('.proof-zoom-dialog__close').click();
+            assert(!await dlg.isVisible(),'close button failed');
+
+            const single=page.locator('#public-sensor-ml-proof .project-card-img > img');
+            await single.scrollIntoViewIfNeeded();
+            await single.click();
+            assert(await dlg.isVisible(),'single proof image failed to expand');
+            assert(await dlg.locator('.proof-zoom-dialog__count').textContent()==='1 / 1','single image count mismatch');
+            assert(!await dlg.locator('.proof-zoom-dialog__arrow--next').isVisible(),'single image has unnecessary arrow');
+            await page.keyboard.press('Escape');
+
+            const mobile=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce',isMobile:true,hasTouch:true});
+            await mobile.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
+            assert(await mobile.locator('.mobile-identity-arc').isVisible(),'left/mobile arc missing');
+            assert(await mobile.locator('.signature-panel').isHidden(),'desktop hero must be hidden on mobile');
+            const mobileGallery=mobile.locator('.proof-viewer[data-project="claimtrace-v1"]');
+            await mobileGallery.scrollIntoViewIfNeeded();
+            let dimensions=await mobile.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            assert(dimensions.scroll<=dimensions.viewport+1,'mobile overflow before zoom: '+JSON.stringify(dimensions));
+            let mTrack=await mobileGallery.locator('.proof-viewer__track').boundingBox();
+            await mobileGallery.locator('.proof-viewer__btn--next').click();
+            let mTrackNext=await mobileGallery.locator('.proof-viewer__track').boundingBox();
+            assert(Math.abs(mTrackNext.height-mTrack.height)<1,'mobile frame jumped when next slide shown');
+            await mobileGallery.locator('.proof-viewer__slide--active img').tap();
+            const mobileDlg=mobile.locator('dialog.proof-zoom-dialog');
+            assert(await mobileDlg.isVisible(),'tap to expand failed on mobile');
+            dimensions=await mobile.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            assert(dimensions.scroll<=dimensions.viewport+1,'mobile overflow with zoom: '+JSON.stringify(dimensions));
+            await mobile.screenshot({path:'gallery-v2-proof/06-mobile-expanded.png'});
+            await mobileDlg.locator('.proof-zoom-dialog__close').tap();
+            assert(!await mobileDlg.isVisible(),'mobile modal did not close');
+            await mobile.close();
+
+            writeFileSync('gallery-v2-proof/RESULTS.txt','PASS: single sidebar arc, desktop+mobile stable frame, natural image proportions, autoplay, click/keyboard zoom, Escape/close, supporting & single proofs, no mobile overflow\n');
+            console.log('PASS: fixed-size galleries + expand/close + autoplay + keyboard + mobile + single left arc');
+          } finally { await browser.close(); }
+          NODE
+      - name: Screenshot integrity
+        if: success()
+        run: |
+          for i in 01 02 03 04 05 06; do test -n "$(find gallery-v2-proof -maxdepth 1 -name "${i}-*.png" -size +0c -print -quit)"; done
+          (cd gallery-v2-proof && sha256sum *.png > SHA256SUMS && sha256sum -c SHA256SUMS)
+      - name: Upload real browser screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: proof-gallery-v2-${{ github.sha }}
+          path: gallery-v2-proof/
+          retention-days: 14
+          if-no-files-found: warn
