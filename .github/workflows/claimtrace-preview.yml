@@ -42,12 +42,12 @@ jobs:
               return Boolean(img?.complete && img.naturalWidth > 0);
             },{timeout:30000});
             for (const [lang,file] of [['ko','01-claimtrace-ko-desktop.png'],['en','02-claimtrace-en-desktop.png'],['ja','03-claimtrace-ja-desktop.png']]) {
-              await page.locator('.lang-switch button[data-lang="'+lang+'"]').first().click();
+              await page.locator('.sidebar .lang-switch button[data-lang="'+lang+'"]').click();
               await page.waitForFunction(l => document.documentElement.lang === l,lang);
               await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
               await page.screenshot({path:'proof-preview/'+file});
             }
-            await page.locator('.lang-switch button[data-lang="ko"]').first().click();
+            await page.locator('.sidebar .lang-switch button[data-lang="ko"]').click();
             await page.setViewportSize({width:390,height:844});
             await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-75);});
             const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
