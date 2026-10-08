@@ -71,7 +71,13 @@ jobs:
             assert(Math.abs(before.width-after.width)<1,'proof frame width changed on automatic advance');
             await gallery.screenshot({path:'gallery-v2-proof/03-gallery-fixed-next.png'});
 
+            // Gallery now opens with positive source-highlight evidence.
+            // Select the deliberately tall insufficient-evidence screenshot
+            // before checking portrait zoom and vertical scrolling.
+            await gallery.locator('.proof-viewer__btn--next').click();
             const active=gallery.locator('.proof-viewer__slide--active img');
+            const portraitSource=await active.getAttribute('src');
+            assert(portraitSource?.endsWith('03-grounded-answer.png'),'portrait inspection must target the known tall guardrail screenshot');
             await active.click();
             const dlg=page.locator('dialog.proof-zoom-dialog');
             assert(await dlg.isVisible(),'click-to-expand did not open');
