@@ -1,0 +1,38 @@
+/* Focused extensions for evidence-backed portfolio proof cards. */
+.proof-status {
+  margin-left: 6px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--bg-lightest);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.project-card-body .proof-boundary,
+.project-card-body .proof-image-note {
+  color: var(--text-light);
+  line-height: 1.65;
+  font-size: 0.78rem;
+}
+.project-card-body .proof-image-note {
+  margin: 11px 0 4px;
+  font-size: 0.72rem;
+}
+.project-proof-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 12px;
+}
+.project-proof-links a {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.project-proof-links a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
