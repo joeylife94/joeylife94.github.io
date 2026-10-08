@@ -89,11 +89,20 @@ jobs:
             await active.click();
             const dlg=page.locator('dialog.proof-zoom-dialog');
             assert(await dlg.isVisible(),'click-to-expand did not open');
-            await dlg.locator('.proof-zoom-dialog__image-viewport--portrait').waitFor({state:'visible'});
             const expanded=await dlg.locator('.proof-zoom-dialog__image').boundingBox();
-            assert(expanded.width > before.width * .75,'tall screenshot remained too narrow to inspect');
-            const scroll=await dlg.locator('.proof-zoom-dialog__image-viewport').evaluate(el=>({height:el.clientHeight,content:el.scrollHeight}));
-            assert(scroll.content > scroll.height,'tall screenshot must be vertically scrollable');
+            const imageShape=await dlg.locator('.proof-zoom-dialog__image').evaluate(el=>({
+              width:el.naturalWidth,height:el.naturalHeight,loaded:el.complete && el.naturalWidth > 0
+            }));
+            assert(imageShape.loaded,'enlarged proof image was not decoded');
+            assert(expanded.width>before.width*.75,'expanded proof image remained too narrow');
+            const portrait=imageShape.height>imageShape.width*1.35;
+            const viewport=dlg.locator('.proof-zoom-dialog__image-viewport');
+            const portraitClass=await viewport.evaluate(el=>el.classList.contains('proof-zoom-dialog__image-viewport--portrait'));
+            assert(portraitClass===portrait,'zoom layout does not match actual image aspect ratio');
+            if(portrait){
+              const scroll=await viewport.evaluate(el=>({height:el.clientHeight,content:el.scrollHeight}));
+              assert(scroll.content>scroll.height,'portrait screenshot must be scrollable at readable width');
+            }
             await dlg.screenshot({path:'gallery-v2-proof/04-gallery-expanded.png'});
             const counterBefore=await dlg.locator('.proof-zoom-dialog__count').textContent();
             await page.keyboard.press('ArrowRight');
