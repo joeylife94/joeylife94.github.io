@@ -52,6 +52,10 @@ jobs:
 
             const gallery=page.locator('.proof-viewer[data-project="claimtrace-v1"]');
             await gallery.scrollIntoViewIfNeeded();
+            const zoomHint=await gallery.locator('.proof-viewer__track').getAttribute('data-zoom-hint');
+            assert(zoomHint?.includes('확대'),'visible Korean zoom guidance missing');
+            const overlay=await gallery.locator('.proof-viewer__track').evaluate(el=>getComputedStyle(el,'::after').content);
+            assert(overlay.includes('확대'),'CSS zoom hint is not rendered');
             await page.waitForFunction(() => {
               const img=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide--active img');
               return img?.complete && img.naturalWidth > 0;
@@ -117,7 +121,28 @@ jobs:
             await dlg.locator('.proof-zoom-dialog__close').click();
             assert(!await dlg.isVisible(),'close button failed');
 
-            const single=page.locator('#public-sensor-ml-proof .project-card-img > img');
+            const seoul=page.locator('#seoulgyeol-proof');
+            assert(await seoul.locator('a.project-visit-link').count()===1,'project needs a standalone external visit link');
+            assert(await page.locator('a.project-card .card-carousel__btn').count()===0,'invalid nested project link and buttons persist');
+            await seoul.locator('.card-carousel__img--active').click();
+            assert(await dlg.isVisible(),'SeoulGyeol image must enlarge without following external link');
+            await dlg.locator('.proof-zoom-dialog__close').click();
+            assert(!await dlg.isVisible(),'SeoulGyeol image dialog did not close');
+
+            // Hint, trigger semantics and dialog controls must translate with
+            // the actual site's KO/EN/JA switch, not only on initial load.
+            for(const [lang,hint] of [['en','Click or tap'],['ja','クリック'],['ko','클릭']]){
+              await page.locator('.sidebar .lang-btn[data-lang="'+lang+'"]').click();
+              await page.waitForFunction(l=>document.documentElement.lang===l,lang);
+              const current=await gallery.locator('.proof-viewer__track').getAttribute('data-zoom-hint');
+              assert(current?.includes(hint),'gallery hint translation missing in '+lang);
+              const trigger=gallery.locator('.proof-viewer__slide--active img');
+              assert(await trigger.getAttribute('aria-haspopup')==='dialog','zoom trigger missing dialog semantics');
+              assert((await trigger.getAttribute('aria-label'))?.length>12,'zoom trigger accessible name missing');
+              assert(await trigger.getAttribute('aria-controls')==='proof-zoom-dialog','zoom trigger destination missing');
+            }
+
+                        const single=page.locator('#public-sensor-ml-proof .project-card-img > img');
             await single.scrollIntoViewIfNeeded();
             await single.click();
             assert(await dlg.isVisible(),'single proof image failed to expand');
@@ -147,7 +172,7 @@ jobs:
             assert(!await mobileDlg.isVisible(),'mobile modal did not close');
             await mobile.close();
 
-            writeFileSync('gallery-v2-proof/RESULTS.txt','PASS: single sidebar arc, desktop+mobile stable frame, natural image proportions, autoplay, click/keyboard zoom, Escape/close, supporting & single proofs, no mobile overflow\n');
+            writeFileSync('gallery-v2-proof/RESULTS.txt','PASS: stable frames, portrait zoom, KO/EN/JA hints, standalone project link, accessible dialog triggers, autoplayer and mobile\n');
             console.log('PASS: fixed-size galleries + expand/close + autoplay + keyboard + mobile + single left arc');
           } finally { await browser.close(); }
           NODE
