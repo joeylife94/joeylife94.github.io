@@ -36,3 +36,7 @@
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* Give the verified evaluation chart room without changing other cases. */
+.project-card--sensor { grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); }
+@media (max-width: 768px) { .project-card--sensor { grid-template-columns: minmax(0, 1fr); } }
