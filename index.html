@@ -10,15 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="proof-cards.css" />
+  <link rel="stylesheet" href="signature-theme.css" />
 </head>
 <body>
 
   <!-- Cursor-follow spotlight -->
   <div class="spotlight" id="spotlight"></div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
   <!-- Mobile header -->
   <header class="mobile-header" id="mobile-header">
-    <a href="#top" class="brand">ProblemSolverArc</a>
+    <a href="#top" class="brand">ProblemSolver<em>Arc</em></a>
     <div class="mobile-header-right">
       <div class="lang-switch lang-switch--mobile">
         <button class="lang-btn lang-btn--active" data-lang="ko">KO</button>
@@ -50,9 +52,29 @@
     <header class="sidebar">
       <div class="sidebar-inner">
         <div class="sidebar-top">
-          <a href="#top" class="brand">ProblemSolverArc</a>
-          <p class="role" data-i18n="hero-label">Backend · AI Workflow · 운영 시스템</p>
-          <h1 class="sidebar-headline" data-i18n-html="hero-h1">스프레드시트·Slack·수작업으로 운영 중인 팀을 위해, AI가 필요한 곳에만 연결된 내부 도구·워크플로우·백엔드 MVP를 만듭니다.</h1>
+          <a href="#top" class="brand">ProblemSolver<em>Arc</em></a>
+          <div class="identity-stage" aria-label="DONGYOUN JEON">
+            <svg class="identity-orbit" viewBox="0 0 500 570" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="orbit-gradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#0a5cb8" stop-opacity="0" />
+                  <stop offset="46%" stop-color="#148fff" stop-opacity="0.8" />
+                  <stop offset="68%" stop-color="#5fc4ff" />
+                  <stop offset="100%" stop-color="#167fee" stop-opacity="0.18" />
+                </linearGradient>
+              </defs>
+              <path class="identity-orbit-halo" d="M85 598 C4 339 129 25 451 -35" />
+              <path class="identity-orbit-line" d="M85 598 C4 339 129 25 451 -35" />
+              <circle class="orbit-spark" cx="294" cy="77" r="3" />
+            </svg>
+            <p class="identity-index">01 / DIGITAL BUSINESS CARD</p>
+            <h1 class="identity-name">DONGYOUN<br />JEON<span class="identity-dot">.</span></h1>
+            <p class="identity-role">AI Product &amp; Systems Builder</p>
+            <span class="identity-divider" aria-hidden="true"></span>
+            <p class="identity-verbs">BUILD <span>·</span> INTEGRATE <span>·</span> AUTOMATE</p>
+            <p class="identity-tagline">Turning problems into working systems.</p>
+          </div>
+          <p class="sidebar-headline" data-i18n-html="hero-h1">AI와 백엔드 기술을 연결해 실제로 작동하고 인수인계할 수 있는 시스템을 만듭니다.</p>
         </div>
 
         <nav class="sidebar-nav" id="sidebar-nav">
@@ -103,6 +125,39 @@
          RIGHT CONTENT
          ============================================================ -->
     <main class="content">
+
+      <!-- Business card identity expressed as motion, not a static image. -->
+      <section class="signature-panel" aria-label="Build Integrate Automate">
+        <div class="signature-grid" aria-hidden="true"></div>
+        <svg class="signature-arc" viewBox="0 0 680 450" aria-hidden="true" focusable="false">
+          <path class="signature-arc-halo" d="M 95 500 C 230 150 420 -55 730 -66" />
+          <path class="signature-arc-line" d="M 95 500 C 230 150 420 -55 730 -66" />
+        </svg>
+        <div class="signature-copy">
+          <p class="signature-eyebrow"><span class="signal-dot" aria-hidden="true"></span><span data-i18n="signature-eyebrow">ENGINEERING × EXECUTION</span></p>
+          <p class="signature-verb">BUILD<span>.</span><br />INTEGRATE<span>.</span><br />AUTOMATE<span>.</span></p>
+          <p class="signature-sub" data-i18n="signature-sub">기술을 위한 기술이 아니라, 실제로 사용하는 시스템을 만듭니다.</p>
+          <div class="signature-links">
+            <a href="#proof" class="btn-primary" data-i18n="signature-proof-cta">검증된 프로젝트 보기 ↗</a>
+            <a href="#contact" class="signature-contact" data-i18n="signature-contact-cta">문의하기 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <span class="signature-corner" aria-hidden="true">PSA—01 / 2026</span>
+      </section>
+
+      <section class="mobile-identity" aria-label="DONGYOUN JEON">
+        <svg class="mobile-identity-arc" viewBox="0 0 500 520" aria-hidden="true" focusable="false">
+          <path class="identity-orbit-halo" d="M60 540 C-25 312 154 15 485 -44" />
+          <path class="identity-orbit-line" d="M60 540 C-25 312 154 15 485 -44" />
+        </svg>
+        <p class="identity-index">01 / DIGITAL BUSINESS CARD</p>
+        <p class="mobile-identity-name">DONGYOUN<br />JEON<span class="identity-dot">.</span></p>
+        <p class="identity-role">AI Product &amp; Systems Builder</p>
+        <span class="identity-divider" aria-hidden="true"></span>
+        <p class="identity-verbs">BUILD <span>·</span> INTEGRATE <span>·</span> AUTOMATE</p>
+        <p class="identity-tagline">Turning problems into working systems.</p>
+        <a href="#proof" class="btn-primary mobile-proof-cta" data-i18n="signature-proof-cta">검증된 프로젝트 보기 ↗</a>
+      </section>
 
       <!-- ── ABOUT / INTRO ────────────────────────────────────── -->
       <section class="content-section" id="about">
@@ -625,6 +680,7 @@
 
   <!-- Source of truth for buyer-facing copy: i18n.js. Korean fallback strings should stay aligned. -->
   <script src="i18n.js"></script>
+  <script src="signature-motion.js" defer></script>
 
   <script>
   (function () {
