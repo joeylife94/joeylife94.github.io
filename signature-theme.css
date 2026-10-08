@@ -341,6 +341,7 @@ h3,h4 { color: var(--heading); }
 @media (max-width:768px) {
   .mobile-header { border-bottom:1px solid rgba(55,118,203,.23);padding:12px 18px; }
   .mobile-header .brand { font-size:.84rem; }
+  .mobile-header .lang-switch--mobile { display:flex; }
   .content { padding: 0 20px 36px; }
   .signature-panel { display:none; }
   .mobile-identity {
