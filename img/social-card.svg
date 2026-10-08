@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">DONGYOUN JEON — AI Product &amp; Systems Builder</title>
+  <desc id="desc">ProblemSolverArc signature in charcoal, white typography, and an electric-blue Arc.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24262c"/>
+      <stop offset=".68" stop-color="#15171c"/>
+      <stop offset="1" stop-color="#1b202b"/>
+    </linearGradient>
+    <linearGradient id="arc" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#0c5fbe" stop-opacity=".03"/>
+      <stop offset=".44" stop-color="#198fff" stop-opacity=".78"/>
+      <stop offset=".82" stop-color="#63c4ff"/>
+      <stop offset="1" stop-color="#146dd4" stop-opacity=".5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#paper)"/>
+  <path d="M 690 715 C 613 307 845 35 1265 -84" stroke="#0e66c5" stroke-opacity=".22" stroke-width="24" fill="none"/>
+  <path d="M 690 715 C 613 307 845 35 1265 -84" stroke="url(#arc)" stroke-width="5" fill="none"/>
+  <path d="M 695 715 C 620 311 855 31 1270 -84" stroke="#73c9ff" stroke-opacity=".11" stroke-width="1" fill="none"/>
+  <rect x="0" y="0" width="12" height="630" fill="#168dff"/>
+  <text x="84" y="90" font-family="DejaVu Sans,Arial,sans-serif" font-size="27" font-weight="700" letter-spacing="-1" fill="#f7f9fc">ProblemSolver<tspan fill="#239dff">Arc</tspan></text>
+  <text x="1094" y="88" text-anchor="end" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" letter-spacing="1.2" fill="#b0bfcb">ENGINEERING PROOF / 2026</text>
+  <text x="79" y="250" font-family="DejaVu Sans,Arial,sans-serif" font-size="90" font-weight="700" letter-spacing="-4" fill="#fcfdff">DONGYOUN</text>
+  <text x="79" y="342" font-family="DejaVu Sans,Arial,sans-serif" font-size="90" font-weight="700" letter-spacing="-4" fill="#fcfdff">JEON<tspan fill="#229aff">.</tspan></text>
+  <text x="85" y="408" font-family="DejaVu Sans,Arial,sans-serif" font-size="31" font-weight="500" fill="#dee3ea">AI Product &amp; Systems Builder</text>
+  <rect x="85" y="449" width="60" height="5" rx="1" fill="#168dff"/>
+  <text x="84" y="500" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" letter-spacing="1.9" fill="#cad1db">BUILD   ·   INTEGRATE   ·   AUTOMATE</text>
+  <text x="84" y="563" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" fill="#f0f2f7">Turning problems into working systems.</text>
+  <text x="1092" y="583" text-anchor="end" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" fill="#98a9c1">joeylife94.github.io</text>
+</svg>
