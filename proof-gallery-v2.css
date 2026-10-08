@@ -220,3 +220,58 @@
   .proof-viewer__slide,
   .proof-viewer__slide--active { transition: none !important; }
 }
+
+/* The enlarged image is an intentional action, not an invisible trick.
+   Hints are localized by proof-gallery-lightbox.js and never block clicks. */
+.proof-viewer__track[data-zoom-hint]::after,
+.project-card-img[data-zoom-hint]::after {
+  content: attr(data-zoom-hint);
+  position: absolute;
+  z-index: 5;
+  top: 9px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  max-width: calc(100% - 20px);
+  min-height: 26px;
+  padding: 4px 9px;
+  border: 1px solid rgba(119,184,255,.3);
+  border-radius: 4px;
+  background: rgba(9,17,31,.90);
+  color: #dcecff;
+  font-size: .67rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  white-space: normal;
+  box-shadow: 0 3px 14px rgba(0,0,0,.22);
+  pointer-events: none;
+}
+.project-card-img[data-zoom-hint]::after { top: 8px; right: 8px; }
+.project-visit-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  padding: 6px 0;
+  color: #7fc6ff;
+  font-size: .84rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.project-visit-link:hover { color: #c2e5ff; }
+.project-visit-link:focus-visible {
+  outline: 2px solid #80d1ff;
+  outline-offset: 3px;
+}
+@media (max-width: 768px) {
+  .proof-viewer__track[data-zoom-hint]::after,
+  .project-card-img[data-zoom-hint]::after {
+    font-size: .63rem;
+    padding: 4px 6px;
+    min-height: 24px;
+  }
+}
