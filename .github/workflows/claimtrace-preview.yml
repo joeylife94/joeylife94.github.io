@@ -8,6 +8,7 @@ on:
       - 'i18n.js'
       - 'style.css'
       - 'proof-cards.css'
+      - 'img/proof/public-sensor-ml/**'
       - '.github/workflows/claimtrace-preview.yml'
   workflow_dispatch: {}
 
@@ -56,6 +57,17 @@ jobs:
               },null,{timeout:30000});
               if (await papyr.locator('.project-proof-links a').count()!==3) throw Error('Papyr evidence links missing');
               await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','papyr')});
+              const sensor=page.locator('#public-sensor-ml-proof');
+              await sensor.scrollIntoViewIfNeeded();
+              const sensorImg=sensor.locator('img');
+              await sensorImg.waitFor({state:'visible'});
+              await page.waitForFunction(() => {
+                const img=document.querySelector('#public-sensor-ml-proof img');
+                return Boolean(img?.complete && img.naturalWidth > 0);
+              },null,{timeout:30000});
+              if (await sensor.locator('.project-proof-links a').count() !== 4) throw Error('Sensor evaluation/source links missing');
+              await sensor.screenshot({path:'proof-preview/'+file.replace('claimtrace','sensor')});
+
 
             }
             await page.locator('.sidebar .lang-switch button[data-lang="ko"]').click();
@@ -68,8 +80,14 @@ jobs:
             const papyrMobile=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
             if(papyrMobile.scroll>papyrMobile.viewport+1)throw Error('Papyr mobile overflow '+JSON.stringify(papyrMobile));
             await page.screenshot({path:'proof-preview/05-papyr-ko-mobile.png'});
+            const sensorMobile=page.locator('#public-sensor-ml-proof');
+            await sensorMobile.scrollIntoViewIfNeeded();
+            const sensorWidths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(sensorWidths.scroll>sensorWidths.viewport+1)throw Error('Sensor mobile overflow '+JSON.stringify(sensorWidths));
+            await sensorMobile.screenshot({path:'proof-preview/06-sensor-ko-mobile.png'});
 
-            console.log('PASS: KO/EN/JA + screenshot rendering + frozen proof image loading + mobile width');
+
+            console.log('PASS: KO/EN/JA + ClaimTrace/Papyr/Sensor images + evidence links + mobile width');
           } finally {
             await browser.close();
           }
