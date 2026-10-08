@@ -54,7 +54,12 @@ jobs:
               }));
               if (jumpTargets.length!==3 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
               if (await page.locator('.proof-next-step a[href="#contact"]').count()!==1) throw Error('Proof inquiry CTA missing');
-              await page.evaluate(()=>window.scrollTo(0,0));
+              await page.evaluate(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+                document.body.style.scrollBehavior = 'auto';
+                window.scrollTo({top:0,behavior:'instant'});
+              });
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
               await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','home')});
 
               await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
@@ -83,7 +88,12 @@ jobs:
             }
             await page.locator('.sidebar .lang-switch button[data-lang="ko"]').click();
             await page.setViewportSize({width:390,height:844});
-            await page.evaluate(()=>window.scrollTo(0,0));
+            await page.evaluate(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+                document.body.style.scrollBehavior = 'auto';
+                window.scrollTo({top:0,behavior:'instant'});
+              });
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
             await page.screenshot({path:'proof-preview/07-home-ko-mobile.png'});
 
             await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-75);});
