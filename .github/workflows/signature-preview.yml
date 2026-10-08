@@ -48,7 +48,7 @@ jobs:
             await page.evaluate(()=>document.fonts.ready);
             const ident=page.locator('.identity-name');
             if(!await ident.isVisible())throw Error('desktop printed name is not visible');
-            const arcAnimation=await page.locator('.identity-orbit-line').evaluate(el=>getComputedStyle(el).animationName);
+            const arcAnimation=await page.locator('.identity-stage .identity-orbit-line').evaluate(el=>getComputedStyle(el).animationName);
             if(arcAnimation==='none')throw Error('arc draw animation missing');
             if(!await page.locator('.signature-panel').isVisible())throw Error('desktop signature panel not visible');
             await page.waitForTimeout(2550);
