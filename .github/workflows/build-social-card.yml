@@ -1,0 +1,49 @@
+# Temporary, branch-restricted asset build. Remove after PNG is committed.
+name: Generate Signature Share Card PNG
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'img/social-card.svg'
+      - '.github/workflows/build-social-card.yml'
+permissions:
+  contents: write
+jobs:
+  rasterize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'design/proof-gallery-stable-zoom-v2'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render accessible SVG to PNG
+        run: |
+          python -m pip install --disable-pip-version-check cairosvg==2.7.1 pillow==11.3.0
+          python - <<'PY'
+          import cairosvg
+          from PIL import Image
+          from pathlib import Path
+          input_path=Path('img/social-card.svg')
+          output_path=Path('img/social-card.png')
+          cairosvg.svg2png(url=str(input_path),write_to=str(output_path),output_width=1200,output_height=630)
+          with Image.open(output_path) as image:
+              assert image.size == (1200,630),image.size
+              image.convert('RGB').save(output_path,optimize=True)
+          assert output_path.stat().st_size > 1000
+          print('Rendered',output_path,output_path.stat().st_size,'bytes')
+          PY
+      - name: Commit generated PNG to the PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/social-card.png
+          if git diff --cached --quiet; then
+            echo "Asset already up-to-date"
+          else
+            git commit -m "asset: render branded social preview from signature SVG"
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
