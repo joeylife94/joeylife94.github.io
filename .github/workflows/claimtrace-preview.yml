@@ -48,8 +48,11 @@ jobs:
               await page.waitForFunction(l => document.documentElement.lang === l,lang);
               const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
               if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
-              const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>el.getAttribute('href')));
-              if (jumpTargets.length!==3 || !jumpTargets.every(href=>href?.startsWith('#') && document.querySelector(href))) throw Error('Proof jump target missing');
+              const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
+                const href=el.getAttribute('href');
+                return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
+              }));
+              if (jumpTargets.length!==3 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
               if (await page.locator('.proof-next-step a[href="#contact"]').count()!==1) throw Error('Proof inquiry CTA missing');
               await page.evaluate(()=>window.scrollTo(0,0));
               await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','home')});
