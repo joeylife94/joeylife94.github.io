@@ -390,6 +390,27 @@
               </div>
             </div>
 
+            <!-- Public-data-only ML proof; source metrics are from the accepted one-week cohort. -->
+            <div class="project-card" id="public-sensor-ml-proof">
+              <div class="project-card-img">
+                <img src="img/proof/public-sensor-ml/forecast-mae.svg" alt="Measured 1-hour temperature forecasting MAE: naive 0.6480°C, Ridge 0.3578°C; 44.79% lower MAE on a fixed one-week cohort, not a general accuracy claim" loading="lazy" decoding="async" />
+              </div>
+              <div class="project-card-body">
+                <h4>Public Sensor ML MVP <span class="proof-status" data-i18n="card-sensor-stage">READY TO SHOW · 제한된 실측 검증</span></h4>
+                <p data-i18n="card-sensor-desc">서울시 공개 S-DoT 환경 데이터를 수집·검증하고, 시계열 특징 생성 → 1시간 후 평균기온 예측 → 잔차 기반 이상 후보 탐지 → FastAPI 대시보드까지 연결한 독립 개인 R&amp;D Proof입니다.</p>
+                <p class="proof-line" data-i18n="card-sensor-proof">실측 Proof: 1주일 데이터에서 672개 센서·검증 16,128건을 대상으로, 마지막 24시간의 MAE가 Naive 0.6480°C에서 Ridge 0.3578°C로 감소했습니다(44.79%).</p>
+                <p class="proof-boundary" data-i18n="card-sensor-boundary">해당 기간의 제한된 평가 결과이며 장기간 일반화 성능을 뜻하지 않습니다. 이상 후보에 실제 센서 고장 정답 레이블은 없고, 운영·고객 데이터 적용은 검증하지 않았습니다.</p>
+                <div class="tags"><span class="tag">FastAPI</span><span class="tag">Time-Series ML</span><span class="tag">Public Data</span></div>
+                <p class="proof-image-note" data-i18n="card-sensor-image-note">위 이미지는 검증된 MAE 수치의 그래프이며, 실제 대시보드 스크린샷이 아닙니다. 자료 출처: 서울시 S-DoT(OA-22833).</p>
+                <div class="project-proof-links">
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp/blob/main/proof/evidence/BASELINE_EVALUATION.json" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-evidence-link">실측 평가 근거 ↗</a>
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp/blob/main/docs/PROJECT_MASTER.md" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-master-link">검증 범위 보기 ↗</a>
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-repo-link">소스 코드 ↗</a>
+                  <a href="https://data.seoul.go.kr/bsp/wgs/dataView/data300View/1992.do" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-source-link">서울시 공개데이터 ↗</a>
+                </div>
+              </div>
+            </div>
+
             <a class="project-card" href="https://seoulgyeol-beauty-lab.sho801921.workers.dev/" target="_blank" rel="noopener noreferrer">
               <div class="project-card-img card-carousel">
                 <img class="card-carousel__img card-carousel__img--active" src="img/proof/seoulgyeol-beauty-lab/K-beauty_screenshot_1.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
