@@ -46,6 +46,16 @@ jobs:
               await page.waitForFunction(l => document.documentElement.lang === l,lang);
               await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
               await page.screenshot({path:'proof-preview/'+file});
+              const papyr=page.locator('.project-card').filter({has:page.getByRole('heading',{name:/Papyr.us/})});
+              await papyr.scrollIntoViewIfNeeded();
+              await page.waitForFunction(() => {
+                const card=[...document.querySelectorAll('.project-card')].find(el=>el.querySelector('h4')?.textContent.includes('Papyr.us'));
+                const img=card?.querySelector('img');
+                return Boolean(img?.complete && img.naturalWidth>0);
+              },null,{timeout:30000});
+              if (await papyr.locator('.project-proof-links a').count()!==3) throw Error('Papyr evidence links missing');
+              await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','papyr')});
+
             }
             await page.locator('.sidebar .lang-switch button[data-lang="ko"]').click();
             await page.setViewportSize({width:390,height:844});
@@ -53,6 +63,11 @@ jobs:
             const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
             if(widths.scroll>widths.viewport+1)throw Error('Mobile page horizontal overflow '+JSON.stringify(widths));
             await page.screenshot({path:'proof-preview/04-claimtrace-ko-mobile.png'});
+            await page.locator('.project-card').filter({has:page.getByRole('heading',{name:/Papyr.us/})}).scrollIntoViewIfNeeded();
+            const papyrMobile=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(papyrMobile.scroll>papyrMobile.viewport+1)throw Error('Papyr mobile overflow '+JSON.stringify(papyrMobile));
+            await page.screenshot({path:'proof-preview/05-papyr-ko-mobile.png'});
+
             console.log('PASS: KO/EN/JA + screenshot rendering + frozen proof image loading + mobile width');
           } finally {
             await browser.close();
