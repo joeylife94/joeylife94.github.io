@@ -42,3 +42,52 @@
 /* Give the verified evaluation chart room without changing other cases. */
 .project-card--sensor { grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); }
 @media (max-width: 768px) { .project-card--sensor { grid-template-columns: minmax(0, 1fr); } }
+
+/* Jump directly to the validated project that matches a buyer's need. */
+.proof-jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: -12px 0 30px;
+}
+.proof-jump-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  max-width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--bg-lightest);
+  border-radius: 6px;
+  color: var(--text-light);
+  background: var(--bg-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.proof-jump-links a:hover, .proof-jump-links a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+#papyr-proof, #public-sensor-ml-proof { scroll-margin-top: 86px; }
+.proof-next-step {
+  margin-top: 32px;
+  border-top: 1px solid var(--bg-lightest);
+  padding: 24px 0 8px;
+}
+.proof-next-step p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+.career-scope-note {
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+@media (max-width: 480px) {
+  .proof-jump-links { flex-direction: column; }
+  .proof-jump-links a { width: 100%; }
+  .proof-next-step .btn-primary { width: 100%; text-align: center; }
+}
