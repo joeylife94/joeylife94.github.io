@@ -1,0 +1,68 @@
+name: Portfolio ClaimTrace Preview
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'i18n.js'
+      - 'style.css'
+      - '.github/workflows/claimtrace-preview.yml'
+  workflow_dispatch: {}
+
+jobs:
+  browser-proof:
+    name: Portfolio multilingual browser preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check translation syntax
+        run: node --check i18n.js
+      - name: Install browser runner
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install chromium --with-deps
+      - name: Capture actual site in Korean English and Japanese
+        run: |
+          mkdir -p proof-preview
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-preview.log 2>&1 &
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          try {
+            const page = await browser.newPage({viewport:{width:1280,height:900}});
+            await page.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
+            await page.locator('[data-i18n="claimtrace-h2"]').scrollIntoViewIfNeeded();
+            await page.waitForFunction(() => {
+              const img=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] img');
+              return Boolean(img?.complete && img.naturalWidth > 0);
+            },{timeout:30000});
+            for (const [lang,file] of [['ko','01-claimtrace-ko-desktop.png'],['en','02-claimtrace-en-desktop.png'],['ja','03-claimtrace-ja-desktop.png']]) {
+              await page.locator('.lang-switch button[data-lang="'+lang+'"]').first().click();
+              await page.waitForFunction(l => document.documentElement.lang === l,lang);
+              await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
+              await page.screenshot({path:'proof-preview/'+file});
+            }
+            await page.locator('.lang-switch button[data-lang="ko"]').first().click();
+            await page.setViewportSize({width:390,height:844});
+            await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-75);});
+            const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(widths.scroll>widths.viewport+1)throw Error('Mobile page horizontal overflow '+JSON.stringify(widths));
+            await page.screenshot({path:'proof-preview/04-claimtrace-ko-mobile.png'});
+            console.log('PASS: KO/EN/JA + screenshot rendering + frozen proof image loading + mobile width');
+          } finally {
+            await browser.close();
+          }
+          NODE
+      - name: Upload proof preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-claimtrace-preview-${{ github.sha }}
+          path: proof-preview/
+          if-no-files-found: warn
+          retention-days: 14
