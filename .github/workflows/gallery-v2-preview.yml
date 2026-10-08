@@ -74,7 +74,11 @@ jobs:
             // Gallery now opens with positive source-highlight evidence.
             // Select the deliberately tall insufficient-evidence screenshot
             // before checking portrait zoom and vertical scrolling.
-            await gallery.locator('.proof-viewer__btn--next').click();
+            for (let n=0; n<3; n++) {
+              const source=await gallery.locator('.proof-viewer__slide--active img').getAttribute('src');
+              if (source?.endsWith('03-grounded-answer.png')) break;
+              await gallery.locator('.proof-viewer__btn--next').click();
+            }
             const active=gallery.locator('.proof-viewer__slide--active img');
             const portraitSource=await active.getAttribute('src');
             assert(portraitSource?.endsWith('03-grounded-answer.png'),'portrait inspection must target the known tall guardrail screenshot');
