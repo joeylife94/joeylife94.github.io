@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="proof-cards.css" />
   <link rel="stylesheet" href="signature-theme.css" />
+  <link rel="stylesheet" href="proof-gallery-v2.css" />
 </head>
 <body>
 
@@ -129,10 +130,6 @@
       <!-- Business card identity expressed as motion, not a static image. -->
       <section class="signature-panel" aria-label="Build Integrate Automate">
         <div class="signature-grid" aria-hidden="true"></div>
-        <svg class="signature-arc" viewBox="0 0 680 450" aria-hidden="true" focusable="false">
-          <path class="signature-arc-halo" d="M 95 500 C 230 150 420 -55 730 -66" />
-          <path class="signature-arc-line" d="M 95 500 C 230 150 420 -55 730 -66" />
-        </svg>
         <div class="signature-copy">
           <p class="signature-eyebrow"><span class="signal-dot" aria-hidden="true"></span><span data-i18n="signature-eyebrow">ENGINEERING × EXECUTION</span></p>
           <p class="signature-verb">BUILD<span>.</span><br />INTEGRATE<span>.</span><br />AUTOMATE<span>.</span></p>
@@ -681,6 +678,7 @@
   <!-- Source of truth for buyer-facing copy: i18n.js. Korean fallback strings should stay aligned. -->
   <script src="i18n.js"></script>
   <script src="signature-motion.js" defer></script>
+  <script src="proof-gallery-lightbox.js" defer></script>
 
   <script>
   (function () {
