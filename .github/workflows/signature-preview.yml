@@ -53,9 +53,10 @@ jobs:
             if(!await page.locator('.signature-panel').isVisible())throw Error('desktop signature panel not visible');
             await page.waitForTimeout(2550);
             await page.screenshot({path:'signature-proof/01-signature-desktop.png'});
-            const surface=page.locator('.signature-panel');
+            if(await page.locator('.signature-panel .signature-arc').count()!==0)throw Error('duplicate arc should be removed from BUILD panel');
+            const surface=page.locator('.identity-stage');
             const b=await surface.boundingBox();
-            if(!b)throw Error('signature interaction area not found');
+            if(!b)throw Error('left identity interaction area not found');
             await page.mouse.move(b.x+b.width*.8,b.y+b.height*.3,{steps:10});
             await page.waitForTimeout(150);
             const parallax=await surface.evaluate(el=>el.style.getPropertyValue('--arc-shift-x').trim());

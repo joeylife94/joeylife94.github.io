@@ -8,6 +8,11 @@ on:
       - 'i18n.js'
       - 'style.css'
       - 'proof-cards.css'
+      - 'contact-utilities.js'
+      - 'img/social-card.png'
+      - 'img/social-card.svg'
+      - 'robots.txt'
+      - 'sitemap.xml'
       - 'img/proof/public-sensor-ml/**'
       - '.github/workflows/claimtrace-preview.yml'
   workflow_dispatch: {}
@@ -37,9 +42,37 @@ jobs:
           const browser = await chromium.launch({headless:true});
           try {
             const page = await browser.newPage({viewport:{width:1280,height:900}});
+            await page.context().grantPermissions(['clipboard-read','clipboard-write'],{
+              origin:'http://127.0.0.1:8000'
+            });
             await page.emulateMedia({reducedMotion:'reduce'});
             await page.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
-            await page.locator('[data-i18n="claimtrace-h2"]').scrollIntoViewIfNeeded();
+            // P2: social crawlers get absolute public metadata, a real PNG,
+            // and a single canonical URL (no fictional localized URLs).
+            const seo=await page.evaluate(()=>({
+              canonical:document.querySelector('link[rel="canonical"]')?.href,
+              ogImage:document.querySelector('meta[property="og:image"]')?.content,
+              ogUrl:document.querySelector('meta[property="og:url"]')?.content,
+              ogType:document.querySelector('meta[property="og:type"]')?.content,
+              twitter:document.querySelector('meta[name="twitter:card"]')?.content,
+              person:JSON.parse(document.querySelector('script[type="application/ld+json"]')?.textContent||'{}')
+            }));
+            if(seo.canonical!=='https://joeylife94.github.io/' ||
+               seo.ogUrl!==seo.canonical || seo.ogType!=='website' ||
+               seo.ogImage!=='https://joeylife94.github.io/img/social-card.png' ||
+               seo.twitter!=='summary_large_image' ||
+               seo.person.name!=='Dongyoun Jeon')throw Error('P2 social/canonical metadata mismatch '+JSON.stringify(seo));
+            const image=await page.evaluate(async()=>{
+              const img=new Image();
+              img.src='/img/social-card.png';
+              await img.decode();
+              return {width:img.naturalWidth,height:img.naturalHeight};
+            });
+            if(image.width!==1200||image.height!==630)throw Error('Share card PNG dimensions mismatch '+JSON.stringify(image));
+            const robots=await (await page.request.get('http://127.0.0.1:8000/robots.txt')).text();
+            const sitemap=await (await page.request.get('http://127.0.0.1:8000/sitemap.xml')).text();
+            if(!robots.includes('sitemap.xml')||!sitemap.includes('https://joeylife94.github.io/'))throw Error('Crawler entry points missing');
+                        await page.locator('[data-i18n="claimtrace-h2"]').scrollIntoViewIfNeeded();
             await page.waitForFunction(() => {
               const img=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] img');
               return Boolean(img?.complete && img.naturalWidth > 0);
@@ -47,7 +80,52 @@ jobs:
             for (const [lang,file] of [['ko','01-claimtrace-ko-desktop.png'],['en','02-claimtrace-en-desktop.png'],['ja','03-claimtrace-ja-desktop.png']]) {
               await page.locator('.sidebar .lang-switch button[data-lang="'+lang+'"]').click();
               await page.waitForFunction(l => document.documentElement.lang === l,lang);
-              const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
+              // P2: mailto remains available; the separate copy action must
+              // succeed with the current language's live status feedback.
+              const expectedCopy={ko:'이메일 주소 복사',en:'Copy email address',ja:'メールアドレスをコピー'};
+              const expectedDone={ko:'복사했어요',en:'copied',ja:'コピーしました'};
+              const copyButton=page.locator('#copy-inquiry-email');
+              if((await copyButton.textContent())?.trim()!==expectedCopy[lang])throw Error('Copy button label missing for '+lang);
+              await copyButton.click();
+              const copied=await page.evaluate(()=>navigator.clipboard.readText());
+              const copyFeedback=await page.locator('#copy-email-status').textContent();
+              if(copied!=='dongyoun.jeon@gmail.com' || !copyFeedback?.includes(expectedDone[lang])) {
+                throw Error('Email copy failed in '+lang+': '+copied+' / '+copyFeedback);
+              }
+                            // P0 closeout: concrete service promise, distinct nav labels, and
+              // accurate trust metrics before any scrolling or animation.
+              const navAbout=(await page.locator('.sidebar-nav a[href="#about"] .nav-text').textContent())?.trim();
+              const navWhy=(await page.locator('.sidebar-nav a[href="#why"] .nav-text').textContent())?.trim();
+              const expectedNavWhy={ko:'강점',en:'Why me',ja:'強み'};
+              if (!navAbout || navWhy!==expectedNavWhy[lang] || navAbout===navWhy) {
+                throw Error('Duplicate or incorrect About/Why navigation '+lang+': '+navAbout+' / '+navWhy);
+              }
+              const promise=(await page.locator('.signature-sub').textContent())?.trim()||'';
+              const expectedPromise={ko:'내부 도구',en:'internal tools',ja:'社内ツール'};
+              if (!promise.includes(expectedPromise[lang])) throw Error('Buyer promise not concrete in '+lang);
+              const numbers=await page.locator('.count-up').evaluateAll(elements => elements.map(el=>({
+                target:el.dataset.target,
+                displayed:el.textContent?.trim().replaceAll(',','')
+              })));
+              if (numbers.length!==4 || !numbers.every(x=>x.target===x.displayed)) {
+                throw Error('Career metrics show zero or incorrect initial value: '+JSON.stringify(numbers));
+              }
+                            // P1: lead with source provenance, not a deliberately
+              // insufficient-evidence synthetic question. Keep scope claims bounded.
+              const featuredSlides=await page.locator('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide img').evaluateAll(images=>
+                images.map(img=>img.getAttribute('src')?.split('/').pop())
+              );
+              if (featuredSlides.join(',')!=='05-source-highlight.png,06-human-review.png,03-grounded-answer.png') {
+                throw Error('ClaimTrace evidence ordering regressed: '+featuredSlides.join(','));
+              }
+              const guardrailCopy=(await page.locator('[data-i18n="claimtrace-caption-3"]').textContent())?.trim()||'';
+              if (!guardrailCopy) throw Error('Insufficient evidence guardrail caption missing in '+lang);
+              const weakProofClaims=await page.locator('[data-i18n="card-seoulgyeol-proof"],[data-i18n="card-restricted-proof"]').allTextContents();
+              const boundedMarkers={ko:'측정',en:'measured',ja:'測定'};
+              if (weakProofClaims.length!==2 || !weakProofClaims.every(t=>t.includes(boundedMarkers[lang]))) {
+                throw Error('Supporting proof must disclose unmeasured business outcomes in '+lang);
+              }
+                            const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
               if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
                 const href=el.getAttribute('href');
@@ -129,7 +207,7 @@ jobs:
             const inquiry=page.locator('.proof-next-step a[href="#contact"]');
             await inquiry.click();
             if (!page.url().endsWith('#contact')) throw Error('Portfolio proof-to-contact path failed');
-            console.log('PASS: KO/EN/JA + owner identity + three proof shortcuts + proof/contact CTA + images + evidence links + mobile width');
+            console.log('PASS: KO/EN/JA proofs, SVG->PNG social metadata, sitemap/robots, local email copy, CTA, gallery and mobile width');
           } finally {
             await browser.close();
           }

@@ -25,7 +25,7 @@
   queueProgress();
 
   if (fine.matches && !media.matches) {
-    for (const surface of document.querySelectorAll('.identity-stage, .signature-panel')) {
+    for (const surface of document.querySelectorAll('.identity-stage')) {
       let pointerFrame = 0;
       surface.addEventListener('pointermove', event => {
         if (pointerFrame) return;

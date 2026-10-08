@@ -99,3 +99,41 @@
   font-weight: 600;
   margin: 0 0 18px;
 }
+
+/* P2: Lightweight contact fallback when mailto is unavailable. */
+.contact-copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 13px;
+  margin: 12px 0 0;
+}
+.contact-copy-btn {
+  appearance: none;
+  border: 1px solid rgba(99,177,255,.56);
+  border-radius: 4px;
+  padding: 9px 13px;
+  background: rgba(29,99,176,.15);
+  color: #a7d8ff;
+  font: inherit;
+  font-size: .81rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.contact-copy-btn:hover {
+  border-color: #64c0ff;
+  background: rgba(37,120,220,.25);
+}
+.contact-copy-btn:focus-visible {
+  outline: 2px solid #80d1ff;
+  outline-offset: 3px;
+}
+.contact-copy-btn:disabled { opacity: .65; cursor: wait; }
+.contact-copy-status {
+  color: #abc3da;
+  font-size: .77rem;
+  line-height: 1.55;
+}
+.contact-copy-status[data-copy-result="success"] { color: #80d8bf; }
+.contact-copy-status[data-copy-result="failure"] { color: #ffc49d; }
