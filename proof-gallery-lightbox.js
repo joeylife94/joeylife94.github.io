@@ -5,17 +5,19 @@
   'use strict';
 
   const groups = Array.from(document.querySelectorAll('.proof-viewer, .project-card-img'));
+  const labelRefreshers = [];
   if (!groups.length || typeof HTMLDialogElement === 'undefined') return;
 
   const translations = {
-    ko: { title: '프로젝트 이미지 확대', close: '확대 이미지 닫기', previous: '이전 이미지', next: '다음 이미지', open: '이미지 확대하기', missing: '이미지를 불러오지 못했습니다.' },
-    en: { title: 'Expanded project screenshot', close: 'Close expanded image', previous: 'Previous image', next: 'Next image', open: 'Expand image', missing: 'Could not load image.' },
-    ja: { title: 'プロジェクト画像の拡大', close: '拡大画像を閉じる', previous: '前の画像', next: '次の画像', open: '画像を拡大', missing: '画像を読み込めませんでした。' }
+    ko: { title: '프로젝트 이미지 확대', close: '확대 이미지 닫기', previous: '이전 이미지', next: '다음 이미지', open: '이미지 확대하기', hint: '클릭·터치하여 확대 ↗', missing: '이미지를 불러오지 못했습니다.' },
+    en: { title: 'Expanded project screenshot', close: 'Close expanded image', previous: 'Previous image', next: 'Next image', open: 'Expand image', hint: 'Click or tap to enlarge ↗', missing: 'Could not load image.' },
+    ja: { title: 'プロジェクト画像の拡大', close: '拡大画像を閉じる', previous: '前の画像', next: '次の画像', open: '画像を拡大', hint: 'クリック・タップで拡大 ↗', missing: '画像を読み込めませんでした。' }
   };
   const labels = () => translations[document.documentElement.lang] || translations.ko;
 
   const dialog = document.createElement('dialog');
   dialog.className = 'proof-zoom-dialog';
+  dialog.id = 'proof-zoom-dialog';
   dialog.innerHTML =
     '<div class="proof-zoom-dialog__inner">' +
       '<div class="proof-zoom-dialog__top">' +
@@ -142,10 +144,22 @@
       });
     };
 
+    const hintTarget = group.classList.contains('proof-viewer')
+      ? group.querySelector('.proof-viewer__track')
+      : group;
+    const syncLabels = () => {
+      if (hintTarget) hintTarget.dataset.zoomHint = labels().hint;
+      items.forEach((img, index) => {
+        img.setAttribute('aria-label', labels().open + ': ' + (img.alt || (index + 1)));
+        img.title = labels().open;
+      });
+    };
+    labelRefreshers.push(syncLabels);
+
     items.forEach((img, index) => {
       img.setAttribute('role', 'button');
-      img.setAttribute('aria-label', labels().open + ': ' + (img.alt || (index + 1)));
-      img.title = labels().open;
+      img.setAttribute('aria-haspopup', 'dialog');
+      img.setAttribute('aria-controls', dialog.id);
       img.addEventListener('click', event => {
         if (Date.now() < blockClickUntil) {
           event.preventDefault();
@@ -165,9 +179,21 @@
       });
     });
     updateTabStops();
+    syncLabels();
     if (items.length > 1) {
       const observer = new MutationObserver(updateTabStops);
       observer.observe(group, { subtree: true, attributes: true, attributeFilter: ['class'] });
     }
+  });
+
+  // Keep the visible hint and screen-reader control names aligned with the
+  // active KO/EN/JA language after in-page language switching.
+  const languageObserver = new MutationObserver(() => {
+    labelRefreshers.forEach(refresh => refresh());
+    if (dialog.open) translateDialog();
+  });
+  languageObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
   });
 })();
