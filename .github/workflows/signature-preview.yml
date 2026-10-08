@@ -1,0 +1,109 @@
+name: Signature V1 Motion Preview
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'i18n.js'
+      - 'signature-theme.css'
+      - 'signature-motion.js'
+      - '.github/workflows/signature-preview.yml'
+  workflow_dispatch: {}
+
+jobs:
+  signature-browser:
+    name: Desktop / mobile brand and motion proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript
+        run: |
+          node --check i18n.js
+          node --check signature-motion.js
+      - name: Setup Playwright
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install chromium --with-deps
+      - name: Capture interactive prototype
+        run: |
+          mkdir -p signature-proof
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/signature-http.log 2>&1 &
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          import { renameSync, mkdirSync } from 'node:fs';
+          const browser=await chromium.launch({headless:true});
+          try {
+            const desktop=await browser.newContext({
+              viewport:{width:1440,height:900},
+              reducedMotion:'no-preference',
+              recordVideo:{dir:'signature-proof/videos',size:{width:1440,height:900}}
+            });
+            const page=await desktop.newPage();
+            await page.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
+            await page.evaluate(()=>document.fonts.ready);
+            const ident=page.locator('.identity-name');
+            if(!await ident.isVisible())throw Error('desktop printed name is not visible');
+            const arcAnimation=await page.locator('.identity-stage .identity-orbit-line').evaluate(el=>getComputedStyle(el).animationName);
+            if(arcAnimation==='none')throw Error('arc draw animation missing');
+            if(!await page.locator('.signature-panel').isVisible())throw Error('desktop signature panel not visible');
+            await page.waitForTimeout(2550);
+            await page.screenshot({path:'signature-proof/01-signature-desktop.png'});
+            const surface=page.locator('.signature-panel');
+            const b=await surface.boundingBox();
+            if(!b)throw Error('signature interaction area not found');
+            await page.mouse.move(b.x+b.width*.8,b.y+b.height*.3,{steps:10});
+            await page.waitForTimeout(150);
+            const parallax=await surface.evaluate(el=>el.style.getPropertyValue('--arc-shift-x').trim());
+            if(!parallax||parallax==='0px')throw Error('pointer-controlled arc parallax failed');
+            await page.screenshot({path:'signature-proof/02-signature-pointer.png'});
+            await page.locator('.signature-links a[href="#proof"]').click();
+            await page.waitForTimeout(750);
+            const progress=await page.locator('#scroll-progress').evaluate(el=>getComputedStyle(el).transform);
+            if(progress==='none'||progress==='matrix(0, 0, 0, 1, 0, 0)')throw Error('reading progress missing');
+            if(!page.url().endsWith('#proof'))throw Error('signature portfolio link failed');
+            await page.screenshot({path:'signature-proof/03-signature-proof-jump.png'});
+            await desktop.close();
+            const mobile=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
+            const mp=await mobile.newPage();
+            await mp.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
+            await mp.evaluate(()=>document.fonts.ready);
+            if(!await mp.locator('.mobile-identity-name').isVisible())throw Error('mobile name missing');
+            if(await mp.locator('.identity-name').isVisible())throw Error('desktop-only identity leaks into mobile');
+            const sizes=await mp.evaluate(()=>({width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+            if(sizes.scrollWidth>sizes.width+1)throw Error('mobile horizontal overflow '+JSON.stringify(sizes));
+            const reduced=await mp.locator('.mobile-identity-arc .identity-orbit-line').evaluate(el=>getComputedStyle(el).animationDuration);
+            if(reduced!=='1e-05s' && reduced!=='0.00001s' && reduced!=='0s')throw Error('reduce-motion fallback not applied: '+reduced);
+            await mp.screenshot({path:'signature-proof/04-signature-mobile-ko.png'});
+            for(const [lang,photo] of [['en','05-signature-mobile-en.png'],['ja','06-signature-mobile-ja.png']]){
+              await mp.locator('.mobile-header .lang-btn[data-lang="'+lang+'"]').click();
+              await mp.waitForFunction(l=>document.documentElement.lang===l,lang);
+              if(!await mp.locator('.mobile-identity-name').isVisible())throw Error('mobile name lost in '+lang);
+              await mp.screenshot({path:'signature-proof/'+photo});
+            }
+            await mp.locator('.mobile-proof-cta').click();
+            if(!mp.url().endsWith('#proof'))throw Error('mobile verified proof CTA broken');
+            console.log('PASS: 1440px electric-blue motion/parallax/progress + 390px mobile + KO/EN/JA + reduced-motion + navigation');
+            await mobile.close();
+          } finally {
+            await browser.close();
+          }
+          NODE
+      - name: Check screenshot evidence
+        if: success()
+        run: |
+          for f in signature-proof/0{1,2,3,4,5,6}-*.png; do test -s "$f"; done
+          find signature-proof -name '*.webm' -size +0c | head -1 | grep -q .
+          (cd signature-proof && find . -type f -name '*.png' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
+      - name: Upload motion video and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: signature-v1-browser-${{ github.sha }}
+          path: signature-proof/
+          if-no-files-found: warn
+          retention-days: 14

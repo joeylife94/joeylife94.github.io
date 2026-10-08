@@ -60,10 +60,14 @@ jobs:
                 document.body.style.scrollBehavior = 'auto';
                 window.scrollTo({top:0,behavior:'instant'});
               });
-              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
+              // Count-up now sits below the signature hero. Scroll it into view
+              // before asserting its final value, then return to the true top.
+              await page.locator('#trust-strip').scrollIntoViewIfNeeded();
               await page.waitForFunction(() => Array.from(document.querySelectorAll('.count-up')).every(el =>
                 el.textContent?.replaceAll(',','').trim() === Number(el.dataset.target).toLocaleString().replaceAll(',','')
               ));
+              await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
               await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','home')});
 
               await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
@@ -97,10 +101,14 @@ jobs:
                 document.body.style.scrollBehavior = 'auto';
                 window.scrollTo({top:0,behavior:'instant'});
               });
-              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
+              // Count-up now sits below the signature hero. Scroll it into view
+              // before asserting its final value, then return to the true top.
+              await page.locator('#trust-strip').scrollIntoViewIfNeeded();
               await page.waitForFunction(() => Array.from(document.querySelectorAll('.count-up')).every(el =>
                 el.textContent?.replaceAll(',','').trim() === Number(el.dataset.target).toLocaleString().replaceAll(',','')
               ));
+              await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
             await page.screenshot({path:'proof-preview/07-home-ko-mobile.png'});
 
             await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-75);});

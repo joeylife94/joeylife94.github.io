@@ -26,10 +26,14 @@
       'nav-contact': '문의하기',
 
       'hero-label': 'Backend · AI Workflow · 운영 시스템',
-      'hero-h1': '스프레드시트·Slack·수작업으로 운영 중인 팀을 위해, AI가 필요한 곳에만 연결된 내부 도구·워크플로우·백엔드 MVP를 만듭니다.',
+      'hero-h1': "AI와 백엔드 기술을 연결해 실제로 작동하고 인수인계할 수 있는 시스템을 만듭니다.",
       'hero-sub': '반복 업무를 먼저 구조화하고, 분류·요약·검색·의사결정 보조처럼 AI가 실제 이득을 주는 구간에만 연결합니다.<br />보기 좋은 AI 데모보다, 사람이 계속 운영할 수 있는 첫 시스템을 만드는 데 집중합니다.',
       'hero-why-now': '지금도 복붙, 수동 확인, 재정리에 시간을 쓰고 있다면 이미 속도와 오류율에서 비용을 내고 있을 가능성이 큽니다.',
       'hero-btn-contact': '프로젝트 문의하기',
+      'signature-eyebrow': "ENGINEERING / REAL-WORLD EXECUTION",
+      'signature-sub': "아이디어를 실행 가능한 내부 도구·자동화·백엔드 시스템으로 바꿉니다.",
+      'signature-proof-cta': "검증된 프로젝트 보기 ↗",
+      'signature-contact-cta': "프로젝트 문의 ↗",
       'hero-btn-services': '서비스 보기',
       'hero-trust-micro': '보통 24–48시간 내 답변합니다 · 범위가 완전히 정리되지 않아도 문의 가능합니다',
 
@@ -246,10 +250,14 @@
       'nav-contact': 'Contact',
 
       'hero-label': 'Backend · AI Workflow · Ops Systems',
-      'hero-h1': 'I build internal tools, workflow systems, and backend MVPs for teams still running operations through spreadsheets, Slack, and manual work — with AI only where it earns its place.',
+      'hero-h1': "I connect AI and backend engineering to build systems that run in practice and can be handed over.",
       'hero-sub': 'I structure the workflow first, then add AI where classification, summarization, retrieval, or decision support creates real leverage.<br />The goal is not a flashy AI demo. It is a first system your team can actually operate.',
       'hero-why-now': 'If your team is still spending time copy-pasting, manually checking, and reorganizing information, you are likely already paying for it in speed and error rates.',
       'hero-btn-contact': 'Discuss a project',
+      'signature-eyebrow': "ENGINEERING / REAL-WORLD EXECUTION",
+      'signature-sub': "From ideas to usable internal tools, automation and backend systems.",
+      'signature-proof-cta': "Explore verified work ↗",
+      'signature-contact-cta': "Start a conversation ↗",
       'hero-btn-services': 'View services',
       'hero-trust-micro': 'Usually reply within 24–48 hours · You can reach out even if the scope is not fully defined',
 
@@ -466,10 +474,14 @@
       'nav-contact': 'お問い合わせ',
 
       'hero-label': 'Backend · AI Workflow · 運用システム',
-      'hero-h1': 'スプレッドシート・Slack・手作業で回っているチーム向けに、必要な箇所だけAIを組み込んだ社内ツール・ワークフロー・バックエンドMVPを作ります。',
+      'hero-h1': "AIとバックエンド技術を組み合わせ、実際に稼働し引き継げるシステムを構築します。",
       'hero-sub': 'まず業務フローを構造化し、分類・要約・検索・意思決定支援などAIが実際に効果を出せる箇所だけに組み込みます。<br />見栄えの良いAIデモではなく、継続して運用できる最初のシステムを作ることに集中します。',
       'hero-why-now': 'コピー＆ペースト、手動確認、再整理に時間を使っているなら、すでに速度とエラー率の面でコストが発生している可能性があります。',
       'hero-btn-contact': 'プロジェクトを相談する',
+      'signature-eyebrow': "ENGINEERING / REAL-WORLD EXECUTION",
+      'signature-sub': "アイデアを使える社内ツール・自動化・バックエンドシステムへ。",
+      'signature-proof-cta': "検証済みプロジェクトを見る ↗",
+      'signature-contact-cta': "お問い合わせ ↗",
       'hero-btn-services': 'サービスを見る',
       'hero-trust-micro': '通常24〜48時間以内に返信 · スコープが完全に決まっていなくてもご相談いただけます',
 
