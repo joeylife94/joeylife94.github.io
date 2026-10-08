@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="proof-cards.css" />
 </head>
 <body>
 
@@ -34,7 +35,7 @@
 
   <!-- Mobile nav dropdown -->
   <nav class="mobile-nav" id="mobile-nav">
-    <a href="#about">About</a>
+    <a href="#about" data-i18n="nav-about">소개</a>
     <a href="#services" data-i18n="nav-services">서비스</a>
     <a href="#proof" data-i18n="nav-projects">사례</a>
     <a href="#why" data-i18n="nav-why">소개</a>
@@ -57,7 +58,7 @@
         <nav class="sidebar-nav" id="sidebar-nav">
           <a href="#about" class="nav-link active" data-section="about">
             <span class="nav-indicator"></span>
-            <span class="nav-text">About</span>
+            <span class="nav-text" data-i18n="nav-about">소개</span>
           </a>
           <a href="#services" class="nav-link" data-section="services">
             <span class="nav-indicator"></span>
@@ -105,7 +106,8 @@
 
       <!-- ── ABOUT / INTRO ────────────────────────────────────── -->
       <section class="content-section" id="about">
-        <p class="section-label">About</p>
+        <p class="section-label" data-i18n="nav-about">소개</p>
+        <p class="about-owner" data-i18n="about-owner">Dongyoun Jeon · Backend &amp; Systems Engineer</p>
         <div class="about-text">
           <p data-i18n-html="hero-sub">반복 업무를 먼저 구조화하고, 분류·요약·검색·의사결정 보조처럼 AI가 실제 이득을 주는 구간에만 연결합니다.<br />보기 좋은 AI 데모보다, 사람이 계속 운영할 수 있는 첫 시스템을 만드는 데 집중합니다.</p>
           <p class="highlight-text" data-i18n="hero-why-now">지금도 복붙, 수동 확인, 재정리에 시간을 쓰고 있다면 이미 속도와 오류율에서 비용을 내고 있을 가능성이 큽니다.</p>
@@ -256,7 +258,63 @@
 
       <!-- ── FEATURED PROOF / CASES ───────────────────────────── -->
       <section class="content-section" id="proof">
-        <p class="section-label" data-i18n="featured-eyebrow">대표 사례</p>
+        <!-- Evidence-first featured proof: frozen v1.0 visuals, bounded public claims. -->
+        <p class="section-label" data-i18n="claimtrace-eyebrow">대표 엔지니어링 Proof</p>
+        <h2 data-i18n="claimtrace-h2">ClaimTrace — AI 분석의 근거를 원문까지 추적</h2>
+        <p class="section-desc" data-i18n="claimtrace-lead">한국어 특허 PDF 분석에서 문서·페이지·문자 범위까지 근거를 추적하고 사람이 확인할 수 있도록 설계한 통제된 단일 사용자 환경의 Proof입니다.</p>
+        <nav class="proof-jump-links" aria-label="대표 Proof 빠른 이동" data-i18n-aria="proof-jump-aria">
+          <a href="#proof" data-i18n="proof-jump-claimtrace">ClaimTrace · AI 근거 추적</a>
+          <a href="#papyr-proof" data-i18n="proof-jump-papyr">Papyr.us · 팀 권한·문서</a>
+          <a href="#public-sensor-ml-proof" data-i18n="proof-jump-sensor">Sensor ML · 데이터 예측</a>
+        </nav>
+
+        <div class="case-narrative">
+          <div class="case-block">
+            <p class="case-label" data-i18n="claimtrace-problem-label">Problem</p>
+            <p data-i18n="claimtrace-problem">AI 분석 결과의 출처가 불분명하면 검토자가 원문을 다시 확인하기 어렵습니다.</p>
+          </div>
+          <div class="case-block case-block--accent">
+            <p class="case-label" data-i18n="claimtrace-design-label">Approach</p>
+            <p data-i18n="claimtrace-design">모델은 서버가 발급한 evidence ID를 선택하고, 서버가 이를 저장된 원문 위치로 해석합니다. 판단은 별도의 Human Review 기록으로 남깁니다.</p>
+          </div>
+          <div class="case-block case-block--result">
+            <p class="case-label" data-i18n="claimtrace-proof-label">Verified</p>
+            <p data-i18n="claimtrace-proof">동결된 v1.0 브라우저 워크플로우와 재현 가능한 테스트를 검증했습니다. 후속 D3 파일럿에서는 공개 한국어 특허 PDF 2건을 제한된 범위에서 실행했습니다.</p>
+          </div>
+          <div class="case-block">
+            <p class="case-label" data-i18n="claimtrace-boundary-label">Boundary</p>
+            <p data-i18n="claimtrace-boundary">원문 링크의 유효성은 검증하지만 AI 문장의 법률적·의미적 정확성까지 보장하지 않습니다. 법률 판정, OCR, 상용 운영 준비는 검증 범위 밖입니다.</p>
+          </div>
+        </div>
+
+        <div class="proof-viewer" data-project="claimtrace-v1" data-autoplay="true" aria-label="ClaimTrace verified product screenshots">
+          <div class="proof-viewer__progress"></div>
+          <div class="proof-viewer__track">
+            <div class="proof-viewer__slide proof-viewer__slide--active">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/03-grounded-answer.png" alt="ClaimTrace deterministic proof — evidence-grounded answer" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-1">근거 기반 답변 — 원문에 연결된 evidence 표시</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/05-source-highlight.png" alt="ClaimTrace deterministic proof — source highlight" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-2">Source Highlight — 문서·페이지·문자 범위로 돌아가기</p>
+            </div>
+            <div class="proof-viewer__slide">
+              <img src="https://raw.githubusercontent.com/joeylife94/claim-trace/v1.0-proof/docs/proof/screenshots/06-human-review.png" alt="ClaimTrace deterministic proof — human review" loading="lazy" decoding="async" />
+              <p class="proof-caption" data-i18n="claimtrace-caption-3">Human Review — AI 출력과 별도의 검토 기록</p>
+            </div>
+          </div>
+          <button class="proof-viewer__btn proof-viewer__btn--prev" aria-label="이전" data-i18n-aria="prev-image">&#8249;</button>
+          <button class="proof-viewer__btn proof-viewer__btn--next" aria-label="다음" data-i18n-aria="next-image">&#8250;</button>
+          <div class="proof-viewer__dots"></div>
+        </div>
+        <p class="proof-evidence-note" data-i18n="claimtrace-gallery-note">화면은 동결된 v1.0 합성 데이터 기반 브라우저 Proof에서 생성됐으며, 실제 특허 분석의 일반 정확도를 의미하지 않습니다.</p>
+        <div class="proof-source-links">
+          <a class="btn-primary" href="https://github.com/joeylife94/claim-trace" target="_blank" rel="noopener noreferrer" data-i18n="claimtrace-source-repo">GitHub 소스 보기 ↗</a>
+          <a class="btn-ghost" href="https://github.com/joeylife94/claim-trace/tree/v1.0-proof/docs/proof" target="_blank" rel="noopener noreferrer" data-i18n="claimtrace-source-evidence">검증 스크린샷·데모 ↗</a>
+        </div>
+
+        <div class="proof-case-divider"></div>
+        <p class="section-label" data-i18n="featured-eyebrow">운영 자동화 사례</p>
         <h2 data-i18n="featured-h2">수작업 상품 조사를 반복 실행 가능한 운영 파이프라인으로</h2>
 
         <div class="case-narrative">
@@ -316,6 +374,49 @@
           <p class="section-label" data-i18n="portfolio-eyebrow">추가 검증 사례</p>
           <div class="project-list">
 
+            <div class="project-card" id="papyr-proof">
+              <div class="project-card-img card-carousel">
+                <img class="card-carousel__img card-carousel__img--active" src="img/proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us — Dashboard" loading="lazy" />
+                <img class="card-carousel__img" src="img/proof/papyr-us/papyr-us page.png" alt="Papyr.us — Page" loading="lazy" />
+                <button class="card-carousel__btn card-carousel__btn--prev" aria-label="이전">&#8249;</button>
+                <button class="card-carousel__btn card-carousel__btn--next" aria-label="다음">&#8250;</button>
+              </div>
+              <div class="project-card-body">
+                <h4>Papyr.us <span class="proof-status" data-i18n="card-papyrus-stage">v1.0 Proof + D1 검증</span></h4>
+                <p data-i18n="card-papyrus-desc">작은 팀의 문서 관리에서 사용자 인증, 팀 접근 권한, 문서 변경·복원, 검색을 한 흐름으로 검증한 React·Express·PostgreSQL 기반 협업 위키 Proof입니다.</p>
+                <p class="proof-line" data-i18n="card-papyrus-proof">실행 검증: 8개 Golden Journey의 문서·권한·검색·복구 경계 및 D1에서 기존 사용자의 팀 참여 → 공동 사용 → 권한 철회 후 접근 거부까지 확인했습니다.</p>
+                <p class="proof-boundary" data-i18n="card-papyrus-boundary">검색은 팀·페이지 권한을 적용한 PostgreSQL FTS이며 AI는 선택적 보조입니다. 공개 운영, 엔터프라이즈 SSO, 벡터 RAG, SLA는 현재 검증 범위 밖입니다.</p>
+                <div class="tags"><span class="tag">React</span><span class="tag">PostgreSQL FTS</span><span class="tag">Team Authorization</span></div>
+                <p class="proof-image-note" data-i18n="card-papyrus-image-note">이미지는 기존 UI 예시이며, 승인된 테스트·스크린샷의 출처는 아래 Proof Index에 있습니다.</p>
+                <div class="project-proof-links">
+                  <a href="https://github.com/joeylife94/papyr-us/blob/main/docs/proof/V1_PROOF_INDEX.md" target="_blank" rel="noopener noreferrer" data-i18n="card-papyrus-index-link">검증 근거 보기 ↗</a>
+                  <a href="https://github.com/joeylife94/papyr-us/pull/70" target="_blank" rel="noopener noreferrer" data-i18n="card-papyrus-d1-link">D1 권한 인수인계 ↗</a>
+                  <a href="https://github.com/joeylife94/papyr-us" target="_blank" rel="noopener noreferrer" data-i18n="card-papyrus-repo-link">소스 코드 ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Public-data-only ML proof; source metrics are from the accepted one-week cohort. -->
+            <div class="project-card project-card--sensor" id="public-sensor-ml-proof">
+              <div class="project-card-img">
+                <img src="img/proof/public-sensor-ml/forecast-mae.svg" alt="Measured 1-hour temperature forecasting MAE: naive 0.6480°C, Ridge 0.3578°C; 44.79% lower MAE on a fixed one-week cohort, not a general accuracy claim" loading="lazy" decoding="async" />
+              </div>
+              <div class="project-card-body">
+                <h4>Public Sensor ML MVP <span class="proof-status" data-i18n="card-sensor-stage">READY TO SHOW · 제한된 실측 검증</span></h4>
+                <p data-i18n="card-sensor-desc">서울시 공개 S-DoT 환경 데이터를 수집·검증하고, 시계열 특징 생성 → 1시간 후 평균기온 예측 → 잔차 기반 이상 후보 탐지 → FastAPI 대시보드까지 연결한 독립 개인 R&amp;D Proof입니다.</p>
+                <p class="proof-line" data-i18n="card-sensor-proof">실측 Proof: 1주일 데이터에서 672개 센서·검증 16,128건을 대상으로, 마지막 24시간의 MAE가 Naive 0.6480°C에서 Ridge 0.3578°C로 감소했습니다(44.79%).</p>
+                <p class="proof-boundary" data-i18n="card-sensor-boundary">해당 기간의 제한된 평가 결과이며 장기간 일반화 성능을 뜻하지 않습니다. 이상 후보에 실제 센서 고장 정답 레이블은 없고, 운영·고객 데이터 적용은 검증하지 않았습니다.</p>
+                <div class="tags"><span class="tag">FastAPI</span><span class="tag">Time-Series ML</span><span class="tag">Public Data</span></div>
+                <p class="proof-image-note" data-i18n="card-sensor-image-note">위 이미지는 검증된 MAE 수치의 그래프이며, 실제 대시보드 스크린샷이 아닙니다. 자료 출처: 서울시 S-DoT(OA-22833).</p>
+                <div class="project-proof-links">
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp/blob/main/proof/evidence/BASELINE_EVALUATION.json" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-evidence-link">실측 평가 근거 ↗</a>
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp/blob/main/docs/PROJECT_MASTER.md" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-master-link">검증 범위 보기 ↗</a>
+                  <a href="https://github.com/joeylife94/public-sensor-ml-mvp" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-repo-link">소스 코드 ↗</a>
+                  <a href="https://data.seoul.go.kr/bsp/wgs/dataView/data300View/1992.do" target="_blank" rel="noopener noreferrer" data-i18n="card-sensor-source-link">서울시 공개데이터 ↗</a>
+                </div>
+              </div>
+            </div>
+
             <a class="project-card" href="https://seoulgyeol-beauty-lab.sho801921.workers.dev/" target="_blank" rel="noopener noreferrer">
               <div class="project-card-img card-carousel">
                 <img class="card-carousel__img card-carousel__img--active" src="img/proof/seoulgyeol-beauty-lab/K-beauty_screenshot_1.png" alt="SeoulGyeol Beauty Lab" loading="lazy" />
@@ -355,22 +456,12 @@
               </div>
             </div>
 
-            <div class="project-card">
-              <div class="project-card-img card-carousel">
-                <img class="card-carousel__img card-carousel__img--active" src="img/proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us — Dashboard" loading="lazy" />
-                <img class="card-carousel__img" src="img/proof/papyr-us/papyr-us page.png" alt="Papyr.us — Page" loading="lazy" />
-                <button class="card-carousel__btn card-carousel__btn--prev" aria-label="이전">&#8249;</button>
-                <button class="card-carousel__btn card-carousel__btn--next" aria-label="다음">&#8250;</button>
-              </div>
-              <div class="project-card-body">
-                <h4>Papyr.us</h4>
-                <p data-i18n="card-papyrus-desc">문제: 팀 지식이 문서와 메시지에 분산돼 최신 기준 확인에 시간이 들었습니다. 시스템: 실시간 공동 편집, 권한 구조, AI 보조 흐름을 결합한 팀 위키를 구축했습니다.</p>
-                <p class="proof-line" data-i18n="card-papyrus-proof">운영 결과: 같은 정보를 반복 정리하는 시간을 줄이고, 팀이 같은 기준으로 더 빠르게 협업할 수 있는 구조를 만들었습니다.</p>
-                <div class="tags"><span class="tag">TypeScript</span><span class="tag">Real-time</span><span class="tag">AI</span></div>
-              </div>
-            </div>
 
           </div>
+        </div>
+        <div class="proof-next-step">
+          <p data-i18n="proof-next-intro">유사한 팀 권한, 데이터 파이프라인, 업무 자동화 문제가 있다면 구현 범위를 먼저 확인해 보세요.</p>
+          <a href="#contact" class="btn-primary" data-i18n="proof-next-cta">프로젝트 범위 문의하기 →</a>
         </div>
       </section>
 
@@ -378,14 +469,14 @@
       <section class="content-section" id="why">
         <p class="section-label" data-i18n="why-eyebrow">강점</p>
         <h2 data-i18n="why-h2">웹 제작보다 운영 시스템에 가까운 이유</h2>
-        <p class="section-desc" data-i18n="why-lead">5년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.</p>
+        <p class="section-desc" data-i18n="why-lead">약 5년간의 기업 시스템 개발·운영 경험을 바탕으로, 데모뿐 아니라 인수인계와 운영 경계까지 고려해 설계합니다.</p>
 
         <div class="experience-list">
           <div class="experience-item">
             <div class="experience-stat">~30%</div>
             <div class="experience-body">
               <h4 data-i18n="why-card1-title">API 응답속도 개선</h4>
-              <p data-i18n="why-card1-desc">서비스 분리와 아키텍처 재구성을 통해 핵심 API 응답 속도를 약 30% 단축. 성능 문제를 원인에서 접근합니다.</p>
+              <p data-i18n="why-card1-desc">WAS 분리·최적화 작업을 통해 해당 프로젝트의 내부 측정 기준 평균 응답시간 약 30% 개선에 기여했습니다.</p>
             </div>
           </div>
           <div class="experience-item">
@@ -396,10 +487,10 @@
             </div>
           </div>
           <div class="experience-item">
-            <div class="experience-stat" data-i18n="experience-stat-3">수백만 건</div>
+            <div class="experience-stat" data-i18n="experience-stat-3">Data</div>
             <div class="experience-body">
-              <h4 data-i18n="why-card3-title">Oracle → MySQL 무중단 이전</h4>
-              <p data-i18n="why-card3-desc">수백만 건 레코드의 Oracle → MySQL 마이그레이션을 서비스 연속성을 유지하면서 완료했습니다.</p>
+              <h4 data-i18n="why-card3-title">DB 전환 데이터 정합성 대응</h4>
+              <p data-i18n="why-card3-desc">Oracle → MySQL 전환 이후 서비스 간 데이터 정합성을 위한 보상 트랜잭션(Saga) 처리 로직 구현에 참여했습니다.</p>
             </div>
           </div>
           <div class="experience-item">
@@ -424,6 +515,7 @@
             </div>
           </div>
         </div>
+        <p class="career-scope-note" data-i18n="career-scope-note">위 성과 수치는 각 프로젝트의 당시 조건에서 기록한 경력 사례로, 다른 환경에서의 동일한 성능 개선을 보장하지 않습니다.</p>
 
         <!-- Engagement model -->
         <div class="engagement-section">

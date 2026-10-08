@@ -808,6 +808,43 @@ h4 {
 }
 
 /* ----------------------------------------------------------------
+   Evidence-backed featured proof
+   ---------------------------------------------------------------- */
+.proof-evidence-note {
+  margin: 10px 0 18px;
+  color: var(--text);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+
+.proof-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 32px;
+}
+
+.proof-source-links a {
+  text-decoration: none;
+  text-align: center;
+}
+
+.proof-case-divider {
+  margin: 52px 0 34px;
+  border-top: 1px solid var(--bg-lightest);
+}
+
+@media (max-width: 480px) {
+  .proof-source-links {
+    flex-direction: column;
+  }
+
+  .proof-source-links a {
+    width: 100%;
+  }
+}
+
+/* ----------------------------------------------------------------
    Supporting Projects — Cards
    ---------------------------------------------------------------- */
 .supporting-section {

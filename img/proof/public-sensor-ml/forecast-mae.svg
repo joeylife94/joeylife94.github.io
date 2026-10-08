@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="540" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
+<title id="title">Public Sensor ML MVP — one-hour temperature forecast validation</title>
+<desc id="desc">Measured MAE on a fixed one-week Seoul S-DoT public-data cohort, last 24 hours held out: naive baseline 0.6480 Celsius; Ridge 0.3578 Celsius. The 44.79 percent relative MAE reduction is limited to this held-out window.</desc>
+<rect width="900" height="540" fill="#0A192F"/>
+<rect x="36" y="36" width="828" height="468" rx="22" fill="#11233E" stroke="#2B415F" stroke-width="2"/>
+<text x="74" y="94" fill="#64FFDA" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" letter-spacing="2">PUBLIC DATA · ML PROOF</text>
+<text x="74" y="149" fill="#E6F1FF" font-family="Arial,Helvetica,sans-serif" font-size="35" font-weight="700">+1h Temperature Forecast</text>
+<text x="74" y="184" fill="#A8BAD3" font-family="Arial,Helvetica,sans-serif" font-size="21">Validation MAE (°C) · Lower is better</text>
+<text x="74" y="240" fill="#CCD9ED" font-family="Arial,Helvetica,sans-serif" font-size="22">Last-value baseline</text>
+<rect x="74" y="258" width="610" height="36" rx="8" fill="#3D5575"/>
+<text x="705" y="286" fill="#CCD9ED" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700">0.6480</text>
+<text x="74" y="341" fill="#E6F1FF" font-family="Arial,Helvetica,sans-serif" font-size="22">Ridge</text>
+<rect x="74" y="359" width="337" height="36" rx="8" fill="#64FFDA"/>
+<text x="433" y="387" fill="#64FFDA" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700">0.3578</text>
+<text x="74" y="451" fill="#64FFDA" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700">44.79% lower MAE</text>
+<text x="74" y="482" fill="#A8BAD3" font-family="Arial,Helvetica,sans-serif" font-size="17">672 sensors · 16,128 validation rows · Aug 2, 2026</text>
+</svg>

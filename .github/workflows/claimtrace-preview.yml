@@ -1,0 +1,136 @@
+name: Portfolio Evidence Preview
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'i18n.js'
+      - 'style.css'
+      - 'proof-cards.css'
+      - 'img/proof/public-sensor-ml/**'
+      - '.github/workflows/claimtrace-preview.yml'
+  workflow_dispatch: {}
+
+jobs:
+  browser-proof:
+    name: Portfolio multilingual browser preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check translation syntax
+        run: node --check i18n.js
+      - name: Install browser runner
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install chromium --with-deps
+      - name: Capture actual site in Korean English and Japanese
+        run: |
+          mkdir -p proof-preview
+          python3 -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-preview.log 2>&1 &
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          try {
+            const page = await browser.newPage({viewport:{width:1280,height:900}});
+            await page.emulateMedia({reducedMotion:'reduce'});
+            await page.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
+            await page.locator('[data-i18n="claimtrace-h2"]').scrollIntoViewIfNeeded();
+            await page.waitForFunction(() => {
+              const img=document.querySelector('.proof-viewer[data-project="claimtrace-v1"] img');
+              return Boolean(img?.complete && img.naturalWidth > 0);
+            },{timeout:30000});
+            for (const [lang,file] of [['ko','01-claimtrace-ko-desktop.png'],['en','02-claimtrace-en-desktop.png'],['ja','03-claimtrace-ja-desktop.png']]) {
+              await page.locator('.sidebar .lang-switch button[data-lang="'+lang+'"]').click();
+              await page.waitForFunction(l => document.documentElement.lang === l,lang);
+              const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
+              if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
+              const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
+                const href=el.getAttribute('href');
+                return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
+              }));
+              if (jumpTargets.length!==3 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
+              if (await page.locator('.proof-next-step a[href="#contact"]').count()!==1) throw Error('Proof inquiry CTA missing');
+              await page.evaluate(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+                document.body.style.scrollBehavior = 'auto';
+                window.scrollTo({top:0,behavior:'instant'});
+              });
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
+              await page.waitForFunction(() => Array.from(document.querySelectorAll('.count-up')).every(el =>
+                el.textContent?.replaceAll(',','').trim() === Number(el.dataset.target).toLocaleString().replaceAll(',','')
+              ));
+              await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','home')});
+
+              await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-105);});
+              await page.screenshot({path:'proof-preview/'+file});
+              const papyr=page.locator('.project-card').filter({has:page.getByRole('heading',{name:/Papyr.us/})});
+              await papyr.scrollIntoViewIfNeeded();
+              await page.waitForFunction(() => {
+                const card=[...document.querySelectorAll('.project-card')].find(el=>el.querySelector('h4')?.textContent.includes('Papyr.us'));
+                const img=card?.querySelector('img');
+                return Boolean(img?.complete && img.naturalWidth>0);
+              },null,{timeout:30000});
+              if (await papyr.locator('.project-proof-links a').count()!==3) throw Error('Papyr evidence links missing');
+              await page.screenshot({path:'proof-preview/'+file.replace('claimtrace','papyr')});
+              const sensor=page.locator('#public-sensor-ml-proof');
+              await sensor.scrollIntoViewIfNeeded();
+              const sensorImg=sensor.locator('img');
+              await sensorImg.waitFor({state:'visible'});
+              await page.waitForFunction(() => {
+                const img=document.querySelector('#public-sensor-ml-proof img');
+                return Boolean(img?.complete && img.naturalWidth > 0);
+              },null,{timeout:30000});
+              if (await sensor.locator('.project-proof-links a').count() !== 4) throw Error('Sensor evaluation/source links missing');
+              await sensor.screenshot({path:'proof-preview/'+file.replace('claimtrace','sensor')});
+
+
+            }
+            await page.locator('.sidebar .lang-switch button[data-lang="ko"]').click();
+            await page.setViewportSize({width:390,height:844});
+            await page.evaluate(() => {
+                document.documentElement.style.scrollBehavior = 'auto';
+                document.body.style.scrollBehavior = 'auto';
+                window.scrollTo({top:0,behavior:'instant'});
+              });
+              await page.waitForFunction(()=>Math.abs(window.scrollY)<2);
+              await page.waitForFunction(() => Array.from(document.querySelectorAll('.count-up')).every(el =>
+                el.textContent?.replaceAll(',','').trim() === Number(el.dataset.target).toLocaleString().replaceAll(',','')
+              ));
+            await page.screenshot({path:'proof-preview/07-home-ko-mobile.png'});
+
+            await page.evaluate(() => {const el=document.querySelector('[data-i18n="claimtrace-h2"]');window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-75);});
+            const widths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(widths.scroll>widths.viewport+1)throw Error('Mobile page horizontal overflow '+JSON.stringify(widths));
+            await page.screenshot({path:'proof-preview/04-claimtrace-ko-mobile.png'});
+            await page.locator('.project-card').filter({has:page.getByRole('heading',{name:/Papyr.us/})}).scrollIntoViewIfNeeded();
+            const papyrMobile=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(papyrMobile.scroll>papyrMobile.viewport+1)throw Error('Papyr mobile overflow '+JSON.stringify(papyrMobile));
+            await page.screenshot({path:'proof-preview/05-papyr-ko-mobile.png'});
+            const sensorMobile=page.locator('#public-sensor-ml-proof');
+            await sensorMobile.scrollIntoViewIfNeeded();
+            const sensorWidths=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+            if(sensorWidths.scroll>sensorWidths.viewport+1)throw Error('Sensor mobile overflow '+JSON.stringify(sensorWidths));
+            await sensorMobile.screenshot({path:'proof-preview/06-sensor-ko-mobile.png'});
+
+
+            const inquiry=page.locator('.proof-next-step a[href="#contact"]');
+            await inquiry.click();
+            if (!page.url().endsWith('#contact')) throw Error('Portfolio proof-to-contact path failed');
+            console.log('PASS: KO/EN/JA + owner identity + three proof shortcuts + proof/contact CTA + images + evidence links + mobile width');
+          } finally {
+            await browser.close();
+          }
+          NODE
+      - name: Upload proof preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-claimtrace-preview-${{ github.sha }}
+          path: proof-preview/
+          if-no-files-found: warn
+          retention-days: 14
