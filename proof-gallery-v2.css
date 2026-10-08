@@ -134,10 +134,17 @@
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
+}
+.proof-zoom-dialog__image-viewport {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   padding: 18px 60px;
+  scrollbar-color: #456184 #141924;
 }
 .proof-zoom-dialog__image {
   display: block;
@@ -146,6 +153,17 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+.proof-zoom-dialog__image-viewport--portrait {
+  display: block;
+  text-align: center;
+}
+.proof-zoom-dialog__image-viewport--portrait .proof-zoom-dialog__image {
+  width: min(100%, 760px);
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0 auto;
 }
 .proof-zoom-dialog__arrow {
   position: absolute;
@@ -190,7 +208,7 @@
     height: min(91dvh, 820px);
     border-radius: 4px;
   }
-  .proof-zoom-dialog__image-stage { padding: 12px 37px; }
+  .proof-zoom-dialog__image-viewport { padding: 12px 37px; }
   .proof-zoom-dialog__arrow {
     width: 31px; height: 45px;
     font-size: 1.5rem;
