@@ -261,6 +261,11 @@
         <p class="section-label" data-i18n="claimtrace-eyebrow">대표 엔지니어링 Proof</p>
         <h2 data-i18n="claimtrace-h2">ClaimTrace — AI 분석의 근거를 원문까지 추적</h2>
         <p class="section-desc" data-i18n="claimtrace-lead">한국어 특허 PDF 분석에서 문서·페이지·문자 범위까지 근거를 추적하고 사람이 확인할 수 있도록 설계한 통제된 단일 사용자 환경의 Proof입니다.</p>
+        <nav class="proof-jump-links" aria-label="대표 Proof 빠른 이동" data-i18n-aria="proof-jump-aria">
+          <a href="#proof" data-i18n="proof-jump-claimtrace">ClaimTrace · AI 근거 추적</a>
+          <a href="#papyr-proof" data-i18n="proof-jump-papyr">Papyr.us · 팀 권한·문서</a>
+          <a href="#public-sensor-ml-proof" data-i18n="proof-jump-sensor">Sensor ML · 데이터 예측</a>
+        </nav>
 
         <div class="case-narrative">
           <div class="case-block">
@@ -368,7 +373,7 @@
           <p class="section-label" data-i18n="portfolio-eyebrow">추가 검증 사례</p>
           <div class="project-list">
 
-            <div class="project-card">
+            <div class="project-card" id="papyr-proof">
               <div class="project-card-img card-carousel">
                 <img class="card-carousel__img card-carousel__img--active" src="img/proof/papyr-us/papyr-us dashborad.png" alt="Papyr.us — Dashboard" loading="lazy" />
                 <img class="card-carousel__img" src="img/proof/papyr-us/papyr-us page.png" alt="Papyr.us — Page" loading="lazy" />
@@ -453,20 +458,24 @@
 
           </div>
         </div>
+        <div class="proof-next-step">
+          <p data-i18n="proof-next-intro">유사한 팀 권한, 데이터 파이프라인, 업무 자동화 문제가 있다면 구현 범위를 먼저 확인해 보세요.</p>
+          <a href="#contact" class="btn-primary" data-i18n="proof-next-cta">프로젝트 범위 문의하기 →</a>
+        </div>
       </section>
 
       <!-- ── WHY WORK WITH ME ─────────────────────────────────── -->
       <section class="content-section" id="why">
         <p class="section-label" data-i18n="why-eyebrow">강점</p>
         <h2 data-i18n="why-h2">웹 제작보다 운영 시스템에 가까운 이유</h2>
-        <p class="section-desc" data-i18n="why-lead">5년간 엔터프라이즈 · 공공 부문 프로덕션 시스템에서 쌓은 경험을 바탕으로 작업합니다. 데모가 아닌 실제 운영 환경 기준으로 설계합니다.</p>
+        <p class="section-desc" data-i18n="why-lead">약 5년간의 기업 시스템 개발·운영 경험을 바탕으로, 데모뿐 아니라 인수인계와 운영 경계까지 고려해 설계합니다.</p>
 
         <div class="experience-list">
           <div class="experience-item">
             <div class="experience-stat">~30%</div>
             <div class="experience-body">
               <h4 data-i18n="why-card1-title">API 응답속도 개선</h4>
-              <p data-i18n="why-card1-desc">서비스 분리와 아키텍처 재구성을 통해 핵심 API 응답 속도를 약 30% 단축. 성능 문제를 원인에서 접근합니다.</p>
+              <p data-i18n="why-card1-desc">WAS 분리·최적화 작업을 통해 해당 프로젝트의 내부 측정 기준 평균 응답시간 약 30% 개선에 기여했습니다.</p>
             </div>
           </div>
           <div class="experience-item">
@@ -477,10 +486,10 @@
             </div>
           </div>
           <div class="experience-item">
-            <div class="experience-stat" data-i18n="experience-stat-3">수백만 건</div>
+            <div class="experience-stat" data-i18n="experience-stat-3">Data</div>
             <div class="experience-body">
-              <h4 data-i18n="why-card3-title">Oracle → MySQL 무중단 이전</h4>
-              <p data-i18n="why-card3-desc">수백만 건 레코드의 Oracle → MySQL 마이그레이션을 서비스 연속성을 유지하면서 완료했습니다.</p>
+              <h4 data-i18n="why-card3-title">DB 전환 데이터 정합성 대응</h4>
+              <p data-i18n="why-card3-desc">Oracle → MySQL 전환 이후 서비스 간 데이터 정합성을 위한 보상 트랜잭션(Saga) 처리 로직 구현에 참여했습니다.</p>
             </div>
           </div>
           <div class="experience-item">
@@ -505,6 +514,7 @@
             </div>
           </div>
         </div>
+        <p class="career-scope-note" data-i18n="career-scope-note">위 성과 수치는 각 프로젝트의 당시 조건에서 기록한 경력 사례로, 다른 환경에서의 동일한 성능 개선을 보장하지 않습니다.</p>
 
         <!-- Engagement model -->
         <div class="engagement-section">
