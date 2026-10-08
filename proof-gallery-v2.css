@@ -155,6 +155,7 @@
   transform: translateY(-50%);
   font-size: 2rem;
 }
+.proof-zoom-dialog [hidden] { display: none !important; }
 .proof-zoom-dialog__arrow--prev { left: 10px; }
 .proof-zoom-dialog__arrow--next { right: 10px; }
 .proof-zoom-dialog__close:hover,
