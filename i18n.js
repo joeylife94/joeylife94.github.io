@@ -15,6 +15,7 @@
 
   var translations = {
     ko: {
+      'experience-stat-4': "로그인",
       'mobile-value-title': "매일 손으로 반복하는 일, 프로그램으로 줄여드립니다.",
       'mobile-value-desc': "자료 수집, 엑셀 정리, 같은 내용 확인 같은 일을 더 빠르고 편하게 처리할 수 있게 만듭니다.",
       'contact-mail-cta': "메일로 문의하기 ↗",
@@ -254,6 +255,7 @@
     },
 
     en: {
+      'experience-stat-4': "Login",
       'mobile-value-title': "Less time on repetitive tasks. More time for what matters.",
       'mobile-value-desc': "I build tools that collect information, organize spreadsheets, and reduce routine checking.",
       'contact-mail-cta': "Email about your project ↗",
@@ -493,6 +495,7 @@
     },
 
     ja: {
+      'experience-stat-4': "ログイン",
       'mobile-value-title': "毎日の手作業を、ツールでもっと少なく。",
       'mobile-value-desc': "情報収集、Excelへの入力、繰り返す確認作業を減らすツールを作ります。",
       'contact-mail-cta': "メールで相談する ↗",
@@ -769,6 +772,12 @@
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-placeholder');
       if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+
+    // Keep the native email subject in the active language.
+    var subject = encodeURIComponent(dict['contact-mail-subject'] || 'Project inquiry');
+    document.querySelectorAll('#mail-inquiry-link, .contact-fallback-email').forEach(function (link) {
+      link.setAttribute('href', 'mailto:dongyoun.jeon@gmail.com?subject=' + subject);
     });
 
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
