@@ -69,7 +69,7 @@ jobs:
             if(!page.url().endsWith('#proof'))throw Error('signature portfolio link failed');
             await page.screenshot({path:'signature-proof/03-signature-proof-jump.png'});
             await desktop.close();
-            const mobile=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
+            const mobile=await browser.newContext({viewport:{width:375,height:812},reducedMotion:'reduce'});
             const mp=await mobile.newPage();
             await mp.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
             await mp.evaluate(()=>document.fonts.ready);
