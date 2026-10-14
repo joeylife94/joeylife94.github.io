@@ -505,7 +505,7 @@
       'featured-status': "個人開発・機能デモ",
       'featured-evidence-note': "画面にある利益率や的中率は、お客様の実際の販売実績や検証済みの収益率ではありません。",
       'experience-stat-4': "ログイン",
-      'mobile-value-title': "毎日の手作業を、ツールでもっと少なく。",
+      'mobile-value-title': "毎日の手作業を、<wbr>ツールで<wbr>もっと少なく。",
       'mobile-value-desc': "情報収集、Excelへの入力、繰り返す確認作業を減らすツールを作ります。",
       'contact-mail-cta': "メールで相談する ↗",
       'contact-mail-subject': "【業務相談】繰り返す仕事の改善について",
