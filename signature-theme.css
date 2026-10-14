@@ -395,3 +395,93 @@ h3,h4 { color: var(--heading); }
   .motion-enabled .reveal-item { opacity:1!important;transform:none!important; }
   .signature-verb,.identity-name,.mobile-identity-name { opacity:1!important;transform:none!important;filter:none!important; }
 }
+
+/* Buyer-first revision: native-language value before decorative English branding. */
+.signature-value-title {
+  color: #f5f8ff;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  line-height: 1.26;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  max-width: 560px;
+  margin: 0 0 20px;
+}
+.signature-copy { max-width: 590px; }
+.signature-verb {
+  color: #a7b8d0;
+  font-size: clamp(.85rem, 1.5vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .12em;
+  margin-bottom: 17px;
+}
+.signature-sub { color:#d6e1f3; max-width: 490px; font-size: 1.02rem; line-height: 1.65; }
+.case-anchor { scroll-margin-top: 88px; }
+.contact-mail-btn { display: inline-flex; align-items: center; justify-content: center; margin: 10px 0 4px; text-decoration: none; }
+.contact-fallback .contact-copy-row { margin-top: 10px; }
+.project-card-body .tags { opacity:.7; font-size:.78rem; }
+
+@media (max-width: 768px) {
+  .mobile-identity {
+    min-height: min(700px, calc(100svh - 55px));
+    justify-content: center;
+    padding: 36px 27px 40px;
+    gap: 0;
+  }
+  .mobile-identity .identity-index {
+    color: #95b3d8;
+    font-size: .6rem;
+    margin-bottom: 18px;
+  }
+  .mobile-buyer-title {
+    color: #f6f9ff;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 7.5vw, 2.45rem);
+    font-weight: 800;
+    line-height: 1.22;
+    letter-spacing: -.04em;
+    max-width: 480px;
+    margin: 0 0 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .mobile-buyer-desc {
+    color: #d4e0f0;
+    line-height: 1.65;
+    font-size: .97rem;
+    max-width: 470px;
+    margin: 0;
+  }
+  .mobile-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 23px 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .mobile-contact-cta, .mobile-proof-cta { margin: 0; font-size: .8rem; white-space: nowrap; }
+  .mobile-identity-credit {
+    border-top: 1px solid rgba(160,194,238,.24);
+    padding-top: 17px;
+    margin-top: 2px;
+    position: relative;
+    z-index: 2;
+  }
+  .mobile-identity .mobile-identity-credit .mobile-identity-name {
+    font-size: clamp(1.6rem, 7vw, 2.15rem);
+    line-height: 1.08;
+    margin: 0 0 7px;
+    letter-spacing: -.02em;
+  }
+  .mobile-identity-credit .identity-role { color: #b7cce6; font-size: .74rem; }
+  .mobile-identity-credit .identity-verbs { color:#6688b2; font-size:.58rem; margin-top: 10px; }
+}
+@media (max-width: 360px) {
+  .mobile-identity { padding-left: 20px; padding-right: 20px; }
+  .mobile-buyer-title { font-size: 1.75rem; }
+  .mobile-hero-actions { gap: 9px; }
+  .mobile-contact-cta,.mobile-proof-cta { font-size: .74rem; }
+}
