@@ -379,7 +379,7 @@
 
       'portfolio-eyebrow': "More examples",
       'card-seoulgyeol-desc': "I built a page where people interested in a beauty brand can learn more and send an inquiry. Personal quizzes and report automation were not part of this build.",
-      'card-seoulgyeol-proof': "The page and inquiry flow were tested. I did not measure how much client response time improved.",
+      'card-seoulgyeol-proof': "The page and inquiry flow were tested. Improvement in client response time has not been measured.",
       'card-seoulgyeol-visit': "Visit landing page ↗",
       'card-restricted-desc': "A tool that organizes requests from approved Slack channels, then shows who is responsible, the deadline, and each request's progress.",
       'card-restricted-proof': "I tested requests coming in, status updates, and change records. Faster response times in real customer use have not been measured.",
