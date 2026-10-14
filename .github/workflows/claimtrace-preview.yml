@@ -101,7 +101,7 @@ jobs:
                 throw Error('Duplicate or incorrect About/Why navigation '+lang+': '+navAbout+' / '+navWhy);
               }
               const promise=(await page.locator('.signature-sub').textContent())?.trim()||'';
-              const expectedPromise={ko:'내부 도구',en:'internal tools',ja:'社内ツール'};
+              const expectedPromise={ko:'회사에서 쓰는 프로그램',en:'tools your team can use',ja:'社内で使うツール'};
               if (!promise.includes(expectedPromise[lang])) throw Error('Buyer promise not concrete in '+lang);
               const numbers=await page.locator('.count-up').evaluateAll(elements => elements.map(el=>({
                 target:el.dataset.target,
