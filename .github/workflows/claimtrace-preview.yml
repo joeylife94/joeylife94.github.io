@@ -59,12 +59,12 @@ jobs:
             }));
             if(seo.canonical!=='https://joeylife94.github.io/' ||
                seo.ogUrl!==seo.canonical || seo.ogType!=='website' ||
-               seo.ogImage!=='https://joeylife94.github.io/img/social-card.png' ||
+               seo.ogImage!=='https://joeylife94.github.io/img/social-card-buyer.png' ||
                seo.twitter!=='summary_large_image' ||
                seo.person.name!=='Dongyoun Jeon')throw Error('P2 social/canonical metadata mismatch '+JSON.stringify(seo));
             const image=await page.evaluate(async()=>{
               const img=new Image();
-              img.src='/img/social-card.png';
+              img.src='/img/social-card-buyer.png';
               await img.decode();
               return {width:img.naturalWidth,height:img.naturalHeight};
             });
@@ -128,11 +128,14 @@ jobs:
                             const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
               const expectedOwner={ko:'전동윤',en:'Dongyoun Jeon',ja:'Dongyoun Jeon'};
               if (!ownerText?.includes(expectedOwner[lang])) throw Error('Owner identity missing in '+lang);
+              const textOfPrice=await page.locator('[data-i18n="featured-evidence-note"]').textContent();
+              if (!textOfPrice || !textOfPrice.trim()) throw Error('Featured demo disclaimer missing in '+lang);
+              if (await page.locator('.proof-jump-links a[href="#price-automation-case"]').count()!==1) throw Error('Featured price-case shortcut missing');
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
                 const href=el.getAttribute('href');
                 return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
               }));
-              if (jumpTargets.length!==3 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
+              if (jumpTargets.length!==4 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
               if (await page.locator('.proof-next-step a[href="#contact"]').count()!==1) throw Error('Proof inquiry CTA missing');
               await page.evaluate(() => {
                 document.documentElement.style.scrollBehavior = 'auto';

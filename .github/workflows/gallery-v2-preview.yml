@@ -124,6 +124,7 @@ jobs:
             const cardHeight=(await papyr.boundingBox()).height;
             await papyr.locator('.card-carousel__btn--next').click();
             assert(Math.abs((await papyr.boundingBox()).height-cardHeight)<1,'supporting proof card changed height');
+            await papyr.hover(); // Pause carousel autoplay during the actual pointer click.
             await papyr.locator('.card-carousel__img--active').click();
             assert(await dlg.isVisible(),'supporting carousel image failed to expand');
             await dlg.screenshot({path:'gallery-v2-proof/05-card-expanded.png'});
@@ -133,6 +134,7 @@ jobs:
             const seoul=page.locator('#seoulgyeol-proof');
             assert(await seoul.locator('a.project-visit-link').count()===1,'project needs a standalone external visit link');
             assert(await page.locator('a.project-card .card-carousel__btn').count()===0,'invalid nested project link and buttons persist');
+            await seoul.locator('.card-carousel').hover(); // Stable real-user hover pauses the next slide.
             await seoul.locator('.card-carousel__img--active').click();
             assert(await dlg.isVisible(),'SeoulGyeol image must enlarge without following external link');
             await dlg.locator('.proof-zoom-dialog__close').click();

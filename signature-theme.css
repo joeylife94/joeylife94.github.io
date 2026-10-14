@@ -485,3 +485,25 @@ h3,h4 { color: var(--heading); }
   .mobile-hero-actions { gap: 9px; }
   .mobile-contact-cta,.mobile-proof-cta { font-size: .74rem; }
 }
+
+/* 2nd Opus audit: prevent splitting local-language value statements. */
+.signature-value-title, .mobile-buyer-title {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.signature-value-title wbr, .mobile-buyer-title wbr {
+  display: inline;
+}
+.featured-status {
+  color: #abc1dc;
+  font-size: .82rem;
+  font-weight: 650;
+  margin: -6px 0 20px;
+}
+@media (max-width: 360px) {
+  .mobile-header { padding: 10px 9px; gap: 7px; }
+  .mobile-header .brand { font-size: .73rem; white-space: nowrap; flex: 0 1 auto; }
+  .mobile-header-right { gap: 5px; flex: 0 0 auto; }
+  .mobile-header .lang-btn { padding: 6px 7px; font-size: .65rem; }
+  .mobile-buyer-title { font-size: 1.64rem; }
+}

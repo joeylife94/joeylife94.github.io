@@ -103,9 +103,32 @@ jobs:
 
               await mp.screenshot({path:'signature-proof/'+photo});
             }
+            await mp.setViewportSize({width:320,height:812});
+            for (const lang of ['ko','ja']) {
+              await mp.locator('.mobile-header .lang-btn[data-lang="'+lang+'"]').click();
+              await mp.waitForFunction(l=>document.documentElement.lang===l,lang);
+              const mobileState=await mp.evaluate(()=>{
+                const title=document.querySelector('.mobile-buyer-title');
+                const brand=document.querySelector('.mobile-header .brand');
+                const langs=document.querySelector('.mobile-header .lang-switch--mobile');
+                const box=title.getBoundingClientRect();
+                return {scroll:document.documentElement.scrollWidth,
+                  width:window.innerWidth,wordBreak:getComputedStyle(title).wordBreak,
+                  breakCount:title.querySelectorAll('wbr').length,
+                  titleRight:box.right,brandRight:brand.getBoundingClientRect().right,
+                  langsLeft:langs.getBoundingClientRect().left};
+              });
+              if(mobileState.scroll>mobileState.width+1)throw Error('320px overflow '+JSON.stringify(mobileState));
+              if(mobileState.wordBreak!=='keep-all')throw Error('Headline may split words '+JSON.stringify(mobileState));
+              if(mobileState.titleRight>mobileState.width+1)throw Error('Headline clip '+JSON.stringify(mobileState));
+              if(mobileState.brandRight+4>mobileState.langsLeft)throw Error('Header collisions '+JSON.stringify(mobileState));
+              if(lang==='ja' && mobileState.breakCount<2)throw Error('Missing Japanese semantic breaks');
+              await mp.screenshot({path:'signature-proof/07-320-'+lang+'.png'});
+            }
+            await mp.setViewportSize({width:375,height:812});
             await mp.locator('.mobile-proof-cta').click();
             if(!mp.url().endsWith('#proof'))throw Error('mobile verified proof CTA broken');
-            console.log('PASS: 1440px electric-blue motion/parallax/progress + 390px mobile + KO/EN/JA + reduced-motion + navigation');
+            console.log('PASS: 1440px electric-blue motion/parallax/progress + 375/320px mobile + KO/EN/JA + reduced-motion + navigation');
             await mobile.close();
           } finally {
             await browser.close();

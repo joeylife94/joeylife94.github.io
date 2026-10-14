@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">전동윤 | 반복 업무를 줄이는 프로그램 개발</title>
+  <desc id="desc">반복 업무 자동화, 자료 수집, 엑셀 정리, 사내 관리 프로그램 제작</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#23262e"/>
+      <stop offset=".68" stop-color="#14171d"/>
+      <stop offset="1" stop-color="#192131"/>
+    </linearGradient>
+    <linearGradient id="arc" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#095dbb" stop-opacity=".1"/>
+      <stop offset=".45" stop-color="#168fff" stop-opacity=".75"/>
+      <stop offset=".80" stop-color="#72c7ff"/>
+      <stop offset="1" stop-color="#116cdb" stop-opacity=".4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#paper)"/>
+  <rect width="12" height="630" fill="#168dff"/>
+  <path d="M 770 695 C 680 300 890 38 1290 -48" stroke="#1476d6" stroke-opacity=".2" stroke-width="26" fill="none"/>
+  <path d="M 770 695 C 680 300 890 38 1290 -48" stroke="url(#arc)" stroke-width="6" fill="none"/>
+  <text x="80" y="94" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" fill="#f7fbff">ProblemSolver<tspan fill="#37a8ff">Arc</tspan></text>
+  <text x="82" y="168" font-family="Noto Sans CJK KR,Noto Sans KR,DejaVu Sans,sans-serif" font-size="20" font-weight="600" fill="#a7caed">반복 업무 자동화 · 사내 프로그램</text>
+  <text x="78" y="285" font-family="Noto Sans CJK KR,Noto Sans KR,sans-serif" font-size="62" font-weight="800" fill="#ffffff">반복 업무를 줄이는</text>
+  <text x="78" y="380" font-family="Noto Sans CJK KR,Noto Sans KR,sans-serif" font-size="62" font-weight="800" fill="#ffffff">프로그램을 만듭니다.</text>
+  <rect x="84" y="415" width="63" height="5" rx="2" fill="#299cff"/>
+  <text x="82" y="476" font-family="Noto Sans CJK KR,Noto Sans KR,sans-serif" font-size="27" fill="#d6e4f5">자료 수집 · 엑셀 정리 · 반복 업무 개선</text>
+  <text x="82" y="550" font-family="Noto Sans CJK KR,Noto Sans KR,sans-serif" font-size="22" fill="#b2d7ff">전동윤  |  업무 자동화 · 시스템 개발</text>
+  <text x="1090" y="585" text-anchor="end" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" fill="#91b5de">joeylife94.github.io</text>
+</svg>
