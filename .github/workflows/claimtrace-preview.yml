@@ -126,7 +126,8 @@ jobs:
                 throw Error('Supporting proof must disclose unmeasured business outcomes in '+lang);
               }
                             const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
-              if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
+              const expectedOwner={ko:'전동윤',en:'Dongyoun Jeon',ja:'Dongyoun Jeon'};
+              if (!ownerText?.includes(expectedOwner[lang])) throw Error('Owner identity missing in '+lang);
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
                 const href=el.getAttribute('href');
                 return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
