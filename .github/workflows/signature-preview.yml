@@ -69,12 +69,23 @@ jobs:
             if(!page.url().endsWith('#proof'))throw Error('signature portfolio link failed');
             await page.screenshot({path:'signature-proof/03-signature-proof-jump.png'});
             await desktop.close();
-            const mobile=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
+            const mobile=await browser.newContext({viewport:{width:375,height:812},reducedMotion:'reduce'});
             const mp=await mobile.newPage();
             await mp.goto('http://127.0.0.1:8000/',{waitUntil:'domcontentloaded'});
             await mp.evaluate(()=>document.fonts.ready);
             if(!await mp.locator('.mobile-identity-name').isVisible())throw Error('mobile name missing');
             if(await mp.locator('.identity-name').isVisible())throw Error('desktop-only identity leaks into mobile');
+            // Opus P0: the customer's language and inquiry must appear in the first 375x812 viewport.
+            const firstValue=mp.locator('.mobile-buyer-title');
+            const primaryInquiry=mp.locator('.mobile-contact-cta');
+            for (const locator of [firstValue,primaryInquiry]) {
+              if(!await locator.isVisible())throw Error('Native-language promise or inquiry is hidden on mobile');
+              const box=await locator.boundingBox();
+              if(!box || box.y<0 || box.y+box.height>812)throw Error('Value or inquiry below mobile fold '+JSON.stringify(box));
+            }
+            if(!(await firstValue.textContent()).includes('매일 손으로'))throw Error('Korean buyer value missing on mobile');
+            if(await primaryInquiry.getAttribute('href')!=='#contact')throw Error('Primary inquiry destination invalid');
+
             const sizes=await mp.evaluate(()=>({width:window.innerWidth,scrollWidth:document.documentElement.scrollWidth}));
             if(sizes.scrollWidth>sizes.width+1)throw Error('mobile horizontal overflow '+JSON.stringify(sizes));
             const reduced=await mp.locator('.mobile-identity-arc .identity-orbit-line').evaluate(el=>getComputedStyle(el).animationDuration);
@@ -83,7 +94,13 @@ jobs:
             for(const [lang,photo] of [['en','05-signature-mobile-en.png'],['ja','06-signature-mobile-ja.png']]){
               await mp.locator('.mobile-header .lang-btn[data-lang="'+lang+'"]').click();
               await mp.waitForFunction(l=>document.documentElement.lang===l,lang);
-              if(!await mp.locator('.mobile-identity-name').isVisible())throw Error('mobile name lost in '+lang);
+              if(!await mp.locator('.mobile-identity-name').isVisible())throw Error('mobile name lost in '+lang); 
+              const expected={en:'Less time on repetitive tasks',ja:'毎日の手作業'};
+              if(!(await mp.locator('.mobile-buyer-title').textContent()).includes(expected[lang]))throw Error('Native buyer promise missing '+lang);
+              const mail=mp.locator('#mail-inquiry-link');
+              const subjects={en:'[Project inquiry] Automating a repetitive task',ja:'【業務相談】繰り返す仕事の改善について'};
+              if(!decodeURIComponent(await mail.getAttribute('href')).includes(subjects[lang]))throw Error('Localized email subject missing '+lang);
+
               await mp.screenshot({path:'signature-proof/'+photo});
             }
             await mp.locator('.mobile-proof-cta').click();

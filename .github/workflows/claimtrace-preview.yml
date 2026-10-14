@@ -101,7 +101,7 @@ jobs:
                 throw Error('Duplicate or incorrect About/Why navigation '+lang+': '+navAbout+' / '+navWhy);
               }
               const promise=(await page.locator('.signature-sub').textContent())?.trim()||'';
-              const expectedPromise={ko:'회사에서 쓰는 프로그램',en:'tools your team can use',ja:'社内で使うツール'};
+              const expectedPromise={ko:'사내 관리 도구',en:'helps teams manage their work',ja:'社内で使う管理ツール'};
               if (!promise.includes(expectedPromise[lang])) throw Error('Buyer promise not concrete in '+lang);
               const numbers=await page.locator('.count-up').evaluateAll(elements => elements.map(el=>({
                 target:el.dataset.target,
@@ -126,7 +126,8 @@ jobs:
                 throw Error('Supporting proof must disclose unmeasured business outcomes in '+lang);
               }
                             const ownerText=await page.locator('[data-i18n="about-owner"]').textContent();
-              if (!ownerText?.includes('Dongyoun Jeon')) throw Error('Owner identity missing in '+lang);
+              const expectedOwner={ko:'전동윤',en:'Dongyoun Jeon',ja:'Dongyoun Jeon'};
+              if (!ownerText?.includes(expectedOwner[lang])) throw Error('Owner identity missing in '+lang);
               const jumpTargets=await page.locator('.proof-jump-links a').evaluateAll(els=>els.map(el=>{
                 const href=el.getAttribute('href');
                 return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
