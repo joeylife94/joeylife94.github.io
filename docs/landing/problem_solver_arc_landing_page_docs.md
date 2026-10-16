@@ -1,5 +1,7 @@
 # ProblemSolverArc Landing Page — Production Document V2.0
 
+> **V3 transition notice — 2026-10-06:** Portfolio identity, project hierarchy, proof-promotion status, and target homepage information architecture are now governed by [Portfolio V3 Decision Record](../portfolio/portfolio-v3-decision-record.md). Where this V2 document conflicts with that record, the V3 Decision Record takes precedence. V2 service-scope, pricing-policy, communication, multilingual, and evidence-integrity rules remain active unless explicitly superseded.
+
 **Status:** Active source of truth  
 **Updated:** 2026-10-06  
 **Repository:** `joeylife94/joeylife94.github.io`
