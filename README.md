@@ -3,7 +3,7 @@
 
 I build **backend-first operational systems, controlled AI workflows, and internal tools** for teams that need something more reliable than spreadsheets, chat threads, and manual checks.
 
-My background is **5 years of production backend engineering** across enterprise and public-sector environments, including Java/Spring, authentication and SSO, distributed consistency, database migration, performance optimization, and legacy modernization.
+I have **5+ years of backend and systems engineering experience**, including production work for enterprise and public-sector organizations on Java/Spring systems, authentication and SSO, data migration, performance, and legacy modernization.
 
 My current focus is narrower than “general web development”:
 
@@ -88,6 +88,10 @@ Typical scope:
 - deployable MVP + code handoff
 
 ---
+
+## Recognition
+
+- **Hack Extreme Environments Award** · Team KMJ, [Junction X Kyutech 2026](https://www.kyutech.ac.jp/whats-new/topics/entry-12396.html) · September 2026. We demonstrated MICHIBIKI, a LoRa concept prototype for location checks and emergency alerts in low-connectivity environments.
 
 ## Production Background
 

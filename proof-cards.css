@@ -42,6 +42,7 @@
 /* Give the verified evaluation chart room without changing other cases. */
 .project-card--sensor { grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); }
 @media (max-width: 768px) { .project-card--sensor { grid-template-columns: minmax(0, 1fr); } }
+.project-card--text { grid-template-columns: minmax(0, 1fr); }
 
 /* Jump directly to the validated project that matches a buyer's need. */
 .proof-jump-links {
@@ -69,7 +70,7 @@
   color: var(--accent);
   border-color: var(--accent);
 }
-#papyr-proof, #public-sensor-ml-proof { scroll-margin-top: 86px; }
+#guided-agent-proof, #papyr-proof, #public-sensor-ml-proof { scroll-margin-top: 86px; }
 .proof-next-step {
   margin-top: 32px;
   border-top: 1px solid var(--bg-lightest);

@@ -20,7 +20,7 @@ on:
 jobs:
   browser-proof:
     name: Portfolio multilingual browser preview
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -107,9 +107,12 @@ jobs:
                 target:el.dataset.target,
                 displayed:el.textContent?.trim().replaceAll(',','')
               })));
-              if (numbers.length!==4 || !numbers.every(x=>x.target===x.displayed)) {
+              if (numbers.length!==3 || !numbers.every(x=>x.target===x.displayed)) {
                 throw Error('Career metrics show zero or incorrect initial value: '+JSON.stringify(numbers));
               }
+              const expectedExperience={ko:'5년 이상',en:'5+ years',ja:'5年以上'};
+              const experience=(await page.locator('[data-i18n="ts-experience"]').textContent())?.trim();
+              if (experience!==expectedExperience[lang]) throw Error('Incorrect career experience in '+lang);
                             // P1: lead with source provenance, not a deliberately
               // insufficient-evidence synthetic question. Keep scope claims bounded.
               const featuredSlides=await page.locator('.proof-viewer[data-project="claimtrace-v1"] .proof-viewer__slide img').evaluateAll(images=>
@@ -135,7 +138,9 @@ jobs:
                 const href=el.getAttribute('href');
                 return {href,exists:Boolean(href?.startsWith('#') && document.querySelector(href))};
               }));
-              if (jumpTargets.length!==4 || !jumpTargets.every(item=>item.exists)) throw Error('Proof jump target missing');
+              if (jumpTargets.length!==5 || !jumpTargets.every(item=>item.exists) || !jumpTargets.some(item=>item.href==='#guided-agent-proof')) {
+                throw Error('Proof jump target missing');
+              }
               if (await page.locator('.proof-next-step a[href="#contact"]').count()!==1) throw Error('Proof inquiry CTA missing');
               await page.evaluate(() => {
                 document.documentElement.style.scrollBehavior = 'auto';
