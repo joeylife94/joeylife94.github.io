@@ -507,3 +507,59 @@ h3,h4 { color: var(--heading); }
   .mobile-header .lang-btn { padding: 6px 7px; font-size: .65rem; }
   .mobile-buyer-title { font-size: 1.64rem; }
 }
+
+
+/* One inline inquiry form serves both hero layouts and all case studies. */
+.signature-panel {
+  min-height: 0;
+  margin-bottom: 16px;
+  padding: clamp(19px, 2vw, 30px);
+}
+.signature-panel .signature-verb,
+.signature-panel .signature-corner { display: none; }
+.signature-value-title { margin-bottom: 9px; }
+.signature-panel .signature-links { margin-top: 12px; }
+.inquiry-card {
+  scroll-margin-top: 70px;
+  margin-bottom: clamp(40px, 7vw, 86px);
+  padding: clamp(20px, 2.6vw, 36px);
+  border-top: 4px solid #49abff;
+  border-radius: 12px;
+  background: #f1f6fb;
+  color: #172a40;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.inquiry-card h2 { margin: 0 0 6px; color: #122237; font-size: clamp(1.3rem, 2.2vw, 1.85rem); line-height: 1.3; word-break: keep-all; }
+.inquiry-card p { margin: 0 0 14px; color: #40566a; }
+.inquiry-card label { display: block; margin: 10px 0 4px; font-size: .92rem; font-weight: 700; }
+.inquiry-card textarea, .inquiry-card input:not([hidden]) {
+  display: block; width: 100%; min-width: 0; box-sizing: border-box;
+  border: 1px solid #8295a7; border-radius: 6px;
+  background: white; color: #132639; font: inherit; font-size: 16px; padding: 9px 11px;
+}
+.inquiry-card textarea { resize: vertical; min-height: 66px; }
+.inquiry-card [type="hidden"], .inquiry-card [hidden] { display: none !important; }
+.inquiry-card :focus-visible { outline: 3px solid #126cb6; outline-offset: 2px; }
+.inquiry-submit {
+  width: 100%; margin: 14px 0 8px; padding: 12px; border: 0; border-radius: 7px;
+  color: #fff; background: #115ca5; font: inherit; font-weight: 700; cursor: pointer;
+}
+.inquiry-submit:hover { background: #094779; }
+.inquiry-submit:disabled { opacity: .72; cursor: wait; }
+.inquiry-card small, .inquiry-fallback { display: block; font-size: .78rem; color: #44596c; }
+.inquiry-fallback { margin-top: 9px; }
+.inquiry-fallback a, .inquiry-fallback button { font: inherit; color: #175b89; text-decoration: underline; }
+.inquiry-fallback button { background: transparent; padding: 3px; border: 0; cursor: pointer; }
+.inquiry-context { margin: 8px 0; font-size: .85rem; color: #25597c; }
+.inquiry-status span { display: block; padding: 9px 0; font-weight: 600; }
+.inquiry-status [data-state="error"] { color: #863a28; }
+.inquiry-case-link { display: inline-block; margin: 10px 0 20px; color: #9bd6ff; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 768px) {
+  .mobile-identity { min-height: 0; margin-bottom: 12px; padding: 20px; }
+  .mobile-identity .identity-index, .mobile-identity-credit .identity-verbs { display: none; }
+  .mobile-hero-actions { margin: 10px 0; }
+  .mobile-identity-credit { padding-top: 6px; }
+  .mobile-identity .mobile-identity-credit .mobile-identity-name { font-size: 1rem; margin: 0; }
+  .inquiry-card { padding: 18px; }
+}

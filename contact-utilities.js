@@ -1,4 +1,4 @@
-/* Lightweight contact helper — no API service, trackers or new dependencies. */
+/* Lightweight contact helper — email copy and form handling. */
 (() => {
   'use strict';
   const button = document.getElementById('copy-inquiry-email');
@@ -70,5 +70,70 @@
   new MutationObserver(renderStatus).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['lang']
+  });
+})();
+
+
+(() => {
+  'use strict';
+  const form = document.getElementById('workflow-inquiry');
+  const task = document.getElementById('inquiry-task');
+  const source = document.getElementById('inquiry-source');
+  const context = form.querySelector('.inquiry-context');
+  const submit = form.querySelector('[type="submit"]');
+  const cases = form.querySelectorAll('[data-case]');
+  const states = form.querySelectorAll('[data-state]');
+  function showState(name) {
+    states.forEach(el => { el.hidden = el.dataset.state !== name; });
+  }
+  function selectCase(name) {
+    source.value = name;
+    source.disabled = !name;
+    context.hidden = !name;
+    cases.forEach(el => { el.hidden = el.dataset.case !== name; });
+  }
+  document.querySelectorAll('a[href="#contact"]').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+      selectCase(link.dataset.inquiryCase || '');
+      task.focus({ preventScroll: true });
+    });
+  });
+  form.addEventListener('input', () => showState(''));
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (submit.disabled) return;
+    if (!task.value.trim()) {
+      task.value = '';
+      task.reportValidity();
+      return;
+    }
+    const payload = new FormData(form);
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+    const email = form.elements.email;
+    submit.disabled = true;
+    task.readOnly = email.readOnly = true;
+    showState('pending');
+    try {
+      const endpoint = new URL(form.action);
+      endpoint.pathname = '/ajax' + endpoint.pathname;
+      const response = await fetch(endpoint.href, {
+        method: 'POST', headers: { Accept: 'application/json' }, body: payload, signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || String(result.success) !== 'true' || /activat|confirm your email/i.test(result.message || '')) {
+        throw new Error('Delivery unconfirmed');
+      }
+      form.reset();
+      selectCase('');
+      showState('done');
+    } catch {
+      showState('error');
+    } finally {
+      clearTimeout(timeout);
+      task.readOnly = email.readOnly = false;
+      submit.disabled = false;
+    }
   });
 })();

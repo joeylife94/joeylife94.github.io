@@ -191,6 +191,29 @@
         </div>
       </section>
 
+      <section class="inquiry-card" id="contact" aria-labelledby="inquiry-title">
+        <h2 id="inquiry-title" data-i18n="inquiry-title">줄이고 싶은 일 하나만 들려주세요.</h2>
+        <p data-i18n="inquiry-intro">전동윤이 직접 읽고, 먼저 자동화해볼 부분이나 더 확인할 점을 답장드립니다.</p>
+        <form id="workflow-inquiry" method="post" action="https://formsubmit.co/dongyoun.jeon@gmail.com">
+          <input type="hidden" name="_subject" value="[ProblemSolverArc] Portfolio inquiry">
+          <input type="hidden" name="case" id="inquiry-source" disabled>
+          <input type="text" name="_honey" hidden tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="inquiry-context" hidden><span data-i18n="inquiry-case">보고 계셨던 사례</span> · <span hidden data-case="price" data-i18n="inquiry-price">상품 가격 비교</span><span hidden data-case="docs" data-i18n="inquiry-docs">문서 원문 확인</span><span hidden data-case="approval" data-i18n="inquiry-approval">업무 승인 절차</span></div>
+          <label for="inquiry-task" data-i18n="inquiry-task">어떤 일을 반복하고 계세요?</label>
+          <textarea id="inquiry-task" name="message" rows="2" required maxlength="4000" data-i18n-placeholder="inquiry-example" placeholder="예) 매주 거래처 세 곳의 가격표를 엑셀 한 장으로 합쳐요."></textarea>
+          <label for="inquiry-email" data-i18n="inquiry-email">답장받을 이메일</label>
+          <input id="inquiry-email" type="email" name="email" autocomplete="email" maxlength="254" required placeholder="name@company.com">
+          <button class="inquiry-submit" type="submit" data-i18n="inquiry-submit">자동화 가능성 물어보기 →</button>
+          <div class="inquiry-status" role="status" aria-live="polite" aria-atomic="true"><span data-state="pending" hidden data-i18n="inquiry-pending">문의 전송 중…</span><span data-state="done" hidden data-i18n="inquiry-done">문의가 접수됐습니다. 보통 24–48시간 안에 이메일로 답장드립니다.</span><span data-state="error" hidden data-i18n="inquiry-error">접수 여부를 확인할 수 없어요. 작성한 내용은 그대로입니다. 다시 시도하거나 아래 이메일로 보내주세요.</span></div>
+        </form>
+        <small data-i18n="contact-reply-time">보통 24–48시간 내에 첫 답변을 드립니다.</small>
+        <small data-i18n="inquiry-service">문의 내용과 이메일은 FormSubmit을 통해 전동윤에게 전달됩니다.</small>
+        <div class="inquiry-fallback"><span data-i18n="inquiry-fallback">이메일로 직접 문의</span> · <a id="mail-inquiry-link" class="contact-fallback-email" href="mailto:dongyoun.jeon@gmail.com">dongyoun.jeon@gmail.com</a>
+          <button type="button" id="copy-inquiry-email" data-i18n="contact-copy-email">이메일 주소 복사</button>
+          <span id="copy-email-status" role="status"></span>
+        </div>
+      </section>
+
       <!-- ── ABOUT / INTRO ────────────────────────────────────── -->
       <section class="content-section" id="about">
         <p class="section-label" data-i18n="nav-about">소개</p>
@@ -413,6 +436,7 @@
           </div>
         </div>
 
+        <a href="#contact" class="inquiry-case-link" data-inquiry-case="price" data-i18n="inquiry-cta-price">우리 팀 가격 조사도 줄일 수 있을까요? →</a>
         <div class="proof-case-divider"></div>
         <div id="claimtrace-case" class="case-anchor" aria-hidden="true"></div>
         <p class="section-label" data-i18n="claimtrace-eyebrow">직접 만든 AI 사례</p>
@@ -468,6 +492,8 @@
           <a class="btn-ghost" href="https://github.com/joeylife94/claim-trace/tree/v1.0-proof/docs/proof" target="_blank" rel="noopener noreferrer" data-i18n="claimtrace-source-evidence">테스트 화면·설명 보기 ↗</a>
         </div>
 
+        <a href="#contact" class="inquiry-case-link" data-inquiry-case="docs" data-i18n="inquiry-cta-docs">우리 문서에서도 답변 근거를 확인할 수 있을까요? →</a>
+
         <!-- Supporting projects -->
         <div class="supporting-section">
           <p class="section-label" data-i18n="portfolio-eyebrow">더 살펴볼 제작 사례</p>
@@ -482,6 +508,7 @@
                   <a href="https://github.com/joeylife94/guided-agent-os#evaluation-evidence" target="_blank" rel="noopener noreferrer" data-i18n="card-guided-evidence">테스트 결과 보기 ↗</a>
                   <a href="https://github.com/joeylife94/guided-agent-os/blob/main/GUIDED_AGENT_OS_MASTER.md" target="_blank" rel="noopener noreferrer" data-i18n="card-guided-scope">검증 범위 보기 ↗</a>
                 </div>
+                <a href="#contact" class="inquiry-case-link" data-inquiry-case="approval" data-i18n="inquiry-cta-approval">우리 승인 절차에도 적용할 수 있을까요? →</a>
               </div>
             </article>
 
@@ -697,35 +724,6 @@
               <div class="faq-answer"><p data-i18n="faq-a7">필요한 자료만 제한적으로 다루고, 접근 권한을 먼저 정합니다. 가능하면 가상의 데이터로 먼저 시험합니다.</p></div>
             </details>
           </div>
-        </div>
-      </section>
-
-      <!-- ── CONTACT ──────────────────────────────────────────── -->
-      <section class="content-section" id="contact">
-        <p class="section-label" data-i18n="nav-contact">문의하기</p>
-        <h2 data-i18n="contact-h2">어떤 업무가 불편한지 알려주세요</h2>
-        <p class="section-desc" data-i18n-html="contact-intro">현재 어떻게 일하고 있고, 무엇을 바꾸고 싶은지 알려주시면 가능한 작업 범위를 확인해 답장드리겠습니다.</p>
-
-        <div class="contact-fallback contact-fallback--primary">
-          <p class="contact-fallback-text" data-i18n="contact-fallback">문의 이메일</p>
-          <a href="mailto:dongyoun.jeon@gmail.com?subject=%5B%EC%97%85%EB%AC%B4%20%EC%83%81%EB%8B%B4%5D%20%EB%B0%98%EB%B3%B5%20%EC%97%85%EB%AC%B4%20%EA%B0%9C%EC%84%A0%20%EB%AC%B8%EC%9D%98" class="contact-fallback-email">dongyoun.jeon@gmail.com</a>
-          <a id="mail-inquiry-link" class="btn-primary contact-mail-btn" href="mailto:dongyoun.jeon@gmail.com?subject=%5B%EC%97%85%EB%AC%B4%20%EC%83%81%EB%8B%B4%5D%20%EB%B0%98%EB%B3%B5%20%EC%97%85%EB%AC%B4%20%EA%B0%9C%EC%84%A0%20%EB%AC%B8%EC%9D%98" data-i18n="contact-mail-cta">메일로 문의하기 ↗</a>
-          <div class="contact-copy-row">
-            <button type="button" id="copy-inquiry-email" class="contact-copy-btn" data-i18n="contact-copy-email">이메일 주소 복사</button>
-            <span id="copy-email-status" class="contact-copy-status" role="status" aria-live="polite" aria-atomic="true"></span>
-          </div>
-          <p class="contact-reply-time" data-i18n="contact-reply-time">보통 24–48시간 내에 첫 답변을 드립니다.</p>
-        </div>
-
-        <div class="form-helper">
-          <p class="form-helper-label" data-i18n="form-helper-label">아래 내용을 알려주시면 더 정확하게 답할 수 있습니다.</p>
-          <ul class="form-helper-list">
-            <li data-i18n="form-helper-1">지금 손으로 반복해서 처리하는 일</li>
-            <li data-i18n="form-helper-2">누가, 얼마나 자주 하는 일인지</li>
-            <li data-i18n="form-helper-3">가장 불편하거나 시간이 오래 걸리는 부분</li>
-            <li data-i18n="form-helper-4">어떻게 바뀌면 좋을지</li>
-            <li data-i18n="form-helper-5">희망 일정이나 마감일</li>
-          </ul>
         </div>
       </section>
 
@@ -948,8 +946,8 @@
     function updateCta() {
       if (!stickyCta || !aboutEl) return;
       var ab = aboutEl.getBoundingClientRect().bottom;
-      var ct = contactEl ? contactEl.getBoundingClientRect().top : Infinity;
-      var show = ab < 0 && ct > window.innerHeight;
+      var contactBottom = contactEl ? contactEl.getBoundingClientRect().bottom : Infinity;
+      var show = ab < 0 && contactBottom < 0;
       stickyCta.classList.toggle('is-visible', show);
       stickyCta.setAttribute('aria-hidden', show ? 'false' : 'true');
     }
